@@ -1,5 +1,11 @@
 import {StyleSheet, Text , View , TextInput ,Button, Image ,ScrollView  } from "react-native"
+import { useState } from "react";
 const Profile=()=>{
+const [name,setName]=useState('')
+const [emailAdress,setEmailAdress]=useState('')
+const [dateOfBirthday,setDateOfBirthday]=useState('')
+const[currentPassword,setCurrentPassword]=useState('')
+const [newPassword,setNewPassword]=useState('')
   return (
     <ScrollView >
  <View style={styles.container} >

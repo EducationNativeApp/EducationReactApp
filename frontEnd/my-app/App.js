@@ -5,7 +5,7 @@ import { NativeBaseProvider } from 'native-base';
 import { NavigationContainer } from '@react-navigation/native';
 import Login from './screens/LoginPage/Login/Login'
 import SignUp from './screens/LoginPage/SignUp/SignUp';
-import Profile from '../my-app/screens/Profile/Profile'
+import Profile from './screens/Profile/Profile/Profile'
 const Stack = createNativeStackNavigator()
 
 export default function App() {
