@@ -6,6 +6,7 @@ import {faEnvelope,faLock}  from '@fortawesome/free-solid-svg-icons/index'
 import CustomTextInputEmail from './CustomTextInputEmail';
 import CustomTextInputPassword from './CustomTextInputPassword';
 import { Alert } from 'react-native';
+import serverUrl from '../../serverUrl';
 
 const CreateAnAccount = () => {
   const [password,setPassword]=useState('');
@@ -46,7 +47,7 @@ const CreateAnAccount = () => {
       Number
     };
   console.log(userData)
-    Axios.post('http://192.168.0.8:3001/api/register', userData)
+    Axios.post(`${serverUrl}/api/register`, userData)
       .then((response) => {
         
         console.log('Registration Successful', response.data);
