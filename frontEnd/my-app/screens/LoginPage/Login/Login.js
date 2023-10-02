@@ -8,14 +8,22 @@ function Login({navigation}) {
 const [view,setView]=useState('Home')
 const handleLog=(e)=>{
 e.preventDefault()
+<<<<<<< HEAD
     axios.post('http://192.168.101.18:3001/api/login',{
+=======
+    axios.post('http://192.168.104.8:3001/api/login',{
+>>>>>>> 1e449946268014b0e31c273a4fd48003cdc0dab1
       email,
       password,
     }).then((res)=>{
       setData(res.data)
       console.log(data);
       alert("welcome")
+<<<<<<< HEAD
       navigation.navigate("Home")
+=======
+      navigation.navigate("SignUp")
+>>>>>>> 1e449946268014b0e31c273a4fd48003cdc0dab1
     }).catch((err)=>{
       console.log(err)
       alert("check your pass or your email")
@@ -32,6 +40,11 @@ e.preventDefault()
   source={{uri:'https://images.vexels.com/media/users/3/224233/isolated/preview/d5ee0e9c87bb54cf867d7fb89c4570b8-online-education-logo.png'}} />
     <Text style={{marginTop:"1%", color:"#8A0886"}}>Welcome Back</Text>
     <Text style={{marginTop:"1.5%"}}>Login to continue</Text>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 1e449946268014b0e31c273a4fd48003cdc0dab1
     <TextInput placeholder="Email" onChangeText={setEmail} style={{backgroundColor:"#F2F2F2",borderWidth:1,borderColor:"#A901DB" ,marginTop:"5%" , height:"10%", width:"80%" , borderRadius:7.69}} />
    <Text style={{marginLeft:"-53%", marginTop:"8%",color:"#A901DB"}}>Password</Text>
     <TextInput  onChangeText={setPassword} placeholder="password"  secureTextEntry={true}  style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"5%" , height:"10%", width:"80%" , borderRadius:7.69 }} />
@@ -46,6 +59,10 @@ e.preventDefault()
 <Text style={styled.text}>Don't have an account?</Text>
 <Text style={styleed.text1}
 onPress={()=>{ navigation.navigate("SignUp")}}>Sign up Now</Text>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1e449946268014b0e31c273a4fd48003cdc0dab1
  </View>
   )
 }
