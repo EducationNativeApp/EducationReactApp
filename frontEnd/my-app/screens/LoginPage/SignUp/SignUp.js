@@ -8,7 +8,7 @@ import CustomTextInputPassword from './CustomTextInputPassword';
 import { Alert } from 'react-native';
 import serverUrl from '../../serverUrl';
 
-const CreateAnAccount = () => {
+const CreateAnAccount = ({navigation}) => {
   const [password,setPassword]=useState('');
   const [email,setEmail]=useState("")
   const [username, setName] = useState('');
@@ -58,6 +58,7 @@ const CreateAnAccount = () => {
         setEmail('');
         setPassword('');
         Alert.alert('Success', 'Registration successful! You can now log in.');
+       navigation.navigate("Login")
       })
       .catch((error) => {
         console.error('Registration Error', error);
@@ -141,13 +142,14 @@ const verify=()=> {
         
       >
         <View style={styles.loginButtonTextWrapper}>
-          <Text style={styles.loginButtonText}>SIGN UP</Text>
+          <Text style={styles.loginButtonText} >SIGN UP</Text>
         </View>
       </TouchableOpacity>
 
       <View style={styles.haveAccountContainer}>
           <Text style={styles.label}>Have an account already?</Text>
-          <Text style={styles.haveAnAccountText}>&nbsp;&nbsp;Log in</Text>
+          <Text style={styles.haveAnAccountText} 
+          onPress={()=>{navigation.navigate("Login")}}>&nbsp;&nbsp;Log in</Text>
         </View>
     
     </View>
