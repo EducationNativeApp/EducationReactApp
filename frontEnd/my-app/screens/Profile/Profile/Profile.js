@@ -8,6 +8,7 @@ const[currentPassword,setCurrentPassword]=useState('')
 const [newPassword,setNewPassword]=useState('')
   return (
     <ScrollView >
+      <Text>Hello from profile</Text>
  <View style={styles.container} >
     <View >
       <View style={styles.Edit} >
@@ -23,15 +24,15 @@ const [newPassword,setNewPassword]=useState('')
       <View style={styles.circle}></View>
       <View style={styles.inputs} >
       <Text style={{color:"#A901DB"}}>Name</Text>
-    <TextInput  style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"5%" , height:45 , width:240 , borderRadius:"10%" }} />
+    <TextInput  style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"5%" , height:45 , width:240 , borderRadius:8 }} />
     <Text style={{ marginTop:"10%",color:"#A901DB"}}>Email Adress</Text>
-    <TextInput      style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"5%" , height:45 , width:240 , borderRadius:"10%" }} />
+    <TextInput      style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"5%" , height:45 , width:240 , borderRadius:8 }} />
     <Text style={{ marginTop:"10%",color:"#A901DB"}}>Date Of Birthday</Text>
-    <TextInput   placeholder="password"    style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"5%" , height:45 , width:240 , borderRadius:"10%" }} />
+    <TextInput   placeholder="password"    style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"5%" , height:45 , width:240 , borderRadius:8 }} />
     <Text style={{ marginTop:"10%",color:"#A901DB"}}>Current Password</Text>
-    <TextInput   placeholder="password"   style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"5%" , height:45 , width:240 , borderRadius:"10%" }} />
+    <TextInput   placeholder="password" secureTextEntry={true}  style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"5%" , height:45 , width:240 , borderRadius:8 }} />
     <Text style={{ marginTop:"10%",color:"#A901DB"}}>New Password</Text>
-    <TextInput   placeholder="password"    style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"5%" , height:45 , width:240 , borderRadius:"10%" }} />
+    <TextInput   placeholder="password" secureTextEntry={true}  style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"5%" , height:45 , width:240 , borderRadius:8 }} />
     <View  style={styles.btn}>
   <Text  style={styles.Log}>Save Changes</Text>
 </View>
