@@ -4,11 +4,22 @@ const cors = require('cors')
 const app = express()
 const db = require('./database/index')
 const userRoutes = require('./routes/users')
+const teacherRoute=require("./routes/teacher")
+const classeRoute=require("./routes/classe")
+const SubjectRoute=require("./routes/subject")
+const StudentRoute=require("./routes/student")
 const { getAll } = require('./controllers/users');
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cors())
-app.use('/api',userRoutes)
+app.use('/user',userRoutes)
+app.use('/teacher',teacherRoute)
+app.use('/classe',classeRoute)
+app.use('/subject',SubjectRoute)
+app.use('/student',StudentRoute)
+
+
+
 const { google } = require('googleapis');
 const OAuth2 = google.auth.OAuth2;
 const nodemailer = require("nodemailer");
