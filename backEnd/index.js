@@ -9,11 +9,11 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cors())
 app.use('/api',userRoutes)
-
-
 const { google } = require('googleapis');
 const OAuth2 = google.auth.OAuth2;
 const nodemailer = require("nodemailer");
+
+
 app.get('/api/users/getAll',(req,res)=>{
   getAll((err,result)=>{
       if(err){
@@ -43,7 +43,7 @@ const transporter = nodemailer.createTransport({
     clientId: CLIENT_ID,
     clientSecret: CLIENT_SECRET,
     refreshToken: REFRESH_TOKEN,
-    accessToken: oAuth2Client.getAccessToken(),
+    // accessToken: oAuth2Client.getAccessToken(),
     
   },
 });
@@ -101,7 +101,6 @@ app.post("/verify-code", (req, res) => {
     res.status(400).json("Invalid code");
   }
 });
-
 
 
 

@@ -1,6 +1,6 @@
 import {StyleSheet, Text , View , TextInput ,Button, Image ,ScrollView  } from "react-native"
 import { useState } from "react";
-const Profile=()=>{
+const Profile=({navigation})=>{
 const [name,setName]=useState('')
 const [emailAdress,setEmailAdress]=useState('')
 const [dateOfBirthday,setDateOfBirthday]=useState('')
@@ -34,7 +34,7 @@ const [newPassword,setNewPassword]=useState('')
     <Text style={{ marginTop:"10%",color:"#A901DB"}}>New Password</Text>
     <TextInput   placeholder="password" secureTextEntry={true}  style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"5%" , height:45 , width:240 , borderRadius:8 }} />
     <View  style={styles.btn}>
-  <Text  style={styles.Log}>Save Changes</Text>
+  <Text  style={styles.Log} onPress={()=>navigation.navigate('Inscription')} >Save Changes</Text>
 </View>
     </View>
     <View style={styles.aboutUs}>

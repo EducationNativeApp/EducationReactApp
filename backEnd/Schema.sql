@@ -1,207 +1,195 @@
--- MySQL Workbench Forward Engineering
+ -- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema education
--- -----------------------------------------------------
--- -----------------------------------------------------
--- Schema school
+-- Schema PrivateSchool
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema school
+-- Schema PrivateSchool
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `school` DEFAULT CHARACTER SET utf8mb3 ;
-USE `school` ;
+CREATE SCHEMA IF NOT EXISTS `PrivateSchool` DEFAULT CHARACTER SET utf8 ;
+USE `PrivateSchool` ;
 
 -- -----------------------------------------------------
--- Table `school`.`admin`
+-- Table `PrivateSchool`.`admin`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `school`.`admin` (
-  `idadmin` INT NOT NULL AUTO_INCREMENT,
-  `admin_name` VARCHAR(45) NULL DEFAULT NULL,
-  `admin_password` LONGTEXT NULL DEFAULT NULL,
+CREATE TABLE IF NOT EXISTS `PrivateSchool`.`admin` (
+  `idadmin` INT NOT NULL,
+  `admin_name` VARCHAR(45) NOT NULL,
+  `admin_password` LONGTEXT NOT NULL,
   PRIMARY KEY (`idadmin`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb3;
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `school`.`emplois`
+-- Table `PrivateSchool`.`users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `school`.`emplois` (
-  `idemplois` INT NOT NULL AUTO_INCREMENT,
-  `classe_de_emploi` VARCHAR(255) NULL DEFAULT NULL,
-  PRIMARY KEY (`idemplois`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb3;
-
-
--- -----------------------------------------------------
--- Table `school`.`classe`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `school`.`classe` (
-  `idclasse` INT NOT NULL AUTO_INCREMENT,
-  `classe_name` VARCHAR(45) NOT NULL,
-  `emplois_idemplois` INT NOT NULL,
-  PRIMARY KEY (`idclasse`),
-  INDEX `fk_classe_emplois1_idx` (`emplois_idemplois` ASC) VISIBLE,
-  CONSTRAINT `fk_classe_emplois1`
-    FOREIGN KEY (`emplois_idemplois`)
-    REFERENCES `school`.`emplois` (`idemplois`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb3;
-
-
--- -----------------------------------------------------
--- Table `school`.`users`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `school`.`users` (
+CREATE TABLE IF NOT EXISTS `PrivateSchool`.`users` (
   `idusers` INT NOT NULL AUTO_INCREMENT,
-  `user_name` VARCHAR(45) NOT NULL,
-  `user_email` VARCHAR(100) NOT NULL,
-  `user_password` VARCHAR(255) NOT NULL,
-  `user_birthday` DATE NOT NULL,
-  `user_number` VARCHAR(100) NOT NULL,
-  `user_image` LONGTEXT NULL DEFAULT NULL,
-  `user_type` VARCHAR(45) NOT NULL,
-  `user_description` LONGTEXT NULL DEFAULT NULL,
-  PRIMARY KEY (`idusers`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb3;
+  `name` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `birthdaydate` DATE NOT NULL,
+  `number` VARCHAR(45) NOT NULL,
+  `image` LONGTEXT NOT NULL,
+  `role` VARCHAR(255) NOT NULL,
+  `admin_idadmin` INT NOT NULL,
+  `ClassName` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idusers`),
+  INDEX `fk_users_admin_idx` (`admin_idadmin` ASC) VISIBLE,
+  CONSTRAINT `fk_users_admin`
+    FOREIGN KEY (`admin_idadmin`)
+    REFERENCES `PrivateSchool`.`admin` (`idadmin`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `school`.`messages`
+-- Table `PrivateSchool`.`classes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `school`.`messages` (
-  `idmessages` INT NOT NULL AUTO_INCREMENT,
-  `message_content` LONGTEXT NULL DEFAULT NULL,
-  `message_image` LONGTEXT NULL DEFAULT NULL,
-  `sender_id` INT NOT NULL,
-  `reciver_id` INT NOT NULL,
-  PRIMARY KEY (`idmessages`),
-  INDEX `fk_messages_users_idx` (`sender_id` ASC) VISIBLE,
-  INDEX `fk_messages_users1_idx` (`reciver_id` ASC) VISIBLE,
-  CONSTRAINT `fk_messages_users`
-    FOREIGN KEY (`sender_id`)
-    REFERENCES `school`.`users` (`idusers`),
-  CONSTRAINT `fk_messages_users1`
-    FOREIGN KEY (`reciver_id`)
-    REFERENCES `school`.`users` (`idusers`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb3;
+CREATE TABLE IF NOT EXISTS `PrivateSchool`.`classes` (
+  `idclasses` INT NOT NULL AUTO_INCREMENT,
+  `class_name` VARCHAR(45) NOT NULL,
+  `imageEmploi` LONGTEXT NOT NULL,
+  `users_idusers` INT NOT NULL,
+  PRIMARY KEY (`idclasses`),
+  INDEX `fk_classes_users1_idx` (`users_idusers` ASC) VISIBLE,
+  CONSTRAINT `fk_classes_users1`
+    FOREIGN KEY (`users_idusers`)
+    REFERENCES `PrivateSchool`.`users` (`idusers`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `school`.`student`
+-- Table `PrivateSchool`.`Student`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `school`.`student` (
-  `idstudent` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `PrivateSchool`.`Student` (
+  `idStudent` INT NOT NULL AUTO_INCREMENT,
   `student_firstName` VARCHAR(45) NOT NULL,
   `student_lastName` VARCHAR(45) NOT NULL,
   `student_birthday` DATE NOT NULL,
   `student_currentClass` VARCHAR(45) NOT NULL,
   `student_image` LONGTEXT NOT NULL,
-  `student_option1` VARCHAR(100) NULL DEFAULT NULL,
-  `student_option2` VARCHAR(100) NULL DEFAULT NULL,
-  `classe_idclasse` INT NOT NULL,
-  `emplois_idemplois` INT NOT NULL,
-  `users_idusers` INT NOT NULL,
-  PRIMARY KEY (`idstudent`),
-  INDEX `fk_student_classe1_idx` (`classe_idclasse` ASC) VISIBLE,
-  INDEX `fk_student_emplois1_idx` (`emplois_idemplois` ASC) VISIBLE,
-  INDEX `fk_student_users1_idx` (`users_idusers` ASC) VISIBLE,
-  CONSTRAINT `fk_student_classe1`
-    FOREIGN KEY (`classe_idclasse`)
-    REFERENCES `school`.`classe` (`idclasse`),
-  CONSTRAINT `fk_student_emplois1`
-    FOREIGN KEY (`emplois_idemplois`)
-    REFERENCES `school`.`emplois` (`idemplois`),
-  CONSTRAINT `fk_student_users1`
-    FOREIGN KEY (`users_idusers`)
-    REFERENCES `school`.`users` (`idusers`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb3;
+  `student_option1` VARCHAR(100) NOT NULL,
+  `student_options2` VARCHAR(100) NOT NULL,
+  `classes_idclasses` INT NOT NULL,
+  PRIMARY KEY (`idStudent`),
+  INDEX `fk_Student_classes1_idx` (`classes_idclasses` ASC) VISIBLE,
+  CONSTRAINT `fk_Student_classes1`
+    FOREIGN KEY (`classes_idclasses`)
+    REFERENCES `PrivateSchool`.`classes` (`idclasses`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `school`.`subject`
+-- Table `PrivateSchool`.`messages`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `school`.`subject` (
+CREATE TABLE IF NOT EXISTS `PrivateSchool`.`messages` (
+  `idmessage` INT NOT NULL,
+  `message_content` LONGTEXT NOT NULL,
+  `sender` VARCHAR(255) NULL,
+  PRIMARY KEY (`idmessage`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `PrivateSchool`.`subject`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `PrivateSchool`.`subject` (
   `idsubject` INT NOT NULL AUTO_INCREMENT,
   `subject_name` VARCHAR(45) NOT NULL,
-  `subject_description` LONGTEXT NULL DEFAULT NULL,
-  `notes_idnotes` INT NOT NULL,
-  `notes_note_content` LONGTEXT NOT NULL,
-  `student_idstudent` INT NOT NULL,
+  `note1` FLOAT NOT NULL,
+  `note2` FLOAT NOT NULL,
+  `note3` FLOAT NOT NULL,
+  `Student_idStudent` INT NOT NULL,
   PRIMARY KEY (`idsubject`),
-  INDEX `fk_subject_student1_idx` (`student_idstudent` ASC) VISIBLE,
-  CONSTRAINT `fk_subject_student1`
-    FOREIGN KEY (`student_idstudent`)
-    REFERENCES `school`.`student` (`idstudent`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb3;
+  INDEX `fk_subject_Student1_idx` (`Student_idStudent` ASC) VISIBLE,
+  CONSTRAINT `fk_subject_Student1`
+    FOREIGN KEY (`Student_idStudent`)
+    REFERENCES `PrivateSchool`.`Student` (`idStudent`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `school`.`module`
+-- Table `PrivateSchool`.`calendrier`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `school`.`module` (
-  `idmodule` INT NOT NULL AUTO_INCREMENT,
-  `module_name` VARCHAR(45) NOT NULL,
-  `module_description` LONGTEXT NULL DEFAULT NULL,
+CREATE TABLE IF NOT EXISTS `PrivateSchool`.`calendrier` (
+  `idcalendrier` INT NOT NULL AUTO_INCREMENT,
+  `dateHoliday` DATE NOT NULL,
+  `NameEvent` VARCHAR(45) NOT NULL,
+  `dateAbsent` DATE NOT NULL,
+  `NotAbsent` LONGTEXT NOT NULL,
+  `NotHoliday` LONGTEXT NOT NULL,
+  `calendriercol` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idcalendrier`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `PrivateSchool`.`conversation`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `PrivateSchool`.`conversation` (
+  `idconversation` INT NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  `date` DATE NOT NULL,
+  PRIMARY KEY (`idconversation`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `PrivateSchool`.`payement`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `PrivateSchool`.`payement` (
+  `idpayement` INT NOT NULL AUTO_INCREMENT,
+  `montantTotal` INT NOT NULL,
+  `montantPaye` INT NOT NULL,
+  `montantRestant` INT NOT NULL,
+  PRIMARY KEY (`idpayement`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `PrivateSchool`.`participants`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `PrivateSchool`.`participants` (
+  `idparticipants` INT NOT NULL,
+  PRIMARY KEY (`idparticipants`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `PrivateSchool`.`subject_has_classes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `PrivateSchool`.`subject_has_classes` (
   `subject_idsubject` INT NOT NULL,
-  PRIMARY KEY (`idmodule`),
-  INDEX `fk_module_subject1_idx` (`subject_idsubject` ASC) VISIBLE,
-  CONSTRAINT `fk_module_subject1`
+  `classes_idclasses` INT NOT NULL,
+  PRIMARY KEY (`subject_idsubject`, `classes_idclasses`),
+  INDEX `fk_subject_has_classes_classes1_idx` (`classes_idclasses` ASC) VISIBLE,
+  INDEX `fk_subject_has_classes_subject1_idx` (`subject_idsubject` ASC) VISIBLE,
+  CONSTRAINT `fk_subject_has_classes_subject1`
     FOREIGN KEY (`subject_idsubject`)
-    REFERENCES `school`.`subject` (`idsubject`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb3;
-
-
--- -----------------------------------------------------
--- Table `school`.`notes`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `school`.`notes` (
-  `idnotes` INT NOT NULL AUTO_INCREMENT,
-  `notes_type` LONGTEXT NOT NULL,
-  `subject_idsubject` INT NOT NULL,
-  `student_idstudent` INT NOT NULL,
-  PRIMARY KEY (`idnotes`),
-  INDEX `fk_notes_subject1_idx` (`subject_idsubject` ASC) VISIBLE,
-  INDEX `fk_notes_student1_idx` (`student_idstudent` ASC) VISIBLE,
-  CONSTRAINT `fk_notes_student1`
-    FOREIGN KEY (`student_idstudent`)
-    REFERENCES `school`.`student` (`idstudent`),
-  CONSTRAINT `fk_notes_subject1`
-    FOREIGN KEY (`subject_idsubject`)
-    REFERENCES `school`.`subject` (`idsubject`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb3;
-
-
--- -----------------------------------------------------
--- Table `school`.`notification`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `school`.`notification` (
-  `idnotification` INT NOT NULL AUTO_INCREMENT,
-  `notification_type` VARCHAR(100) NOT NULL,
-  `notification_content` VARCHAR(100) NOT NULL,
-  `messages_idmessages` INT NOT NULL,
-  PRIMARY KEY (`idnotification`),
-  INDEX `fk_notification_messages1_idx` (`messages_idmessages` ASC) VISIBLE,
-  CONSTRAINT `fk_notification_messages1`
-    FOREIGN KEY (`messages_idmessages`)
-    REFERENCES `school`.`messages` (`idmessages`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb3;
+    REFERENCES `PrivateSchool`.`subject` (`idsubject`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_subject_has_classes_classes1`
+    FOREIGN KEY (`classes_idclasses`)
+    REFERENCES `PrivateSchool`.`classes` (`idclasses`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+

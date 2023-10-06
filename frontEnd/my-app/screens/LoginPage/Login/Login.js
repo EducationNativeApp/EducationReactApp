@@ -1,11 +1,11 @@
 import {StyleSheet, Text , View , TextInput ,Button, Image } from "react-native"
 import { useEffect, useState } from "react";
+import Navbar from "../../Navbar/Navbar";
 import axios from 'axios'
 function Login({navigation}) {
   const [email,setEmail]=useState('')
   const [password , setPassword]=useState('')
   const [data,setData]=useState([])
-const [view,setView]=useState('Home')
 const handleLog=(e)=>{
 e.preventDefault()
     axios.post('http://192.168.101.18:3001/api/login',{
@@ -15,11 +15,19 @@ e.preventDefault()
       setData(res.data)
       console.log(data);
       alert("welcome")
-      navigation.navigate("Home")
+      navigation.navigate('Chat1')
     }).catch((err)=>{
+      if(email===""){
+        console.log("enter your email");
+        alert('enter your email')
+      }else if(password===""){
+        console.log("enter your password");
+        alert("enter your password")
+      }else{
       console.log(err)
       alert("check your pass or your email")
-    })
+    }
+  })
 }
   return (
     <View style={styles.container}>
@@ -40,13 +48,16 @@ e.preventDefault()
   title="LOG IN"
     color={"red"}
 /> */}
+
 <View  style={styled.btn}>
   <Text  style={styled.Log} onPress={(e) => handleLog(e)}>LOG IN</Text>
 </View>
 <Text style={styled.text}>Don't have an account?</Text>
 <Text style={styleed.text1}
 onPress={()=>{ navigation.navigate("SignUp")}}>Sign up Now</Text>
+<Navbar />
  </View>
+ 
   )
 }
 const styles = StyleSheet.create({

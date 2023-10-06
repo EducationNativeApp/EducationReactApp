@@ -47,7 +47,7 @@ const CreateAnAccount = ({navigation}) => {
       Number
     };
   console.log(userData)
-    Axios.post(`${serverUrl}/api/register`, userData)
+    Axios.post(`http://192.168.101.18:3000/api/register`, userData)
       .then((response) => {
         
         console.log('Registration Successful', response.data);
@@ -67,7 +67,8 @@ const CreateAnAccount = ({navigation}) => {
   };
   
 const verify=()=> {
-  if(password.length <6){setIsError(!isError);
+  if(password.length <6){
+    setIsError(!isError);
   Alert.alert('make password than 6')
 }
 

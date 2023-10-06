@@ -1,5 +1,5 @@
 import {StyleSheet, Text , View , TextInput ,Button, Image ,ScrollView  } from "react-native"
-const Inscription = () => {
+const Inscription = ({navigation}) => {
   return (
     <ScrollView>
         <View style={styles.container}>
@@ -25,7 +25,7 @@ const Inscription = () => {
             <TextInput style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"10%" , height:45 , width:240 , borderRadius:8,marginTop:10  }} />
             <Text style={{color:"#A901DB",marginTop:20}}>Current_graduation_Certificate</Text>
             <View style={styles.img}></View><View  style={styles.btn}>
-  <Text  style={styles.Log}>Send</Text>
+  <Text  style={styles.Log} onPress={()=>navigation.navigate('Home')}>Send</Text>
 </View>
             
 </View>
