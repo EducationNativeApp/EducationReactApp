@@ -39,7 +39,7 @@ const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     type: "OAuth2",
-    user: "medb0748@gmail.com",
+    user: "khouloudo162@gmail.com",
     clientId: CLIENT_ID,
     clientSecret: CLIENT_SECRET,
     refreshToken: REFRESH_TOKEN,
@@ -65,7 +65,7 @@ app.post("/forget-password-email", async (req, res) => {
 
       const verificationCode = Math.floor(100000 + Math.random() * 900000);
       const mailOptions = {
-        from: "assilelabed1993@gmail.com",
+        from: "khouloudo162@gmail.com",
         to: email,
         subject: "Reset Password Code",
         text: `Your reset password code is ${verificationCode}`,

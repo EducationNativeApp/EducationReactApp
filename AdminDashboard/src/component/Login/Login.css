@@ -1,0 +1,44 @@
+.loginComponent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login, .signUp {
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.login.hidden, .signUp.hidden {
+  transform: translateX(100%);
+}
+
+input[type="text"],
+input[type="password"],
+button {
+  margin: 10px;
+  padding: 5px;
+  width: 100%;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.AnotherForSignUp, .AnotherPartForLogin {
+  margin-top: 20px;
+}
+
+.AnotherForSignUp button, .AnotherPartForLogin button {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+}
