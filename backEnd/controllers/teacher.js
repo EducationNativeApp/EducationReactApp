@@ -1,10 +1,10 @@
-const { add,put,remove,getOneArabic,getAll,} = require("../database/model/teacher")
+const { add,put,remove,getAll,getTeacherByFirstClass,getTeacherBySecondClass,} = require("../database/model/teacher")
 
 const addTeacher = (req, res) => {
-  const ModuleData = req.body; 
-  console.log(ModuleData);
+  const teacherData = req.body; 
+  console.log(teacherData);
   
-  add(ModuleData, (error, results) => {
+  add(teacherData, (error, results) => {
     if (error) {
       console.log(error);
       res.status(500).json(error); 
@@ -33,23 +33,7 @@ const UpdateTeacher = (req, res) => {
     });
   };
 
-  const getTeachersForSubjectInClassController = (req, res) => {
-    const { idsubject, idclasses } = req.params; 
-    
-    getTeachersForSubjectInClass(idsubject,idclasses, (error, results) => {
-      if (error) {
-        console.error(error);
-        res.status(500).json(error);
-      } else {
-        res.status(200).json(results);
-      }
-    });
-  };
-  
 
-
-
- 
 
   const getAllTeacher = (req, res) => {
     getAll((error, teachers) => {
@@ -64,13 +48,39 @@ const UpdateTeacher = (req, res) => {
 
 
   
+  const getTeacherByFirstClassController = (req, res) => {
+    const className = "first class"; // Utilisation de "first class" directement
+    getTeacherByFirstClass(className, (error, teachers) => {
+      if (error) {
+        console.error(error);
+        res.status(500).json(error);
+      } else {
+        res.status(200).json(teachers);
+      }
+    });
+  };
+  
+  const getTeacherBySecondClassController = (req, res) => {
+    const className = "Second class"; // Utilisation de "first class" directement
+    getTeacherBySecondClass(className, (error, teachers) => {
+      if (error) {
+        console.error(error);
+        res.status(500).json(error);
+      } else {
+        res.status(200).json(teachers);
+      }
+    });
+  };
+
+  
 
   module.exports ={
     addTeacher,
     UpdateTeacher,
     RemoveTeacher,
-    getTeachersForSubjectInClassController,
-    getAllTeacher
+    getTeacherByFirstClassController ,
+    getAllTeacher,
+    getTeacherBySecondClassController
 
   }
 

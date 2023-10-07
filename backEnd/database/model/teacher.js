@@ -1,52 +1,62 @@
 const connection = require("../index")
 
-const add = (SubjectData, callback) => {
-  const sql = `INSERT INTO subject SET ?`;
-  connection.query(sql, SubjectData, function (error, results) {
+const add = (teacherData, callback) => {
+  const sql = `INSERT INTO teachers SET ?`;
+  connection.query(sql, teacherData, function (error, results) {
       callback(error, results);
   });
 };
 
 
-  const put = (idusers, updatedData, callback) => {
-    const sql = `UPDATE users SET ? WHERE idusers = ?`;
-    connection.query(sql, [updatedData, idusers], function(error, results) {
+  const put = (idteacher, updatedData, callback) => {
+    const sql = `UPDATE teachers SET ? WHERE idteacher = ?`;
+    connection.query(sql, [updatedData, idteacher], function(error, results) {
         callback(error, results);
     });
   };
 
   const remove = (idusers, callback) => {
-    const sql = `DELETE FROM users WHERE idusers = ?`;
+    const sql = `DELETE FROM teachers WHERE idteacher = ?`;
     connection.query(sql, [idusers], function(error, results) {
         callback(error, results);
     });
   };
 
   const getAll = (callback) => {
-    const sql = `SELECT * FROM users`;
+    const sql = `SELECT * FROM teachers`;
     connection.query(sql, function (error, results) {
       callback(error, results);
     });
   };
   
-
-  
-  const getTeachersForSubjectInClass = (idsubject, idclasses, callback) => {
-    const sql = `select u.idusers , u.name from users u inner join classes c on (c.users_idusers = u.idusers  ) inner join subject_has_classes sc on (c.idclasses = sc.classes_idclasses ) inner join subject s on (sc.subject_idsubject = s.idsubject) where s.subject_name = "Arabic" AND u.ClassName = "first year"
-    `;
-
-    
-    connection.query(sql, [idsubject, idclasses], function (error, results) {
+ 
+  const getTeacherByFirstClass = (className, callback) => {
+    const sql = `SELECT * FROM teachers WHERE class = ?`;
+    console.log('SQL Query:', sql); // Log the SQL query
+    connection.query(sql, [className], function (error, results) {
+      console.log('SQL Results:', results); // Log the SQL results
       callback(error, results);
     });
   };
+
+  const getTeacherBySecondClass = (className, callback) => {
+    const sql = `SELECT * FROM teachers WHERE class = ?`;
+    console.log('SQL Query:', sql); // Log the SQL query
+    connection.query(sql, [className], function (error, results) {
+      console.log('SQL Results:', results); // Log the SQL results
+      callback(error, results);
+    });
+  };
+  
+  
   
   module.exports = {
     add,
     put,
     remove,
-    getTeachersForSubjectInClass,
-    getAll
+    getTeacherByFirstClass ,
+    getAll,
+    getTeacherBySecondClass
   };
   
   

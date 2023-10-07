@@ -7,7 +7,7 @@ router.post('/add',addStudent);
 router.get('/get',getAllStudent)
 router.delete('/:id',RemoveStudent)
 router.put('/:id',UpdateStudent)
-router.get('/getByClass', getStudentsInClassController);
+router.get('/getByClass/:idclasses', getStudentsInClassController);
 
 
 

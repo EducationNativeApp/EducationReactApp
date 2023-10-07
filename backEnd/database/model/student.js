@@ -30,9 +30,9 @@ const add = (StudenttData, callback) => {
     });
   };
 
-  const getStudentsInClass = (classId, callback) => {
+  const getStudentsInClass = (idclasses, callback) => {
     const sql = `SELECT * FROM Student WHERE classes_idclasses = ?`;
-    connection.query(sql, [classId], function (error, results) {
+    connection.query(sql, [idclasses], function (error, results) {
       callback(error, results);
     });
   };

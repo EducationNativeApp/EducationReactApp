@@ -1,24 +1,12 @@
 const connection = require("../index")
 
 const add = (SubjectData, callback) => {
-  const sql = `
-    INSERT INTO subject
-    (subject_name, note1, note2, note3, Student_idStudent)
-    VALUES (?, ?, ?, ?, ?)
-  `;
-  
-  const values = [
-    SubjectData.subject_name,
-    SubjectData.note1,
-    SubjectData.note2,
-    SubjectData.note3,
-    SubjectData.Student_idStudent
-  ];
-
-  connection.query(sql, values, function (error, results) {
-    callback(error, results);
+  const sql = `INSERT INTO subject SET ?`;
+  connection.query(sql, SubjectData, function (error, results) {
+      callback(error, results);
   });
 };
+
 
 
   const put = (idsubject, updatedData, callback) => {

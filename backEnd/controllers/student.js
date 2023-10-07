@@ -46,9 +46,9 @@ const UpdateStudent = (req, res) => {
   }
 
   const getStudentsInClassController = (req, res) => {
-    const classId = req.params.classId;
+    const idclasses = req.params.idclasses;
   
-    getStudentsInClass(classId, (error, students) => {
+    getStudentsInClass(idclasses, (error, students) => {
       if (error) {
         console.log(error);
         res.status(500).json(error);
