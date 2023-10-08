@@ -28,6 +28,10 @@ import Science from './screens/Modules/ModuleScience';
 import It from './screens/Modules/ModuleIT';
 import Arts from './screens/Modules/ModuleArts';
 import Sport from './screens/Modules/ModuleSport';
+import FindEmail from "./screens/FindEmail/forgot-password"
+import code from "./screens/Code/Code"
+// import CalendarScreen from "./screens/MycalenderApp/Calender/App"
+import NewPassword from "./screens/NewPassword/newPassword"
 
 const Stack = createNativeStackNavigator()
 
@@ -36,7 +40,7 @@ export default function App() {
   return (
     <NativeBaseProvider>
     <NavigationContainer>
-    <Stack.Navigator initialRouteName="Parent">
+    <Stack.Navigator initialRouteName="FindEmail">
      <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}  />   
      <Stack.Screen name="Login" component={Login} options={{headerShown:false}}  /> 
      <Stack.Screen name="SignUp" component={SignUp} options={{headerShown:false}}/> 
@@ -62,6 +66,10 @@ export default function App() {
     <Stack.Screen name="ModuleArts" component={Arts} options={{headerShown:false}} />  
     <Stack.Screen name="ModuleSport" component={Sport} options={{headerShown:false}} /> 
     <Stack.Screen name="ModuleIt" component={It} options={{headerShown:false}} /> 
+    <Stack.Screen name="FindEmail" component={FindEmail} ></Stack.Screen>
+    <Stack.Screen name="Code" component={code}  ></Stack.Screen>
+    <Stack.Screen name="NewPassword" component={NewPassword} ></Stack.Screen>
+
     </Stack.Navigator>
     </NavigationContainer>
     </NativeBaseProvider>
