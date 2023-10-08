@@ -8,7 +8,7 @@ const [First_name,setFirstName]=useState('')
 const [LastName,setLastName]=useState('')
 const [Birthday,setBirthday]=useState('')
 const [image,setImage]=useState('')
-const [Class,setClass]=useState('')
+const {Class,setClass} = useContext(MyContext);
 const [modalVisible, setModalVisible] = useState(false);
 const classes = ['First Class', 'Second Class', 'Third Class', 'Fourt Class','Second Class','sixth Class' ];
 const handleClassSelect = (selectedClass) => {

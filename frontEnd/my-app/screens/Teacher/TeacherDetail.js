@@ -1,11 +1,12 @@
 
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, Alert } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
 import { useContext } from "react";
 import { MyContext } from "../../useContext/useContext";
-const TeacherDetail = () => {
+const TeacherDetail = () => { 
+  const {Class,setClass} = useContext(MyContext);
   return (
     <View style={styles.container}>
       <View style={styles.detailContainer}>
@@ -30,7 +31,7 @@ const TeacherDetail = () => {
             {/* Rectangle avec le bouton "Send Message" et l'icône de chat */}
             <View style={styles.rectangle}>
               <FontAwesomeIcon icon={faComment} style={styles.chatIcon} />
-              <Text style={styles.sendMessage}>Send Message</Text>
+              <Text  style={styles.sendMessage}>Send Message</Text>
             </View>
           </View>
         </View>
