@@ -3,6 +3,16 @@ const jwt = require('jsonwebtoken')
 const User = require('../database/model/users')
 const secretKey = 'mysecretkey'
 const conn = require('../database/index')
+
+const mysql = require('mysql2');
+
+const pool = mysql.createPool({
+  host: 'localhost',
+  user: 'root',
+  password: '10697',
+  database: 'school',
+});
+
 function login(req, res) {
   const { email, password } = req.body
 
@@ -73,23 +83,45 @@ function getAll (callback) {
     callback(err, results)
   });
 }
-const changePassword = (req, res) => {
-  const { email, password } = req.body;
 
-  User.updateUserPassword(email, password, (err, result) => {
+
+const sendEmail = (req, res) => {
+  const { email } = req.body;
+
+  // Use the connection pool to execute queries
+  pool.getConnection((err, connection) => {
     if (err) {
       console.error(err);
-      res.status(500).json('Could not update password')
-    } else if (!result) {
-      res.status(404).json('User not found')
-    } else {
-      res.json('Password updated successfully')
+      res.status(500).json('An error occurred');
+      return;
     }
+
+    // Query to find a user by email
+    const findUserQuery = 'SELECT * FROM users WHERE email = ?';
+
+    connection.query(findUserQuery, [email], (queryErr, results) => {
+      connection.release(); // Release the connection back to the pool
+
+      if (queryErr) {
+        console.error(queryErr);
+        res.status(500).json('An error occurred');
+      } else if (results.length === 0) {
+        res.status(404).json('Email not found');
+      } else {
+        sendEmailFunction(email, (emailErr) => {
+          if (emailErr) {
+            console.error(emailErr);
+            res.status(500).json('Error sending email');
+          } else {
+            res.json('Email sent');
+          }
+        });
+      }
+    });
   });
 };
 
 module.exports = { login , 
   register,
-  getAll,
-  changePassword
+  getAll,sendEmail
  };

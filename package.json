@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@react-native-picker/picker": "github:react-native-picker/picker"
+    "normalize-css-color": "^1.0.2",
+    "require": "^2.4.20"
   }
 }

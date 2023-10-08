@@ -29,6 +29,10 @@ import Arts from './screens/Modules/ModuleArts';
 import Sport from './screens/Modules/ModuleSport';
 import Navbar from './screens/Navbar/Navbar'
 import Chat1 from './screens/Chat/Chat1';
+import FindEmail from './screens/FindEmail/forgot-password'
+import Code from './screens/Code/Code';
+import newPassword from './screens/NewPassword/newPassword';
+
 
 const Stack = createNativeStackNavigator()
 
@@ -64,9 +68,13 @@ export default function App() {
     <Stack.Screen name="ModuleScience" component={Science} options={{headerShown:false}} />
     <Stack.Screen name="ModuleArts" component={Arts} options={{headerShown:false}} />  
     <Stack.Screen name="ModuleSport" component={Sport} options={{headerShown:false}} /> 
-    <Stack.Screen name="ModuleIt" component={It} options={{headerShown:false}} />
+    <Stack.Screen name="ModuleIt" component={It} options={{headerShown:false}} /> 
+    <Stack.Screen name="FindEmail" component={FindEmail}  options={{headerShown:false}} ></Stack.Screen>
+    <Stack.Screen name="Code" component={Code}  options={{headerShown:false}} ></Stack.Screen>
+    <Stack.Screen name="NewPassword" component={newPassword}  options={{headerShown:false}} ></Stack.Screen>
+    <Stack.Screen name="Chat1" component={Chat1}  options={{headerShown:false}} ></Stack.Screen>
 
-    <Stack.Screen name="Chat1" component={Chat1} options={{headerShown:false}} />
+
     </Stack.Navigator>
     <Navbar /> 
     </NavigationContainer>

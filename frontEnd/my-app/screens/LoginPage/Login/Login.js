@@ -48,7 +48,7 @@ e.preventDefault()
     <TextInput placeholder="Email" onChangeText={setEmail} style={{backgroundColor:"#F2F2F2",borderWidth:1,borderColor:"#A901DB" ,marginTop:"5%" , height:"10%", width:"80%" , borderRadius:7.69}} />
    <Text style={{marginLeft:"-53%", marginTop:"8%",color:"#A901DB"}}>Password</Text>
     <TextInput  onChangeText={setPassword} placeholder="password"  secureTextEntry={true}  style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"5%" , height:"10%", width:"80%" , borderRadius:7.69 }} />
-    <Text style={{marginLeft:"39%",marginTop:"5%",color:"#A901DB"}}>Forgot Password ?</Text>
+    <Text style={{marginLeft:"39%",marginTop:"5%",color:"#A901DB"}} onPress={()=>{navigation.navigate("FindEmail")}}>Forgot Password ?</Text>
     {/* <Button onPress={handleClick}
   title="LOG IN"
     color={"red"}
