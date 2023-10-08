@@ -1,5 +1,5 @@
 import axios from "axios"
-import {StyleSheet, Text , View , TextInput ,Button, Image ,ScrollView} from "react-native"
+import {StyleSheet, Text , View , TextInput ,Button, Image ,ScrollView , Modal , FlatList , TouchableOpacity } from "react-native"
 import { useState } from "react"
 import { useContext } from "react";
 import { MyContext } from "../../../useContext/useContext";
@@ -9,8 +9,14 @@ const [LastName,setLastName]=useState('')
 const [Birthday,setBirthday]=useState('')
 const [image,setImage]=useState('')
 const [Class,setClass]=useState('')
+const [modalVisible, setModalVisible] = useState(false);
+const classes = ['First Class', 'Second Class', 'Third Class', 'Fourt Class','Second Class','sixth Class' ];
+const handleClassSelect = (selectedClass) => {
+  setClass(selectedClass);
+  setModalVisible(false);
+};
 const handle=()=>{
-  axios.post('http://192.168.1.108:3001/student/add',{
+  axios.post('http://192.168.101.18:3001/student/add',{
     First_name,
     LastName,
     Birthday,
@@ -21,7 +27,7 @@ const handle=()=>{
 
   }).then((res)=>{
     alert("student added succesufully")
-    navigation.navigate('Home')
+    navigation.navigate('Parent')
   }).catch((err)=>{
     alert(err);
   })
@@ -47,8 +53,49 @@ const handle=()=>{
             <TextInput onChangeText={setLastName} style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"10%" , height:45 , width:240 , borderRadius:8 ,marginTop:10 }} />
             <Text style={{color:"#A901DB",marginTop:20}}>Date Of Birthday</Text>
             <TextInput onChangeText={setBirthday} style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"10%" , height:45 , width:240 , borderRadius:8,marginTop:10  }} />
-            <Text style={{color:"#A901DB",marginTop:20}}>Class</Text>
-            <TextInput onChangeText={setClass} style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"10%" , height:45 , width:240 , borderRadius:8,marginTop:10  }} />
+            <Text style={{ color: '#A901DB', marginTop: 20 }}>Current Class</Text>
+          <TouchableOpacity
+            style={{
+              borderColor: '#A901DB',
+              backgroundColor: '#F2F2F2',
+              borderWidth: 1,
+              marginTop: '10%',
+              height: 45,
+              width: 240,
+              borderRadius: 8,
+              marginTop: 10,
+              justifyContent: 'center',
+              paddingLeft: 10,
+            }}
+            onPress={() => setModalVisible(true)}
+          >
+            <Text>{Class || 'Select Class'}</Text>
+          </TouchableOpacity>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              setModalVisible(!modalVisible);
+            }}
+          >
+            <View style={styles.modalContainer}>
+              <View style={styles.modalContent}>
+                <FlatList
+                  data={classes}
+                  keyExtractor={(item) => item}
+                  renderItem={({ item }) => (
+                    <TouchableOpacity 
+                      onPress={() => handleClassSelect(item)}
+                      style={styles.modalItem}
+                    >
+                      <Text >{item}</Text>
+                    </TouchableOpacity>
+                  )}
+                />
+              </View>
+            </View>
+          </Modal>
             <Text style={{color:"#A901DB",marginTop:20}}>Current_graduation_Certificate</Text>
             <View style={styles.img}></View><View  style={styles.btn}>
   <Text  style={styles.Log} onPress={()=>handle()}>Send</Text>
@@ -62,7 +109,17 @@ const handle=()=>{
   )
 }
 const styles=StyleSheet.create({
-    img:{
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },modalContent: {
+    backgroundColor: '#fff',
+    width: 250,
+    borderRadius: 10,
+    padding: 10,
+  },img:{
         width:80,
         height:80,
         borderRadius:10,
@@ -70,6 +127,10 @@ const styles=StyleSheet.create({
         borderColor:"#A901DB",
         marginLeft:0,
         marginTop:20
+    },modalItem: {
+      padding: 15,
+      borderBottomWidth: 1,
+      borderBottomColor: '#ccc',
     },Log:{
         color:"#fff",
         marginLeft:90,

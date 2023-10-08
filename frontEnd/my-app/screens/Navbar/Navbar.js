@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   },nav:{
     width :"101%",
     height:60,
-    borderTopWidth:1,
+
     // backgroundColor:"red"
   }
 });
