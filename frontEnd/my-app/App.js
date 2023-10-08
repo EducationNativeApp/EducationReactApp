@@ -73,6 +73,8 @@ export default function App() {
     <Stack.Screen name="Code" component={Code}  options={{headerShown:false}} ></Stack.Screen>
     <Stack.Screen name="NewPassword" component={newPassword}  options={{headerShown:false}} ></Stack.Screen>
     <Stack.Screen name="Chat1" component={Chat1}  options={{headerShown:false}} ></Stack.Screen>
+    
+
 
 
     </Stack.Navigator>

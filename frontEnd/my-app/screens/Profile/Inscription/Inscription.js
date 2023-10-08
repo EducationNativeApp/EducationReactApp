@@ -16,13 +16,13 @@ const handleClassSelect = (selectedClass) => {
   setModalVisible(false);
 };
 const handle=()=>{
-  axios.post('http://192.168.101.18:3001/student/add',{
+  axios.post('http://192.168.11.71:3001/student/add',{
     First_name,
     LastName,
     Birthday,
     image:'dfghjhgfds',
     class:Class,
-    users_idusers:1,
+    users_idusers:2,
     classes_idclasses:1
 
   }).then((res)=>{

@@ -1,14 +1,47 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image,TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useContext } from "react";
-import { MyContext } from "../../useContext/useContext";
 const Teachers = () => {
   const navigation = useNavigation();
-  
+ 
 const images1 = () => {
-    navigation.navigate("TeacherDetail")
+  navigation.navigate('TeacherDetail', {
+    params: {subject: "Arabic"},
+  });
   };
+
+  const images2 = () => {
+    navigation.navigate('TeacherDetail', {
+      params: {subject: "Math"},
+    });
+    };
+
+    const images3 = () => {
+      navigation.navigate('TeacherDetail', {
+        params: {subject: "Science"},
+      });
+      };
+
+
+   const images4 = () => {
+        navigation.navigate('TeacherDetail', {
+          params: {subject: "Sport"},
+        });
+        };
+
+    const images5 = () => {
+          navigation.navigate('TeacherDetail', {
+            params: {subject: "Arts"},
+          });
+          };
+
+         const images6 = () => {
+        navigation.navigate('TeacherDetail', {
+              params: {subject: "It"},
+            });
+            };
+
+
   return (
     <View style={styles.container}>
       <View style={styles.rectContainer}>
@@ -27,11 +60,12 @@ const images1 = () => {
           </View>
         </View>
         <View style={styles.rectangles}>
+        <TouchableOpacity onPress={images2}>
           <Image
             source={require('../../../my-app/assets/matiere.png')}
-            style={styles.image}
-            onPress={()=>{navigation.navigate("TeacherDetail")}}
+            style={styles.image} 
           />
+          </TouchableOpacity>
           <View style={styles.textContain}>
             <Text style={styles.text}>Math</Text>
           </View>
@@ -40,22 +74,24 @@ const images1 = () => {
       </View>
       <View style={styles.imageRow}>
         <View style={styles.rectangles}>
+        <TouchableOpacity onPress={images3}>
           <Image
             source={require('../../../my-app/assets/matiere.png')}
-            style={styles.image}
-            onPress={()=>{navigation.navigate("TeacherDetail")}}
+            style={styles.image} 
           />
+          </TouchableOpacity>
           <View style={styles.textContain}>
             <Text style={styles.text}
             >Science</Text>
           </View>
         </View>
         <View style={styles.rectangles}>
+        <TouchableOpacity onPress={images4}>
           <Image
             source={require('../../../my-app/assets/matiere.png')}
-            style={styles.image}
-            onPress={()=>{navigation.navigate("TeacherDetail")}}
+            style={styles.image} 
           />
+          </TouchableOpacity>
           <View style={styles.textContain}>
             <Text style={styles.text}
             >Sport</Text>
@@ -65,20 +101,23 @@ const images1 = () => {
       </View>
       <View style={styles.imageRow}>
         <View style={styles.rectangles}>
+        <TouchableOpacity onPress={images5}>
           <Image
             source={require('../../../my-app/assets/matiere.png')}
-            style={styles.image}
+            style={styles.image} 
           />
+          </TouchableOpacity>
           <View style={styles.textContain}>
             <Text style={styles.text}>Arts</Text>
           </View>
         </View>
         <View style={styles.rectangles}>
+        <TouchableOpacity onPress={images6}>
           <Image
             source={require('../../../my-app/assets/matiere.png')}
-            style={styles.image}
-            onPress={()=>{navigation.navigate("TeacherDetail")}}
+            style={styles.image} 
           />
+          </TouchableOpacity>
           <View style={styles.textContain}>
             <Text style={styles.text}>IT</Text>
           </View>
