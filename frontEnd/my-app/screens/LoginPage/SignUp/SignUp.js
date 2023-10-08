@@ -49,7 +49,7 @@ const CreateAnAccount = ({navigation}) => {
       Number
     };
   console.log(userData)
-    Axios.post(`http://192.168.1.108:3001/user/register`, userData)
+    Axios.post(`http://192.168.101.18:3001/user/register`, userData)
       .then((response) => {
         
         console.log('Registration Successful', response.data);

@@ -1,9 +1,9 @@
-import {StyleSheet, Text , View , TextInput ,Button, Image ,ScrollView  } from "react-native"
+import {StyleSheet, Text , View , TextInput ,Button, Image ,ScrollView, TouchableNativeFeedback  } from "react-native"
 import Video from 'react-native-video'
 import {lightTheme, darkTheme} from '../../Theme/Theme'
 import { useContext } from "react";
 import { MyContext } from "../../useContext/useContext";
-const Home = () => {
+const Home = ({navigation}) => {
     const { isDarkMode,setMode } = useContext(MyContext);
     const theme = isDarkMode ? darkTheme : lightTheme;
   return (
@@ -14,9 +14,14 @@ const Home = () => {
             <Image
     style={{width:40,
     height:40,
-    marginLeft:12,marginTop:-10
+    marginLeft:12,marginTop:-4
   }}
   source={{uri:'https://images.vexels.com/media/users/3/224233/isolated/preview/d5ee0e9c87bb54cf867d7fb89c4570b8-online-education-logo.png'}} />
+            <TouchableNativeFeedback onPress={()=>navigation.navigate('Login')}>
+            <View style={{alignItems: 'center',justifyContent: 'center',height:38,width:90,marginLeft:160,borderRadius:15,marginTop:-38   ,backgroundColor:"purple"}}>
+            <Text style={{color:"white",}}>Connection</Text>
+            </View>
+            </TouchableNativeFeedback>
             </View>
             
             <View style={styles.fImg}>
@@ -213,7 +218,7 @@ const styles=StyleSheet.create({
     ,nav:{
         // backgroundColor:"red",
         width:"100%",
-        height:38,
+        height:45,
         marginTop:17,
         borderBottomWidth:0.6
     },fImg:{

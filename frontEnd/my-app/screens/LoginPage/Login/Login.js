@@ -13,14 +13,14 @@ function Login({navigation}) {
   const [data,setData]=useState([])
 const handleLog=(e)=>{
 e.preventDefault()
-    axios.post('http://192.168.1.108:3001/api/login',{
+    axios.post('http://192.168.101.18:3001/user/login',{
       email,
       password,
     }).then((res)=>{
       setData(res.data)
       console.log(data);
       alert("welcome")
-      navigation.navigate('Chat1')
+      navigation.navigate('Parent')
     }).catch((err)=>{
       if(email===""){
         console.log("enter your email");

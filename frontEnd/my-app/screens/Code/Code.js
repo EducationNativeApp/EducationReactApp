@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, ImageBackground, StyleSheet, TextInput } from 'react-native';
 import { Svg, Path } from 'react-native-svg';
 
-export default function EnterYourCode() {
+export default function Code() {
   const [verificationCode, setVerificationCode] = useState('');
 
   const handleSubmit = () => {
