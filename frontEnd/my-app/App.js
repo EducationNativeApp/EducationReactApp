@@ -33,7 +33,6 @@ import FindEmail from './screens/FindEmail/forgot-password'
 import Code from './screens/Code/Code';
 import newPassword from './screens/NewPassword/newPassword';
 
-
 const Stack = createNativeStackNavigator()
 
 
@@ -43,6 +42,7 @@ export default function App() {
     <MyProvider>
     <NativeBaseProvider >
     <NavigationContainer>
+    
     <Stack.Navigator initialRouteName="Inscription">
      <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}  />
      <Stack.Screen name="Login" component={Login} options={{headerShown:false}}  /> 

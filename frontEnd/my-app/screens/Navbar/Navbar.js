@@ -8,11 +8,8 @@ const Navbar = () => {
   const { isDarkMode,setMode } = useContext(MyContext);
   const theme = isDarkMode ? darkTheme : lightTheme;
   const navigation = useNavigation()
-  const darkMode=()=>{
-    setMode(!isDarkMode)
-  }
   return (
-    <View style={[styles.container,{ backgroundColor: theme.backgroundColor}]}>
+    <View style={[styles.container,{ backgroundColor: theme.backgroundColor }]}>
       <ScrollView horizontal={true}>
 <View style={styles.nav}>
   <View>
@@ -57,7 +54,7 @@ const Navbar = () => {
  </TouchableWithoutFeedback>
   </View>
   <View>
-  <TouchableWithoutFeedback onPress={()=>darkMode()}>
+  <TouchableWithoutFeedback >
 
   <Image
     style={{width:40,
