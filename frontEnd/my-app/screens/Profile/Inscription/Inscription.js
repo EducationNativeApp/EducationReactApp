@@ -1,5 +1,31 @@
-import {StyleSheet, Text , View , TextInput ,Button, Image ,ScrollView  } from "react-native"
+import axios from "axios"
+import {StyleSheet, Text , View , TextInput ,Button, Image ,ScrollView} from "react-native"
+import { useState } from "react"
+import { useContext } from "react";
+import { MyContext } from "../../../useContext/useContext";
 const Inscription = ({navigation}) => {
+const [First_name,setFirstName]=useState('')
+const [LastName,setLastName]=useState('')
+const [Birthday,setBirthday]=useState('')
+const [image,setImage]=useState('')
+const [Class,setClass]=useState('')
+const handle=()=>{
+  axios.post('http://192.168.1.108:3001/student/add',{
+    First_name,
+    LastName,
+    Birthday,
+    image:'dfghjhgfds',
+    class:Class,
+    users_idusers:1,
+    classes_idclasses:1
+
+  }).then((res)=>{
+    alert("student added succesufully")
+    navigation.navigate('Home')
+  }).catch((err)=>{
+    alert(err);
+  })
+}
   return (
     <ScrollView>
         <View style={styles.container}>
@@ -16,17 +42,18 @@ const Inscription = ({navigation}) => {
             <View >
                 
             <Text style={{color:"#A901DB",marginTop:20}}>First Name</Text>
-            <TextInput style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"10%" , height:45 , width:240 , borderRadius:8,marginTop:10 }} />
+            <TextInput onChangeText={setFirstName} style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"10%" , height:45 , width:240 , borderRadius:8,marginTop:10 }} />
             <Text style={{color:"#A901DB",marginTop:20}}>Last Name</Text>
-            <TextInput style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"10%" , height:45 , width:240 , borderRadius:8 ,marginTop:10 }} />
+            <TextInput onChangeText={setLastName} style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"10%" , height:45 , width:240 , borderRadius:8 ,marginTop:10 }} />
             <Text style={{color:"#A901DB",marginTop:20}}>Date Of Birthday</Text>
-            <TextInput style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"10%" , height:45 , width:240 , borderRadius:8,marginTop:10  }} />
-            <Text style={{color:"#A901DB",marginTop:20}}>Current Class</Text>
-            <TextInput style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"10%" , height:45 , width:240 , borderRadius:8,marginTop:10  }} />
+            <TextInput onChangeText={setBirthday} style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"10%" , height:45 , width:240 , borderRadius:8,marginTop:10  }} />
+            <Text style={{color:"#A901DB",marginTop:20}}>Class</Text>
+            <TextInput onChangeText={setClass} style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"10%" , height:45 , width:240 , borderRadius:8,marginTop:10  }} />
             <Text style={{color:"#A901DB",marginTop:20}}>Current_graduation_Certificate</Text>
             <View style={styles.img}></View><View  style={styles.btn}>
-  <Text  style={styles.Log} onPress={()=>navigation.navigate('Home')}>Send</Text>
+  <Text  style={styles.Log} onPress={()=>handle()}>Send</Text>
 </View>
+
             
 </View>
 

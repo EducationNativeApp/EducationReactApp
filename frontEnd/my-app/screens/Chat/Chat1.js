@@ -1,28 +1,32 @@
 import {StyleSheet, Text , View , TextInput ,Button, Image ,ScrollView  } from "react-native"
+import {lightTheme, darkTheme} from '../../Theme/Theme'
+import { useState } from "react";
+import { useContext } from "react";
+import { MyContext } from "../../useContext/useContext";
 const Chat1 = () => {
+  const { isDarkMode,setMode } = useContext(MyContext);
+  const theme = isDarkMode ? darkTheme : lightTheme;
+  const darkMode=()=>{
+    setMode(!isDarkMode)
+  }
   return (
-    
-    <View style={styles.container}>
+<View style={[styles.container, { backgroundColor: theme.backgroundColor }]}>
       <View style={styles.nav}>
-        <Text style={styles.message}> Messages</Text>
+        <Text style={{color:theme.textColor}}> Messages</Text>
       </View>
-      <Text>Hola</Text>
+      <Text style={{color:theme.textColor}} onPress={()=>{darkMode()}}>Hola</Text>
       </View>
   )
 }
 const styles = StyleSheet.create({
   container: {    flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },nav:{
     width:"100%",
     height:150,
     marginTop:-523,
-    backgroundColor:"beige",
     borderBottomWidth:0.3
-  },message:{
-    color:"black"
   }
 });
 

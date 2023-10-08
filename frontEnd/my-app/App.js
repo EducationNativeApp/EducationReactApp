@@ -1,8 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NativeBaseProvider } from 'native-base';
 import { NavigationContainer } from '@react-navigation/native';
+import {MyProvider} from '../my-app/useContext/useContext'; 
  import Login from './screens/LoginPage/Login/Login'
 import SignUp from './screens/LoginPage/SignUp/SignUp';
 import Profile from './screens/Profile/Profile/Profile'
@@ -28,16 +27,20 @@ import Science from './screens/Modules/ModuleScience';
 import It from './screens/Modules/ModuleIT';
 import Arts from './screens/Modules/ModuleArts';
 import Sport from './screens/Modules/ModuleSport';
+import Navbar from './screens/Navbar/Navbar'
+import Chat1 from './screens/Chat/Chat1';
 
 const Stack = createNativeStackNavigator()
 
 
 export default function App() {
+  
   return (
-    <NativeBaseProvider>
+    <MyProvider>
+    <NativeBaseProvider >
     <NavigationContainer>
-    <Stack.Navigator initialRouteName="Parent">
-     <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}  />   
+    <Stack.Navigator initialRouteName="Inscription">
+     <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}  />
      <Stack.Screen name="Login" component={Login} options={{headerShown:false}}  /> 
      <Stack.Screen name="SignUp" component={SignUp} options={{headerShown:false}}/> 
      <Stack.Screen name="Inscription" component={Inscription} options={{headerShown:false}} />
@@ -61,10 +64,14 @@ export default function App() {
     <Stack.Screen name="ModuleScience" component={Science} options={{headerShown:false}} />
     <Stack.Screen name="ModuleArts" component={Arts} options={{headerShown:false}} />  
     <Stack.Screen name="ModuleSport" component={Sport} options={{headerShown:false}} /> 
-    <Stack.Screen name="ModuleIt" component={It} options={{headerShown:false}} /> 
+    <Stack.Screen name="ModuleIt" component={It} options={{headerShown:false}} />
+
+    <Stack.Screen name="Chat1" component={Chat1} options={{headerShown:false}} />
     </Stack.Navigator>
+    <Navbar /> 
     </NavigationContainer>
     </NativeBaseProvider>
+    </MyProvider>
   );
 }
 

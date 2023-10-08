@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-
+import { useContext } from "react";
+import { MyContext } from "../../useContext/useContext";
 const Payement = () => {
   return (
     <View style={styles.container}>

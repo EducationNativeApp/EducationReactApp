@@ -1,9 +1,14 @@
 import {StyleSheet, Text , View , TextInput ,Button, Image ,ScrollView  } from "react-native"
 import Video from 'react-native-video'
+import {lightTheme, darkTheme} from '../../Theme/Theme'
+import { useContext } from "react";
+import { MyContext } from "../../useContext/useContext";
 const Home = () => {
+    const { isDarkMode,setMode } = useContext(MyContext);
+    const theme = isDarkMode ? darkTheme : lightTheme;
   return (
     <ScrollView>
-        <View style={styles.container}>
+        <View style={[styles.container,{backgroundColor: theme.backgroundColor}]}>
         
             <View style={styles.nav}>
             <Image
@@ -20,7 +25,7 @@ const Home = () => {
                 source={{uri:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Hibbing_High_School_2014.jpg/1200px-Hibbing_High_School_2014.jpg'}}/>
             </View>
         <View style={styles.seeAll}>
-            <Text style={styles.text1}>See All</Text>
+            <Text style={[styles.text1,,{color:theme.textColor}]}>See All</Text>
         </View>
         <View style={styles.matieres}>
         <ScrollView horizontal={true} >
@@ -30,7 +35,7 @@ const Home = () => {
                 source={{uri:"https://cdn.the-scientist.com/assets/articleNo/69216/aImg/43641/science-article-o.png"}}
                 />
                 <View style={styles.tit}>
-                <Text>Science</Text>
+                <Text style={{color:theme.textColor}}>Science</Text>
                 </View>
             </View>
             <View style={styles.matieree}>
@@ -39,7 +44,7 @@ const Home = () => {
                 source={{uri:"https://www.myoxfordenglish.es/wp-content/uploads/2020/12/English-for-your-profession-1-1200x717.jpg"}}
                 />
                 <View style={styles.tit}>
-                <Text>English</Text>
+                <Text style={{color:theme.textColor}}>English</Text>
             </View>
             </View>
             <View style={styles.matieree}>
@@ -48,7 +53,7 @@ const Home = () => {
                 source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKsyPFSLnN2dzT4c2WptDUQJ3HIigfbKXGwA&usqp=CAU"}}
                 />
                 <View style={styles.tit}>
-                <Text>Computer Science</Text>
+                <Text style={{color:theme.textColor}}>Computer Science</Text>
                 </View>
             </View>
             <View style={styles.matieree}>
@@ -56,13 +61,13 @@ const Home = () => {
                 style={styles.matiertof}
                 source={{uri:"https://images.verbling.com/convert/w_1000/https%3A%2F%2Fverbling-user-uploads.s3.amazonaws.com%2F75736031415276259819%2F134fe6d9-35f7-49f7-9088-00d21599e535%2Fweb2_0.jpg"}}
                 />
-                <View style={styles.tit}>
-                <Text>Arabic</Text>
+                <View style={[styles.tit,{backgroundColor: theme.backgroundColor}]}>
+                <Text style={{color:theme.textColor}}>Arabic</Text>
                 </View>
             </View>
             </ScrollView>
         </View>
-        <Text style={styles.text1}>See All</Text>
+        <Text style={[styles.text1,{color:theme.textColor}]}>See All</Text>
         <View style={styles.seeAll1}>
             <ScrollView horizontal={true}>
             <View style={styles.Teachers}>
@@ -70,8 +75,8 @@ const Home = () => {
                 source={{uri:'https://avatars.githubusercontent.com/u/97634240?v=4'}}
                 />
                 <View style={{marginLeft:15,marginTop:21}}>
-                    <Text>Oubayid ben said</Text>
-                    <Text style={{marginLeft:23}}>IT Teacher</Text>
+                    <Text style={{color:theme.textColor}}>Oubayid ben said</Text>
+                    <Text style={{marginLeft:23,color:theme.textColor}}>IT Teacher</Text>
                 </View>
             </View>
             <View style={styles.Teachers1}>
@@ -79,8 +84,8 @@ const Home = () => {
                 source={{uri:'https://avatars.githubusercontent.com/u/129502701?v=4'}}
                 />
                 <View style={{marginLeft:15,marginTop:21}}>
-                    <Text style={{marginLeft:6}}>Wissem Hajjem</Text>
-                    <Text style={{marginLeft:23}}>IT Teacher</Text>
+                    <Text style={{marginLeft:6,color:theme.textColor}}>Wissem Hajjem</Text>
+                    <Text style={{marginLeft:23,color:theme.textColor}}>IT Teacher</Text>
                 </View>
             </View>
             <View style={styles.Teachers1}>
@@ -88,8 +93,8 @@ const Home = () => {
                 source={{uri:'ede'}}
                 />
                 <View style={{marginLeft:15,marginTop:21}}>
-                    <Text>Khouloud Ouelhazi</Text>
-                    <Text style={{marginLeft:8}}>Science Teacher</Text>
+                    <Text style={{color:theme.textColor}}>Khouloud Ouelhazi</Text>
+                    <Text style={{marginLeft:8,color:theme.textColor}}>Science Teacher</Text>
                 </View>
             </View>
             </ScrollView>
@@ -106,6 +111,14 @@ const Home = () => {
         </View>
         <Text style={{fontSize:25,marginTop:50,marginLeft:-160}}>Sponsors</Text>
         <View style={styles.sponsors}>
+            {
+                isDarkMode && (
+                    <Image 
+style={{width:140,height:100,marginLeft:160}}
+source={{uri:"https://iconape.com/wp-content/png_logo_vector/ooredoo.png"}}
+/>
+                )
+            }
 <Image 
 style={{width:140,height:100,marginLeft:160}}
 source={{uri:"https://iconape.com/wp-content/png_logo_vector/ooredoo.png"}}
@@ -167,7 +180,6 @@ source={{uri:"https://www.carthageland.com/img/logo-cl-tunis.png"}}
 
 const styles=StyleSheet.create({
     container: {    flex: 1,
-        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
       },navPhone:{
@@ -192,8 +204,8 @@ const styles=StyleSheet.create({
         borderRadius:12,
         backgroundColor:'red'
       },tit:{
-        width:"100%",
-        height:40,
+        width:"99%",marginLeft:1,
+        height:41.6,
     alignItems: 'center',
         justifyContent: 'center'
 
@@ -219,7 +231,7 @@ const styles=StyleSheet.create({
     },matiere:{
         width:180,
         height:130,
-        backgroundColor:"white",
+        
         borderRadius:12,
         borderWidth:0.6,
     },matieres:{
@@ -230,7 +242,7 @@ const styles=StyleSheet.create({
     },matieree:{
         width:180,
         height:130,
-        backgroundColor:"white",
+        
         borderRadius:12,
         borderWidth:0.6,
         marginLeft:15

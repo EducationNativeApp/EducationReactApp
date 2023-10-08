@@ -3,7 +3,8 @@ import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
-
+import { useContext } from "react";
+import { MyContext } from "../../useContext/useContext";
 const TeacherDetail = () => {
   return (
     <View style={styles.container}>
