@@ -32,7 +32,7 @@ const add = (teacherData, callback) => {
  
   const getTeacherByFirstClass = (className, callback) => {
     const sql = `SELECT * FROM teachers WHERE class = ?`;
-    console.log('SQL Query:', sql); // Log the SQL query
+    console.log('SQL Query:', sql);
     connection.query(sql, [className], function (error, results) {
       console.log('SQL Results:', results); // Log the SQL results
       callback(error, results);
@@ -41,12 +41,28 @@ const add = (teacherData, callback) => {
 
   const getTeacherBySecondClass = (className, callback) => {
     const sql = `SELECT * FROM teachers WHERE class = ?`;
-    console.log('SQL Query:', sql); // Log the SQL query
+    console.log('SQL Query:', sql); 
     connection.query(sql, [className], function (error, results) {
-      console.log('SQL Results:', results); // Log the SQL results
+      console.log('SQL Results:', results); 
       callback(error, results);
     });
   };
+
+  const getTeacherBySubjectAndClass = (subjectName, className, callback) => {
+    const sql = `SELECT * from harmony.teachers t, harmony.subject s
+WHERE
+    t.subject_idsubject=s.idsubject
+    and s.name= ?
+    and t.class=?
+    `
+    console.log('SQL Query:', sql);
+    connection.query(sql, [subjectName, className], function (error, results) {
+      console.log('SQL Results:', results); 
+      callback(error, results);
+    });
+  };
+
+
   
   
   
@@ -54,9 +70,10 @@ const add = (teacherData, callback) => {
     add,
     put,
     remove,
-    getTeacherByFirstClass ,
+    getTeacherByFirstClass,
     getAll,
-    getTeacherBySecondClass
+    getTeacherBySecondClass,
+    getTeacherBySubjectAndClass
   };
   
   

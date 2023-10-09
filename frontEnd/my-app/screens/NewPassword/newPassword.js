@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, ImageBackground, StyleSheet } from 'react-native';
 import { Svg, Path } from 'react-native-svg';
 
-export default function Confirmpassword() {
+export default function newPassword() {
     return (
     		<View style={styles.confirmpassword}>
       			<Text style={styles.home}>

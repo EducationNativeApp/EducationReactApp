@@ -7,6 +7,8 @@ import CustomTextInputEmail from './CustomTextInputEmail';
 import CustomTextInputPassword from './CustomTextInputPassword';
 import { Alert } from 'react-native';
 import serverUrl from '../../serverUrl';
+import { useContext } from "react";
+import { MyContext } from "../../../useContext/useContext";
 
 const CreateAnAccount = ({navigation}) => {
   const [password,setPassword]=useState('');
@@ -47,7 +49,7 @@ const CreateAnAccount = ({navigation}) => {
       Number
     };
   console.log(userData)
-    Axios.post(`http://192.168.11.71:3000/api/register`, userData)
+    Axios.post(`http://192.168.11.71:3001/user/register`, userData)
       .then((response) => {
         
         console.log('Registration Successful', response.data);

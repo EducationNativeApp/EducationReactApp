@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
-
+import { useContext } from "react";
+import { MyContext } from "../../useContext/useContext";
 const Teacher = () => {
   return (
     <ScrollView>

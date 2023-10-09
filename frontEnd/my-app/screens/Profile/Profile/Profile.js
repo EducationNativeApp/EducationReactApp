@@ -1,5 +1,7 @@
 import {StyleSheet, Text , View , TextInput ,Button, Image ,ScrollView  } from "react-native"
 import { useState } from "react";
+import { useContext } from "react";
+import { MyContext } from "../../../useContext/useContext";
 const Profile=({navigation})=>{
 const [name,setName]=useState('')
 const [emailAdress,setEmailAdress]=useState('')

@@ -1,21 +1,26 @@
 import {StyleSheet, Text , View , TextInput ,Button, Image } from "react-native"
 import { useEffect, useState } from "react";
+import {lightTheme, darkTheme} from '../../../Theme/Theme'
 import Navbar from "../../Navbar/Navbar";
 import axios from 'axios'
+import { useContext } from "react";
+import { MyContext } from "../../../useContext/useContext";
 function Login({navigation}) {
+  const { isDarkMode,setMode } = useContext(MyContext);
+  const theme = isDarkMode ? darkTheme : lightTheme;
   const [email,setEmail]=useState('')
   const [password , setPassword]=useState('')
   const [data,setData]=useState([])
 const handleLog=(e)=>{
 e.preventDefault()
-    axios.post('http://192.168.11.71:3001/api/login',{
+    axios.post('http://192.168.11.71:3001/user/login',{
       email,
       password,
     }).then((res)=>{
       setData(res.data)
       console.log(data);
       alert("welcome")
-      navigation.navigate('Chat1')
+      navigation.navigate('Parent')
     }).catch((err)=>{
       if(email===""){
         console.log("enter your email");
@@ -30,8 +35,8 @@ e.preventDefault()
   })
 }
   return (
-    <View style={styles.container}>
-    <Text style={{marginTop:"-5%", marginLeft:"-79%"}}>Home</Text>
+    <View style={[styles.container,{ backgroundColor: theme.backgroundColor }]}>
+
     <Image
     style={{width:40,
     height:40,
@@ -39,7 +44,7 @@ e.preventDefault()
   }}
   source={{uri:'https://images.vexels.com/media/users/3/224233/isolated/preview/d5ee0e9c87bb54cf867d7fb89c4570b8-online-education-logo.png'}} />
     <Text style={{marginTop:"1%", color:"#8A0886"}}>Welcome Back</Text>
-    <Text style={{marginTop:"1.5%"}}>Login to continue</Text>
+    <Text style={{marginTop:"1.5%",color:"#8A0886"}}>Login to continue</Text>
     <TextInput placeholder="Email" onChangeText={setEmail} style={{backgroundColor:"#F2F2F2",borderWidth:1,borderColor:"#A901DB" ,marginTop:"5%" , height:"10%", width:"80%" , borderRadius:7.69}} />
    <Text style={{marginLeft:"-53%", marginTop:"8%",color:"#A901DB"}}>Password</Text>
     <TextInput  onChangeText={setPassword} placeholder="password"  secureTextEntry={true}  style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"5%" , height:"10%", width:"80%" , borderRadius:7.69 }} />
@@ -52,17 +57,15 @@ e.preventDefault()
 <View  style={styled.btn}>
   <Text  style={styled.Log} onPress={(e) => handleLog(e)}>LOG IN</Text>
 </View>
-<Text style={styled.text}>Don't have an account?</Text>
+<Text style={[styled.text,{color:theme.textColor}]}>Don't have an account?</Text>
 <Text style={styleed.text1}
 onPress={()=>{ navigation.navigate("SignUp")}}>Sign up Now</Text>
-<Navbar />
  </View>
  
   )
 }
 const styles = StyleSheet.create({
   container: {    flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
