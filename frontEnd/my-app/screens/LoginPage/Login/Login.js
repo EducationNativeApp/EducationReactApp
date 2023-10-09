@@ -8,7 +8,7 @@ function Login({navigation}) {
   const [data,setData]=useState([])
 const handleLog=(e)=>{
 e.preventDefault()
-    axios.post('http://192.168.101.18:3001/api/login',{
+    axios.post('http://192.168.11.71:3001/api/login',{
       email,
       password,
     }).then((res)=>{
