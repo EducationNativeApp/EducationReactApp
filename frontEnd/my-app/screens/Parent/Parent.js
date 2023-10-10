@@ -31,7 +31,8 @@ const handleImageClick = () => {
   };
 
   const handleImageClick6 = () => {
-    navigation.navigate("Payement")
+    navigation.navigate("CheckOut")
+
   };
 
   const handleImageClick7 = () => {

@@ -22,6 +22,13 @@ app.use('/teacher',teacherRoute)
 app.use('/classe',classeRoute)
 app.use('/subject',SubjectRoute)
 app.use('/student',StudentRoute)
+{/*app.use('/api/payement',payementRoutes);*/}
+
+const CLIENT_ID = "269394138802-7d0vaf1cq2nh8tqqipujdd27plsri8t8.apps.googleusercontent.com"
+const CLIENT_SECRET = "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";
+const REDIRECT_URI = "https://developers.google.com/oauthplayground";
+const REFRESH_TOKEN = "1//04Tq0ie_KxFuCCgYIARAAGAQSNwF-L9Irp-uftta6x36cYuWPk2Io4ZaQ7-Oi1UW_6Fdx8d3EIw27QC_sosOGS0wEUswIMSgLX2A";
+
 
 
 

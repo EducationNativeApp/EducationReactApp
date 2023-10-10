@@ -3,26 +3,38 @@ import {StyleSheet, Text , View , TextInput ,Button, Image ,ScrollView , Modal ,
 import { useState } from "react"
 import { useContext } from "react";
 import { MyContext } from "../../../useContext/useContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const Inscription = ({navigation}) => {
 const [First_name,setFirstName]=useState('')
 const [LastName,setLastName]=useState('')
 const [Birthday,setBirthday]=useState('')
 const [image,setImage]=useState('')
-const {Class,setClass} = useContext(MyContext);
+const [Class,setClass] = useState("")
 const [modalVisible, setModalVisible] = useState(false);
 const classes = ['First Class', 'Second Class', 'Third Class', 'Fourt Class','Second Class','sixth Class' ];
 const handleClassSelect = (selectedClass) => {
   setClass(selectedClass);
+  
   setModalVisible(false);
 };
+_storeData = async () => {
+  try {
+    await AsyncStorage.setItem(
+      'Class',
+      JSON.stringify(Class),
+    );
+  } catch (error) {
+    // Error saving data
+  }
+};
 const handle=()=>{
-  axios.post('http://192.168.11.71:3001/student/add',{
+  axios.post('http://192.168.101.4:3001/student/add',{
     First_name,
     LastName,
     Birthday,
     image:'dfghjhgfds',
     class:Class,
-    users_idusers:2,
+    users_idusers:1,
     classes_idclasses:1
 
   }).then((res)=>{
@@ -32,6 +44,8 @@ const handle=()=>{
     alert(err);
   })
 }
+
+
   return (
     <ScrollView>
         <View style={styles.container}>
@@ -86,7 +100,8 @@ const handle=()=>{
                   keyExtractor={(item) => item}
                   renderItem={({ item }) => (
                     <TouchableOpacity 
-                      onPress={() => handleClassSelect(item)}
+                      onPress={() => handleClassSelect(item)
+                }
                       style={styles.modalItem}
                     >
                       <Text >{item}</Text>
@@ -98,7 +113,7 @@ const handle=()=>{
           </Modal>
             <Text style={{color:"#A901DB",marginTop:20}}>Current_graduation_Certificate</Text>
             <View style={styles.img}></View><View  style={styles.btn}>
-  <Text  style={styles.Log} onPress={()=>handle()}>Send</Text>
+  <Text  style={styles.Log} onPress={()=>handle() }>Send</Text>
 </View>
 
             
