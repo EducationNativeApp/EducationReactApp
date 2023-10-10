@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, ImageBackground, StyleSheet } from 'react-native';
 import { Svg, Path } from 'react-native-svg';
-
+import ADRESS_API from '../serverUrl';
 export default function newPassword() {
     return (
     		<View style={styles.confirmpassword}>
