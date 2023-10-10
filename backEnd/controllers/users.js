@@ -124,7 +124,7 @@ const sendEmail = (req, res) => {
 
 
 async function update(req, res) {
-  const { username, password, email } = req.body; // Remove idusers from here
+  const { username, password, email } = req.body; 
   const { idusers } = req.params; // Access idusers from URL parameters
 
   try {
