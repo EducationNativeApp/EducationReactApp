@@ -10,6 +10,8 @@ const SubjectRoute=require("./routes/subject")
 const StudentRoute=require("./routes/student")
 const { getAll } = require('./controllers/users');
 const { update } = require('./controllers/EditProfile')
+const { updateUserPassword } = require('../backEnd/controllers/users');
+
 const crypto = require('crypto'); // Import the crypto module
 const nodemailer = require('nodemailer');
 
@@ -179,6 +181,27 @@ function getUserIdFromResetToken(token) {
 }
 
 
+app.put('/reset-password/:userId',(req, res) => {
+  const { userId } = req.params;
+  const { newPassword, confirmNewPassword } = req.body;
+
+  if (!newPassword || !confirmNewPassword) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
+
+  if (newPassword !== confirmNewPassword) {
+    return res.status(400).json({ message: 'Passwords do not match' });
+  }
+
+  const success = updateUserPassword( req.body.newPassword ,req.params.userId);
+console.log(req.body);
+  if (!success) {
+    console.log(`Password updated for user (using user ID)`);
+    res.status(400).json({ message: 'Invalid user ID' });
+  } else {
+    res.status(200).json({ message: 'Password updated successfully' });
+  }
+});
 
 
 
