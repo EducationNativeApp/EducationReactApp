@@ -121,26 +121,26 @@ const sendEmail = (req, res) => {
   });
 };
 
-function updateUserPassword(newPassword,userId) {
-  return new Promise((resolve, reject) => {
-    const sql = 'UPDATE users SET password = ? WHERE id = ?';
-    
-    conn.query(sql, [newPassword, userId], (err, results) => {
-      if (err) {
-        console.error('Error updating password:', err);
-        console.log(err);
-        reject(err);
-      } else {
-        console.log(`Password updated for user with ID ${userId}`);
-        resolve(true);
-      }
-    });
-  });
+
+
+async function update(req, res) {
+  const { username, password, email } = req.body; // Remove idusers from here
+  const { idusers } = req.params; // Access idusers from URL parameters
+
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await User.updateNewProfile(username, email, hashedPassword, idusers);
+
+    res.status(200).send({ message: 'Update successful' });
+  } catch (err) {
+    console.error('Error updating user profile: ' + err);
+    res.sendStatus(500);
+  }
 }
 
 
 module.exports = { login , 
   register,
-  getAll,sendEmail,  updateUserPassword
+  getAll,sendEmail,update
 
  };

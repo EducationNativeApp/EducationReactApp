@@ -35,6 +35,7 @@ import newPassword from './screens/NewPassword/newPassword';
 import CheckOut from './screens/Payement/CheckOut';
 import ReviewOrder from  './screens/Payement/ReviewOrder';
 import PaymentMethod from './screens/Payement/ReviewOrder';
+import CalendarScreen from './screens/MyCalender/CalendarScreen';
 
 const Stack = createNativeStackNavigator()
 
@@ -79,7 +80,8 @@ export default function App() {
     <Stack.Screen name="ReviewOrder" component={ReviewOrder} options={{headerShown:false}}  />  
      <Stack.Screen name="CheckOut" component={CheckOut} options={{headerShown:false}}  />        
      <Stack.Screen name="PaymentMethod" component={PaymentMethod} options={{headerShown:false}}  />
-    
+     <Stack.Screen name="CalendarScreen" component={CalendarScreen}  options={{headerShown:false}} ></Stack.Screen>
+
 
 
 
