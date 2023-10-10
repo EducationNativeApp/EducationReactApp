@@ -3,7 +3,7 @@ import { View, Text, ImageBackground, StyleSheet, TextInput } from 'react-native
 import { Svg, Path, Defs, Pattern, Use, Image } from 'react-native-svg';
 import axios from 'axios';
 import { useState } from 'react';
-
+import ADRESS_API from '../serverUrl';
 export default function Findyouremail({ navigation }) {
   const [email, setEmail] = useState('');
 
@@ -16,7 +16,7 @@ export default function Findyouremail({ navigation }) {
       body: JSON.stringify({ user_email: email }),
     };
 
-    fetch('http://localhost:3001/send-verification-code', requestOptions)
+    fetch(`http://${ADRESS_API}:3001/send-verification-code`, requestOptions)
       .then((response) => {
         if (response.ok) {
           alert('Verification code sent successfully to your Email');

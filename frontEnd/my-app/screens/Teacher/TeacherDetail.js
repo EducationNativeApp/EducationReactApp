@@ -6,7 +6,7 @@ import { useRoute } from '@react-navigation/native';
 import { MyContext } from '../../useContext/useContext';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import ADRESS_API from '../serverUrl';
 
 const TeacherDetail = () => {
 
@@ -30,7 +30,7 @@ const TeacherDetail = () => {
     useEffect(() => {
   
       axios
-        .get(`http://192.168.11.71/teacher/getOneTeacher/${subject}/${Class}`)
+        .get(`http://${ADRESS_API}:3001/teacher/getOneTeacher/${subject}/${Class}`)
         .then((response) => {
         console.log(response,"teacher");
         console.log(Class,"class");

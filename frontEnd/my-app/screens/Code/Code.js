@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, ImageBackground, StyleSheet, TextInput } from 'react-native';
 import { Svg, Path } from 'react-native-svg';
-
+import ADRESS_API from '../serverUrl';
 export default function Code() {
   const [verificationCode, setVerificationCode] = useState('');
 
@@ -14,7 +14,7 @@ export default function Code() {
       body: JSON.stringify({ verificationCode: verificationCode }),
     };
 
-    fetch('http://localhost:3001/check-verification-code', requestOptions)
+    fetch(`http://${ADRESS_API}:3001/check-verification-code`, requestOptions)
       .then((response) => {
         if (response.ok) {
           alert('Verification code is valid');
