@@ -10,6 +10,8 @@ const SubjectRoute=require("./routes/subject")
 const StudentRoute=require("./routes/student")
 const { getAll } = require('./controllers/users');
 const { update } = require('./controllers/EditProfile')
+const { updateUserPassword } = require('../backEnd/controllers/users');
+
 const crypto = require('crypto'); // Import the crypto module
 const nodemailer = require('nodemailer');
 
@@ -22,6 +24,13 @@ app.use('/teacher',teacherRoute)
 app.use('/classe',classeRoute)
 app.use('/subject',SubjectRoute)
 app.use('/student',StudentRoute)
+{/*app.use('/api/payement',payementRoutes);*/}
+
+const CLIENT_ID = "269394138802-7d0vaf1cq2nh8tqqipujdd27plsri8t8.apps.googleusercontent.com"
+const CLIENT_SECRET = "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";
+const REDIRECT_URI = "https://developers.google.com/oauthplayground";
+const REFRESH_TOKEN = "1//04Tq0ie_KxFuCCgYIARAAGAQSNwF-L9Irp-uftta6x36cYuWPk2Io4ZaQ7-Oi1UW_6Fdx8d3EIw27QC_sosOGS0wEUswIMSgLX2A";
+
 
 
 
@@ -172,6 +181,27 @@ function getUserIdFromResetToken(token) {
 }
 
 
+app.put('/reset-password/:userId',(req, res) => {
+  const { userId } = req.params;
+  const { newPassword, confirmNewPassword } = req.body;
+
+  if (!newPassword || !confirmNewPassword) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
+
+  if (newPassword !== confirmNewPassword) {
+    return res.status(400).json({ message: 'Passwords do not match' });
+  }
+
+  const success = updateUserPassword( req.body.newPassword ,req.params.userId);
+console.log(req.body);
+  if (!success) {
+    console.log(`Password updated for user (using user ID)`);
+    res.status(400).json({ message: 'Invalid user ID' });
+  } else {
+    res.status(200).json({ message: 'Password updated successfully' });
+  }
+});
 
 
 

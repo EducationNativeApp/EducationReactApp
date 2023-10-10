@@ -1,37 +1,48 @@
-
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useContext} from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
 import { useRoute } from '@react-navigation/native';
 import { MyContext } from '../../useContext/useContext';
-import { useContext } from 'react';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const TeacherDetail = () => {
-  const { Class , setClass } = useContext(MyContext);
+
+
+  const [Class , setClass ]= useState();
   [data,setData]=useState([])
   const route=useRoute();
   const subject = route.params?.params.subject;
-    console.log("subject: ", subject);
-    const handleTeacher = () => {
+    console.log("class",AsyncStorage.getItem("Class"))
+    _retrieveData = async () => {
+      try {
+        const value = await AsyncStorage.getItem();
+       setClass(value)
+        
+      } catch (error) {
+        
+      }
+    };
+    
+ 
+    useEffect(() => {
+  
       axios
-        .get(`http://192.168.101.18/teacher/getOneTeacher/${subject}/${Class}`)
+        .get(`http://192.168.11.71/teacher/getOneTeacher/${subject}/${Class}`)
         .then((response) => {
+        console.log(response,"teacher");
+        console.log(Class,"class");
         setData(response.data);
+        console.log(data,"data");
         })
         .catch((error) => {
          
           console.error('Error fetching teacher data:', error);
         });
-    };
- 
-useEffect(() => {
-  
-  handleTeacher();
-}, []);
-
+    },[]);
+    
   return (
     <View style={styles.container}>
       <View style={styles.detailContainer}>
@@ -39,19 +50,21 @@ useEffect(() => {
         <View style={styles.centeredView}>
           {/* Contenu de la deuxième vue */}
           <View style={styles.contentContainer}>
+          
             {/* Ellipse avec image */}
+           
             <View >
             <Image
-           source={{ uri: data.image }}
+          
           style={styles.image}
         />
             </View>
 
             {/* Nom et prénom en gras */}
-            <Text style={styles.name}>{data.name}</Text>
+            <Text style={styles.name} ></Text>
 
             {/* Description de la personne */}
-            <Text style={styles.description}>{data.email}</Text>
+            <Text style={styles.description}></Text>
 
             {/* Rectangle avec le bouton "Send Message" et l'icône de chat */}
             <View style={styles.rectangle}>
@@ -64,6 +77,7 @@ useEffect(() => {
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {

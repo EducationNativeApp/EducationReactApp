@@ -32,6 +32,9 @@ import Chat1 from './screens/Chat/Chat1';
 import FindEmail from './screens/FindEmail/forgot-password'
 import Code from './screens/Code/Code';
 import newPassword from './screens/NewPassword/newPassword';
+import CheckOut from './screens/Payement/CheckOut';
+import ReviewOrder from  './screens/Payement/ReviewOrder';
+import PaymentMethod from './screens/Payement/ReviewOrder';
 
 const Stack = createNativeStackNavigator()
 
@@ -43,7 +46,7 @@ export default function App() {
     <NativeBaseProvider >
     <NavigationContainer>
     
-    <Stack.Navigator initialRouteName="Contact">
+    <Stack.Navigator initialRouteName="Inscription">
      <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}  />
      <Stack.Screen name="Login" component={Login} options={{headerShown:false}}  /> 
      <Stack.Screen name="SignUp" component={SignUp} options={{headerShown:false}}/> 
@@ -73,6 +76,9 @@ export default function App() {
     <Stack.Screen name="Code" component={Code}  options={{headerShown:false}} ></Stack.Screen>
     <Stack.Screen name="NewPassword" component={newPassword}  options={{headerShown:false}} ></Stack.Screen>
     <Stack.Screen name="Chat1" component={Chat1}  options={{headerShown:false}} ></Stack.Screen>
+    <Stack.Screen name="ReviewOrder" component={ReviewOrder} options={{headerShown:false}}  />  
+     <Stack.Screen name="CheckOut" component={CheckOut} options={{headerShown:false}}  />        
+     <Stack.Screen name="PaymentMethod" component={PaymentMethod} options={{headerShown:false}}  />
     
 
 
