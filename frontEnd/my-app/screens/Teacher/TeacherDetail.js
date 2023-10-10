@@ -17,7 +17,7 @@ const TeacherDetail = () => {
     console.log("subject: ", subject);
     const handleTeacher = () => {
       axios
-        .get(`http://192.168.11.71/teacher/getOneTeacher/${subject}/${Class}`)
+        .get(`http://192.168.101.18/teacher/getOneTeacher/${subject}/${Class}`)
         .then((response) => {
         setData(response.data);
         })

@@ -16,7 +16,7 @@ const handleClassSelect = (selectedClass) => {
   setModalVisible(false);
 };
 const handle=()=>{
-  axios.post('http://192.168.11.71:3001/student/add',{
+  axios.post('http://192.168.101.18:3001/student/add',{
     First_name,
     LastName,
     Birthday,
