@@ -9,6 +9,7 @@ import { Alert } from 'react-native';
 import serverUrl from '../../serverUrl';
 import { useContext } from "react";
 import { MyContext } from "../../../useContext/useContext";
+import ADRESS_API from '../../serverUrl';
 
 const CreateAnAccount = ({navigation}) => {
   const [password,setPassword]=useState('');
@@ -49,7 +50,7 @@ const CreateAnAccount = ({navigation}) => {
       Number
     };
   console.log(userData)
-    Axios.post(`http://192.168.11.71:3001/user/register`, userData)
+    Axios.post(`http://${ADRESS_API}:3001/user/register`, userData)
       .then((response) => {
         
         console.log('Registration Successful', response.data);
