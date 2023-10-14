@@ -1,49 +1,149 @@
 import React, { useState } from 'react';
-import './Login.css';
+import './Login.css'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
-function Login() {
-  const [isLoginOpen, setIsLoginOpen] = useState(true);
 
-  const toggleSlider = () => {
-    setIsLoginOpen(!isLoginOpen);
+const Login= () => {
+  const [username, setUsername] = useState('');
+  const [email, setUseremail] = useState('');
+  const [password, setUserassword] = useState('');
+  const [message , setMessage] = useState('')
+  const navigate = useNavigate()
+  const handleSignUpClick = () => {
+    const container = document.getElementById('container');
+    container.classList.add('right-panel-active');
   };
 
-  return (
-    <div className="loginComponent">
-      <div className={`login ${isLoginOpen ? '' : 'signUp'}`}>
-        <input type="text" placeholder="Admin name" />
-        <br />
-        <input type="password" placeholder="Admin password" />
-        <br />
-        <button>Send</button>
-        <div className="AnotherForSignUp">
-          <h2>Welcome</h2>
-          <br />
-          <p>
-            If you don't have an account click{' '}
-            <button onClick={toggleSlider}>Sign Up</button>
-          </p>
-        </div>
-      </div>
-      <div className={`signUp ${isLoginOpen ? '' : 'login'}`}>
-        <input type="text" placeholder="Admin name" />
-        <br />
-        <input type="password" placeholder="Admin password" />
-        <br />
-        <button>Send</button>
-        <div className="AnotherPartForLogin">
-          <h2>Welcome</h2>
-          <br />
-          <p>Please add your info</p>
-          <br />
-          <p>
-            If you have an account, you can click for{' '}
-            <button onClick={toggleSlider}>Login</button> to add your info
-          </p>
-        </div>
-      </div>
-    </div>
-  );
+  const handleSignInClick = () => {
+    const container = document.getElementById('container');
+    container.classList.remove('right-panel-active');
+  };
+  const handleNameChange = (event) => {
+    setUsername(event.target.value);
+  };
+
+  const handleEmailChange = (event) => {
+    setUseremail(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setUserassword(event.target.value);
+  };
+  const handelRegister = (event) => {
+    event.preventDefault()
+    axios.post('http://localhost:3000/api/register',{username,email,password}).then((response)=>{
+      console.log('register success',response.data)
+      setUserContext(response.data)
+      navigate('/hiii')
+    }).catch((err)=>{
+      console.log(err)
+    })
+  }
+
+const handelLogin = (event) => {
+  event.preventDefault();
+  axios
+    .post('http://localhost:3000/api/login', { email, password })
+    .then((response) => {
+      console.log('welcome', response.data);
+      navigate('/hiii')
+      setUserContext(response.data)
+
+      // dispatch(setUserId(response.data.userId));
+
+    })
+    .catch((error) => {
+      console.log(error);
+      if (error.response && error.response.status === 401) {
+        const errorMessage = error.response.data.message;
+        if (errorMessage === 'Invalid email or password') {
+          console.log(setMessage)
+          setMessage('Invalid email or password. Please try again.');
+        } else {
+          setMessage('An error occurred. Please try again later.');
+        }
+      } else {
+        setMessage('An error occurred. Please try again later.');
+      }
+    });
+};
+const handelNavigate = () =>{
+  navigate ("/VerifEmail")
 }
 
+  
+
+  return (
+    <div className='body'>
+    <div className="container" id="container">
+      <div className="form-container sign-up-container">
+        <form action="#" onSubmit={(event)=>handelRegister(event)}>
+          <h1>Create Account</h1>
+          <div className="social-container">
+            <a href="#" className="social">
+              <i className="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" className="social">
+              <i className="fab fa-google-plus-g"></i>
+            </a>
+            <a href="#" className="social">
+              <i className="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+          <span>or use your email for registration</span>
+          <input type="text" placeholder="Name" className = "InpLogin"onChange={handleNameChange} />
+      
+          <input type="password" placeholder="Password" className = "InpLogin" onChange={handlePasswordChange}/>
+          <button className='LoginBtn'>Sign Up</button>
+        </form>
+      </div>
+      <div className="form-container sign-in-container">
+        <form action="#" onSubmit={(event)=>handelLogin(event)}>
+          <h1>Sign in</h1>
+          <div className="social-container">
+            <a href="#" className="social">
+              <i className="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" className="social">
+              <i className="fab fa-google-plus-g"></i>
+            </a>
+            <a href="#" className="social">
+              <i className="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+          <span> use your account</span>
+          <input type="text" placeholder="Name" className = "InpLogin" onChange={handleEmailChange}/>
+          <input type="password" placeholder="Password"className = "InpLogin" onChange={handlePasswordChange}/>
+           <p className='error-Message' color='red'>{message}</p>
+          <a href="#" onClick={handelNavigate}>Forgot your password?</a>
+          <button className='LoginBtn'>Sign In</button>
+        </form>
+      </div>
+      <div className="overlay-container">
+        <div className="overlay">
+          <div className="overlay-panel overlay-left">
+            <h1>Welcome Back!</h1>
+            <p>To keep connected with us please login with your personal info</p>
+            <button className="ghost" onClick={handleSignInClick}>
+              Sign In
+            </button>
+          </div>
+          <div className="overlay-panel overlay-right">
+            <h1>Hello,  Admin!</h1>
+            <p>Enter your personal details and start your journey with us</p>
+            <button className="ghost" onClick={handleSignUpClick} >
+              Sign Up
+            </button >
+          </div>
+        </div>
+      </div>
+   
+    </div>
+    </div>
+  );
+};
+
 export default Login;
+
+

@@ -1,0 +1,35 @@
+.Search-container {
+
+ margin-left: 20px;
+
+
+ margin-top: 10px;
+ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ border-radius: 5px;
+ overflow: hidden; /* Hide overflowing content (text) */
+    
+}
+.Inp-Search {
+    margin-left: 280px;
+    width: 50%;
+    height: 40px;
+}
+.Search-img{
+    border-radius: 50px;
+    width: 30px;
+    height: 30px;
+    
+    cursor: pointer;
+}
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  .search-icon {
+    position: absolute;
+    right: 465px; /* Adjust the right value to position the icon as needed */
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }

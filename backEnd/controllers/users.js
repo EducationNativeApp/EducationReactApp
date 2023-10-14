@@ -16,7 +16,7 @@ function login(req, res) {
     }
 
     const user = results[0];
-    bcrypt.compare(password, user.user_password, (err, isMatch) => {
+    bcrypt.compare(password, user.password, (err, isMatch) => {
       if (err) {
         console.error('Error comparing passwords: ' + err)
         return res.sendStatus(500)
@@ -32,7 +32,7 @@ function login(req, res) {
   });
 }
 function register(req, res) {
-  const { username, password, email, Birthday, Number ,Type ,Image} = req.body;
+  const { username, password, email, Birthday, Number } = req.body;
 
   User.findByEmail(email, (err, rows) => {
     if (err) {
@@ -56,7 +56,7 @@ function register(req, res) {
         }
 
         // Pass the callback function to createUser
-        User.createUser(username, hash, email, Birthday, Number,Type,Image, (err, result) => {
+        User.createUser(username, hash, email, Birthday, Number, (err, result) => {
           if (err) {
             return res.status(500).send('Error creating user: ' + err);
           }
@@ -93,4 +93,3 @@ module.exports = { login ,
   getAll,
   changePassword
  };
-

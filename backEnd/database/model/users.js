@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 
 
 function findByEmail(email, callback) {
-    const query = 'SELECT * FROM users WHERE user_email = ?'
+    const query = 'SELECT * FROM users WHERE email = ?'
     conn.query(query, [email], (err, results) => {
       if (err) {
         console.error('Error retrieving user from database: ' + err)
@@ -13,7 +13,7 @@ function findByEmail(email, callback) {
       callback(null, results)
     })
   }
-  function createUser(username, password, email, Birthday, Number, Type, Image,callback) {
+  function createUser(username, password, email, Birthday, Number,callback) {
     if (typeof Birthday !== 'string' || !/^\d{2}\/\d{2}\/\d{4}$/.test(Birthday)) {
       const error = new Error('Invalid Birthday format. It should be in the format MM/DD/YYYY.')
       console.error(error)
@@ -25,9 +25,9 @@ function findByEmail(email, callback) {
   
     const formattedBirthday = birthdayDate.toISOString().slice(0, 10)
   
-  const query = 'INSERT INTO users (user_name, user_password, user_email, user_birthday, user_number, user_image, user_type) VALUES (?, ?, ?, ?, ?,"https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg" ,"user")'
+  const query = 'INSERT INTO users (username, password, email, Birthday, Number) VALUES (?, ?, ?, ?, ?)'
 
-    conn.query(query, [username, password, email, formattedBirthday, Number, Type,Image], (err, result) => {
+    conn.query(query, [username, password, email, formattedBirthday, Number], (err, result) => {
       if (err) {
         console.error('Error creating user: ' + err)
         callback(err, null)
@@ -46,7 +46,7 @@ function findByEmail(email, callback) {
     const salt = bcrypt.genSaltSync(10)
     const hash = bcrypt.hashSync(password, salt)
   
-    const sql = 'UPDATE users SET user_password = ? WHERE user_email = ?';
+    const sql = 'UPDATE users SET password = ? WHERE email = ?';
   
     conn.query(sql, [hash, email], (err, result) => {
       if (err) {

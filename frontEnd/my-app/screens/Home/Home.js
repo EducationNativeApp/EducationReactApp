@@ -1,0 +1,279 @@
+import {StyleSheet, Text , View , TextInput ,Button, Image ,ScrollView  } from "react-native"
+import Video from 'react-native-video'
+const Home = () => {
+  return (
+    <ScrollView>
+        <View style={styles.container}>
+        
+            <View style={styles.nav}>
+            <Image
+    style={{width:40,
+    height:40,
+    marginLeft:12,marginTop:-10
+  }}
+  source={{uri:'https://images.vexels.com/media/users/3/224233/isolated/preview/d5ee0e9c87bb54cf867d7fb89c4570b8-online-education-logo.png'}} />
+            </View>
+            
+            <View style={styles.fImg}>
+                <Image
+                style={{width:"100%",height:160,marginTop:15}}
+                source={{uri:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Hibbing_High_School_2014.jpg/1200px-Hibbing_High_School_2014.jpg'}}/>
+            </View>
+        <View style={styles.seeAll}>
+            <Text style={styles.text1}>See All</Text>
+        </View>
+        <View style={styles.matieres}>
+        <ScrollView horizontal={true} >
+            <View style={styles.matiere}>
+                <Image 
+                style={styles.matiertof}
+                source={{uri:"https://cdn.the-scientist.com/assets/articleNo/69216/aImg/43641/science-article-o.png"}}
+                />
+                <View style={styles.tit}>
+                <Text>Science</Text>
+                </View>
+            </View>
+            <View style={styles.matieree}>
+            <Image 
+                style={styles.matiertof}
+                source={{uri:"https://www.myoxfordenglish.es/wp-content/uploads/2020/12/English-for-your-profession-1-1200x717.jpg"}}
+                />
+                <View style={styles.tit}>
+                <Text>English</Text>
+            </View>
+            </View>
+            <View style={styles.matieree}>
+            <Image 
+                style={styles.matiertof}
+                source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKsyPFSLnN2dzT4c2WptDUQJ3HIigfbKXGwA&usqp=CAU"}}
+                />
+                <View style={styles.tit}>
+                <Text>Computer Science</Text>
+                </View>
+            </View>
+            <View style={styles.matieree}>
+            <Image 
+                style={styles.matiertof}
+                source={{uri:"https://images.verbling.com/convert/w_1000/https%3A%2F%2Fverbling-user-uploads.s3.amazonaws.com%2F75736031415276259819%2F134fe6d9-35f7-49f7-9088-00d21599e535%2Fweb2_0.jpg"}}
+                />
+                <View style={styles.tit}>
+                <Text>Arabic</Text>
+                </View>
+            </View>
+            </ScrollView>
+        </View>
+        <Text style={styles.text1}>See All</Text>
+        <View style={styles.seeAll1}>
+            <ScrollView horizontal={true}>
+            <View style={styles.Teachers}>
+                <Image style={{borderWidth:0.6,width:90,height:90,borderRadius:100,backgroundColor:"#fff",marginTop:8,marginLeft:28}}
+                source={{uri:'https://avatars.githubusercontent.com/u/97634240?v=4'}}
+                />
+                <View style={{marginLeft:15,marginTop:21}}>
+                    <Text>Oubayid ben said</Text>
+                    <Text style={{marginLeft:23}}>IT Teacher</Text>
+                </View>
+            </View>
+            <View style={styles.Teachers1}>
+                <Image style={{borderWidth:0.6,width:90,height:90,borderRadius:100,backgroundColor:"#fff",marginTop:8,marginLeft:28}}
+                source={{uri:'https://avatars.githubusercontent.com/u/129502701?v=4'}}
+                />
+                <View style={{marginLeft:15,marginTop:21}}>
+                    <Text style={{marginLeft:6}}>Wissem Hajjem</Text>
+                    <Text style={{marginLeft:23}}>IT Teacher</Text>
+                </View>
+            </View>
+            <View style={styles.Teachers1}>
+                <Image style={{borderWidth:0.6,width:90,height:90,borderRadius:100,backgroundColor:"#fff",marginTop:8,marginLeft:28}}
+                source={{uri:'ede'}}
+                />
+                <View style={{marginLeft:15,marginTop:21}}>
+                    <Text>Khouloud Ouelhazi</Text>
+                    <Text style={{marginLeft:8}}>Science Teacher</Text>
+                </View>
+            </View>
+            </ScrollView>
+        </View>
+        <View style={styles.imgPage}>
+         
+
+        </View>
+        <View style={{width:250 ,marginTop:20,marginLeft:80}}>
+            <Text style={{marginLeft:17,fontSize:10}}>We opened our school in 2022</Text>
+            <Text style={{fontSize:25,fontSize:10}}>and we appreciate the efforts made</Text>
+            <Text style={{marginLeft:15,fontSize:10}}>by the teachers and the staff</Text>
+            <Text style={{fontSize:10}}>to make it one of the highest ranks</Text>
+        </View>
+        <Text style={{fontSize:25,marginTop:50,marginLeft:-160}}>Sponsors</Text>
+        <View style={styles.sponsors}>
+<Image 
+style={{width:140,height:100,marginLeft:160}}
+source={{uri:"https://iconape.com/wp-content/png_logo_vector/ooredoo.png"}}
+/>
+<Image 
+style={{width:140,height:40,marginTop:-70}}
+source={{uri:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Aladdin-logo-2.svg/2560px-Aladdin-logo-2.svg.png"}}
+/>
+<Image 
+style={{width:100,height:80,marginTop:20,marginLeft:98}}
+source={{uri:"https://www.carthageland.com/img/logo-cl-tunis.png"}}
+/>
+
+        </View>
+        <View style={styles.ob}>
+  <Text style={{marginLeft:14,marginTop:16,color:"white",fontWeight:'bold',fontSize:13}} >Tution Fees and Financing Options</Text>
+        </View>
+        <Text style={{fontSize:15,fontWeight:'bold',marginTop:20}}>Global Mounth</Text>
+        <Text style={{fontSize:15,fontWeight:'bold',marginTop:15}}>4000DT</Text>
+        <Text style={{marginLeft:-159,fontSize:13,marginTop:15}}> Payment in 3 months</Text>
+        <Text style={{marginLeft:159,fontSize:13,marginTop:-14.9}}> Payment in 6 months</Text>
+        <View style={styles.ales}>
+            <Text style={{marginLeft:38,marginTop:10,color:"white",fontWeight:'bold',fontSize:15}}> 
+                1650DT
+            </Text>
+            <Text style={{marginLeft:37,marginTop:16,color:"white",fontWeight:'bold',fontSize:13}}>
+                Options
+            </Text>
+            <Text style={{marginLeft:29,marginTop:8,color:"white",fontSize:13}}>
+                Per Month
+            </Text>
+            <Text style={{marginLeft:44,marginTop:16,color:"white",fontWeight:'bold',fontSize:13}}>
+                120DT
+            </Text><Text style={{marginLeft:44,marginTop:16,color:"white",fontWeight:'bold',fontSize:13}}>
+                150DT
+            </Text>
+        </View>
+        <View style={styles.ales1}>
+            <Text style={{marginLeft:40,marginTop:10,color:"white",fontWeight:'bold',fontSize:15}}> 
+                900DT
+            </Text>
+            <Text style={{marginLeft:37,marginTop:16,color:"white",fontWeight:'bold',fontSize:13}}>
+                Options
+            </Text>
+            <Text style={{marginLeft:29,marginTop:8,color:"white",fontSize:13}}>
+                Per Month
+            </Text>
+            <Text style={{marginLeft:44,marginTop:16,color:"white",fontWeight:'bold',fontSize:13}}>
+                120DT
+            </Text><Text style={{marginLeft:44,marginTop:16,color:"white",fontWeight:'bold',fontSize:13}}>
+                150DT
+            </Text>
+        </View>
+        <View style={{width:100,height:60}}></View>
+        </View>
+    </ScrollView>
+  )
+}
+
+const styles=StyleSheet.create({
+    container: {    flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },navPhone:{
+        width:"100%",
+        height:23,
+        backgroundColor:"black"
+      },sponsors:{
+        width:300,
+        height:180,
+        // backgroundColor:"red"
+      },ob:{
+        marginTop:50,
+        width:250,
+        borderRadius:25,
+        height:50,
+        backgroundColor:"purple"
+      },matiertof:{
+        width:"91%",
+        marginLeft:7,
+        marginTop:7,
+        height:80,
+        borderRadius:12,
+        backgroundColor:'red'
+      },tit:{
+        width:"100%",
+        height:40,
+    alignItems: 'center',
+        justifyContent: 'center'
+
+      }
+    ,nav:{
+        // backgroundColor:"red",
+        width:"100%",
+        height:38,
+        marginTop:17,
+        borderBottomWidth:0.6
+    },fImg:{
+        width:"100%",
+        height:180,
+        marginTop:5
+    },seeAll:{
+          
+        width:"100%",
+        height:40,
+        marginTop:17
+    },text1:{
+        marginLeft:260,
+        marginTop:12
+    },matiere:{
+        width:180,
+        height:130,
+        backgroundColor:"white",
+        borderRadius:12,
+        borderWidth:0.6,
+    },matieres:{
+        width:"100%",
+        height:150,
+       
+        
+    },matieree:{
+        width:180,
+        height:130,
+        backgroundColor:"white",
+        borderRadius:12,
+        borderWidth:0.6,
+        marginLeft:15
+        
+    },Teachers:{
+        height:190,
+        borderWidth:0.6,
+         width:150,
+         borderRadius:15,
+        //  backgroundColor:"red"
+    },Teachers1:{
+        height:190,
+        width:150,
+        borderRadius:15,
+        // backgroundColor:"red",
+        marginLeft:20,
+        borderWidth:0.6
+    },seeAll1:{
+        // backgroundColor:"blue",
+        width:"100%",
+        height:210,
+        marginTop:17
+    },imgPage:{
+        width:260,
+        height:160,
+        borderRadius:19,
+        marginTop:20,
+        backgroundColor:"black"
+    } ,ales:{
+        width:130,
+        height:160,
+        marginLeft:-155,
+        borderRadius:15,
+        marginTop:20,
+        backgroundColor:"purple"
+    },ales1:{
+        width:130,
+        height:160,
+        marginLeft:155,
+        borderRadius:15,
+        marginTop:-160,
+        backgroundColor:"purple"
+    }
+})
+
+export default Home
