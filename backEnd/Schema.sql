@@ -35,6 +35,31 @@ CREATE TABLE IF NOT EXISTS `harmony`.`calendrier` (
   PRIMARY KEY (`idcalendrier`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `harmony`.`classes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `harmony`.`classes` (
+  `idclasses` INT NOT NULL AUTO_INCREMENT,
+  `class_name` VARCHAR(85) NOT NULL,
+  `imageEmploi` LONGTEXT NOT NULL,
+  `teachers_idteacher` INT NOT NULL,
+  `admin_idadmin` INT NOT NULL,
+  PRIMARY KEY (`idclasses`),
+  INDEX `fk_classes_teachers1_idx` (`teachers_idteacher` ASC) VISIBLE,
+  INDEX `fk_classes_admin1_idx` (`admin_idadmin` ASC) VISIBLE,
+  CONSTRAINT `fk_classes_admin1`
+    FOREIGN KEY (`admin_idadmin`)
+    REFERENCES `harmony`.`admin` (`idadmin`),
+  CONSTRAINT `fk_classes_teachers1`
+    FOREIGN KEY (`teachers_idteacher`)
+    REFERENCES `harmony`.`teachers` (`idteacher`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8mb3;
+
+
 -- -----------------------------------------------------
 -- Table `harmony`.`subject`
 -- -----------------------------------------------------
@@ -124,6 +149,29 @@ CREATE TABLE IF NOT EXISTS `harmony`.`classes` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `harmony`.`chat`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `harmony`.`chat` (
+  `idchat` INT NOT NULL AUTO_INCREMENT,
+  `latest_msg` LONGTEXT NOT NULL,
+  `users_idusers` INT NOT NULL,
+  `teachers_idteacher` INT NOT NULL,
+  PRIMARY KEY (`idchat`),
+  INDEX `fk_chat_users1_idx` (`users_idusers` ASC) VISIBLE,
+  INDEX `fk_chat_teachers1_idx` (`teachers_idteacher` ASC) VISIBLE,
+  CONSTRAINT `fk_chat_teachers1`
+    FOREIGN KEY (`teachers_idteacher`)
+    REFERENCES `harmony`.`teachers` (`idteacher`),
+  CONSTRAINT `fk_chat_users1`
+    FOREIGN KEY (`users_idusers`)
+    REFERENCES `harmony`.`users` (`idusers`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
 -- -----------------------------------------------------
 -- Table `harmony`.`messages`
 -- -----------------------------------------------------

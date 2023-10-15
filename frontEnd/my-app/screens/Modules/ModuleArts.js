@@ -2,7 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faBook } from '@fortawesome/free-solid-svg-icons'; // Import the book icon from FontAwesome
-
+import { useContext } from "react";
+import { MyContext } from "../../useContext/useContext";
 const Arts = () => {
   return (
     <View style={styles.container}>

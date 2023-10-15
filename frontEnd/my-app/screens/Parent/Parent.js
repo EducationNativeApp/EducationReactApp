@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView,TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useContext } from "react";
+import { MyContext } from "../../useContext/useContext";
 const Parent = () => {
 const navigation = useNavigation();
   
@@ -29,7 +31,8 @@ const handleImageClick = () => {
   };
 
   const handleImageClick6 = () => {
-    navigation.navigate("Payement")
+    navigation.navigate("CheckOut")
+
   };
 
   const handleImageClick7 = () => {

@@ -1,8 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NativeBaseProvider } from 'native-base';
 import { NavigationContainer } from '@react-navigation/native';
+import {MyProvider} from '../my-app/useContext/useContext'; 
  import Login from './screens/LoginPage/Login/Login'
 import SignUp from './screens/LoginPage/SignUp/SignUp';
 import Profile from './screens/Profile/Profile/Profile'
@@ -28,16 +27,27 @@ import Science from './screens/Modules/ModuleScience';
 import It from './screens/Modules/ModuleIT';
 import Arts from './screens/Modules/ModuleArts';
 import Sport from './screens/Modules/ModuleSport';
+import Navbar from './screens/Navbar/Navbar'
+import Chat1 from './screens/Chat/Chat1';
+import FindEmail from './screens/FindEmail/forgot-password'
+import Code from './screens/Code/Code';
+import newPassword from './screens/NewPassword/newPassword';
+import CheckOut from './screens/Payement/CheckOut';
+import ReviewOrder from  './screens/Payement/ReviewOrder';
+import PaymentMethod from './screens/Payement/ReviewOrder';
 
 const Stack = createNativeStackNavigator()
 
 
 export default function App() {
+  
   return (
-    <NativeBaseProvider>
+    <MyProvider>
+    <NativeBaseProvider >
     <NavigationContainer>
-    <Stack.Navigator initialRouteName="Parent">
-     <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}  />   
+    
+    <Stack.Navigator initialRouteName="Inscription">
+     <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}  />
      <Stack.Screen name="Login" component={Login} options={{headerShown:false}}  /> 
      <Stack.Screen name="SignUp" component={SignUp} options={{headerShown:false}}/> 
      <Stack.Screen name="Inscription" component={Inscription} options={{headerShown:false}} />
@@ -62,9 +72,22 @@ export default function App() {
     <Stack.Screen name="ModuleArts" component={Arts} options={{headerShown:false}} />  
     <Stack.Screen name="ModuleSport" component={Sport} options={{headerShown:false}} /> 
     <Stack.Screen name="ModuleIt" component={It} options={{headerShown:false}} /> 
+    <Stack.Screen name="FindEmail" component={FindEmail}  options={{headerShown:false}} ></Stack.Screen>
+    <Stack.Screen name="Code" component={Code}  options={{headerShown:false}} ></Stack.Screen>
+    <Stack.Screen name="NewPassword" component={newPassword}  options={{headerShown:false}} ></Stack.Screen>
+    <Stack.Screen name="Chat1" component={Chat1}  options={{headerShown:false}} ></Stack.Screen>
+    <Stack.Screen name="ReviewOrder" component={ReviewOrder} options={{headerShown:false}}  />  
+     <Stack.Screen name="CheckOut" component={CheckOut} options={{headerShown:false}}  />        
+     <Stack.Screen name="PaymentMethod" component={PaymentMethod} options={{headerShown:false}}  />
+    
+
+
+
     </Stack.Navigator>
+    <Navbar /> 
     </NavigationContainer>
     </NativeBaseProvider>
+    </MyProvider>
   );
 }
 

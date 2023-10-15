@@ -1,4 +1,4 @@
-const { add,put,remove,getAll,getTeacherByFirstClass,getTeacherBySecondClass,} = require("../database/model/teacher")
+const { add,put,remove,getAll,getTeacherByFirstClass,getTeacherBySecondClass,getTeacherBySubjectAndClass} = require("../database/model/teacher")
 
 const addTeacher = (req, res) => {
   const teacherData = req.body; 
@@ -49,7 +49,7 @@ const UpdateTeacher = (req, res) => {
 
   
   const getTeacherByFirstClassController = (req, res) => {
-    const className = "first class"; // Utilisation de "first class" directement
+    const className = "first class"; 
     getTeacherByFirstClass(className, (error, teachers) => {
       if (error) {
         console.error(error);
@@ -61,13 +61,27 @@ const UpdateTeacher = (req, res) => {
   };
   
   const getTeacherBySecondClassController = (req, res) => {
-    const className = "Second class"; // Utilisation de "first class" directement
+    const className = "Second class"; 
     getTeacherBySecondClass(className, (error, teachers) => {
       if (error) {
         console.error(error);
         res.status(500).json(error);
       } else {
         res.status(200).json(teachers);
+      }
+    });
+  };
+
+  const getTeacherBySubjectAndClassController = (req, res) => {
+    const subjectName = req.params.subjectName;
+    const className = req.params.className;
+  
+    getTeacherBySubjectAndClass(subjectName, className, (error, results) => {
+      if (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Erreur lors de la récupération de l\'enseignant' });
+      } else {
+        res.status(200).json(results);
       }
     });
   };
@@ -80,7 +94,8 @@ const UpdateTeacher = (req, res) => {
     RemoveTeacher,
     getTeacherByFirstClassController ,
     getAllTeacher,
-    getTeacherBySecondClassController
+    getTeacherBySecondClassController,
+    getTeacherBySubjectAndClassController
 
   }
 

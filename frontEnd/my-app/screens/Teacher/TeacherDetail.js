@@ -1,10 +1,48 @@
-
-import React from 'react';
+import React,{useState,useEffect,useContext} from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
+import { useRoute } from '@react-navigation/native';
+import { MyContext } from '../../useContext/useContext';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import ADRESS_API from '../serverUrl';
 
 const TeacherDetail = () => {
+
+
+  const [Class , setClass ]= useState();
+  [data,setData]=useState([])
+  const route=useRoute();
+  const subject = route.params?.params.subject;
+    console.log("class",AsyncStorage.getItem("Class"))
+    _retrieveData = async () => {
+      try {
+        const value = await AsyncStorage.getItem();
+       setClass(value)
+        
+      } catch (error) {
+        
+      }
+    };
+    
+ 
+    useEffect(() => {
+  
+      axios
+        .get(`http://${ADRESS_API}:3001/teacher/getOneTeacher/${subject}/${Class}`)
+        .then((response) => {
+        console.log(response,"teacher");
+        console.log(Class,"class");
+        setData(response.data);
+        console.log(data,"data");
+        })
+        .catch((error) => {
+         
+          console.error('Error fetching teacher data:', error);
+        });
+    },[]);
+    
   return (
     <View style={styles.container}>
       <View style={styles.detailContainer}>
@@ -12,24 +50,26 @@ const TeacherDetail = () => {
         <View style={styles.centeredView}>
           {/* Contenu de la deuxième vue */}
           <View style={styles.contentContainer}>
+          
             {/* Ellipse avec image */}
+           
             <View >
             <Image
-          source={require('../../../my-app/assets/girl.jpeg')}
+          
           style={styles.image}
         />
             </View>
 
             {/* Nom et prénom en gras */}
-            <Text style={styles.name}>Nom Prénom</Text>
+            <Text style={styles.name} ></Text>
 
             {/* Description de la personne */}
-            <Text style={styles.description}>Description de la personne...</Text>
+            <Text style={styles.description}></Text>
 
             {/* Rectangle avec le bouton "Send Message" et l'icône de chat */}
             <View style={styles.rectangle}>
               <FontAwesomeIcon icon={faComment} style={styles.chatIcon} />
-              <Text style={styles.sendMessage}>Send Message</Text>
+              <Text  style={styles.sendMessage}>Send Message</Text>
             </View>
           </View>
         </View>
@@ -37,6 +77,7 @@ const TeacherDetail = () => {
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {

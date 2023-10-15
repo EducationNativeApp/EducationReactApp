@@ -51,8 +51,7 @@ const handelAllStudent = () => {
             {showStudentList && (
               <>
                 <li onClick={handelAllStudent}>All Student</li>
-                <li>Add Student</li>
-                <li>Student Promotion</li>
+                <li>Student Permetion</li>
               </>
             )}
           </ul>
