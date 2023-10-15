@@ -1,4 +1,6 @@
 import React,{useState} from 'react';
+
+
 import Axios from 'axios'; 
 import { StyleSheet, Text, View, Image,TextInput,TouchableOpacity,ScrollView  } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
@@ -50,7 +52,7 @@ const CreateAnAccount = ({navigation}) => {
       Number
     };
   console.log(userData)
-    Axios.post(`http://${ADRESS_API}:3001/user/register`, userData)
+    Axios.post(`http://192.168.101.13:3001/user/register`, userData)
       .then((response) => {
         
         console.log('Registration Successful', response.data);

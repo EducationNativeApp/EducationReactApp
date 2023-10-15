@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NativeBaseProvider } from 'native-base';
 import { NavigationContainer } from '@react-navigation/native';
-import {MyProvider} from '../my-app/useContext/useContext'; 
+import {MyProvider , StudentProvider} from '../my-app/useContext/useContext'; 
  import Login from './screens/LoginPage/Login/Login'
 import SignUp from './screens/LoginPage/SignUp/SignUp';
 import Profile from './screens/Profile/Profile/Profile'
@@ -37,6 +37,7 @@ import ReviewOrder from  './screens/Payement/ReviewOrder';
 import PaymentMethod from './screens/Payement/ReviewOrder';
 import CalendarScreen from './screens/MyCalender/CalendarScreen';
 
+
 const Stack = createNativeStackNavigator()
 
 
@@ -46,8 +47,8 @@ export default function App() {
     <MyProvider>
     <NativeBaseProvider >
     <NavigationContainer>
-    
-    <Stack.Navigator initialRouteName="Login">
+    <StudentProvider>
+    <Stack.Navigator initialRouteName="Teachers">
      <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}  />
      <Stack.Screen name="Login" component={Login} options={{headerShown:false}}  /> 
      <Stack.Screen name="SignUp" component={SignUp} options={{headerShown:false}}/> 
@@ -80,13 +81,16 @@ export default function App() {
     <Stack.Screen name="ReviewOrder" component={ReviewOrder} options={{headerShown:false}}  />  
      <Stack.Screen name="CheckOut" component={CheckOut} options={{headerShown:false}}  />        
      <Stack.Screen name="PaymentMethod" component={PaymentMethod} options={{headerShown:false}}  />
-     <Stack.Screen name="CalendarScreen" component={CalendarScreen}  options={{headerShown:false}} ></Stack.Screen>
+
+     
+     <Stack.Screen name="CalendarScreen" component={CalendarScreen} options={{ headerShown: false }} />
 
 
 
 
     </Stack.Navigator>
     <Navbar /> 
+    </StudentProvider>
     </NavigationContainer>
     </NativeBaseProvider>
     </MyProvider>

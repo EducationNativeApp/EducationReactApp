@@ -15,7 +15,7 @@ function Login({navigation}) {
   const [data,setData]=useState([])
 const handleLog=(e)=>{
 e.preventDefault()
-    axios.post(`http://${ADRESS_API}:3001/user/login`,{
+    axios.post(`http://192.168.101.13:3001/user/login`,{
       email,
       password,
     }).then((res)=>{

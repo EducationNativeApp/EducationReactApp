@@ -1,4 +1,4 @@
-const { add,put,remove,getAll,getStudentsInClass} = require("../database/model/student")
+const { add,put,remove,getAll,getStudentsInClass,getOneStudent} = require("../database/model/student")
 
 const addStudent = (req, res) => {
   const StudentData = req.body; 
@@ -45,6 +45,9 @@ const UpdateStudent = (req, res) => {
     });
   }
 
+
+
+
   const getStudentsInClassController = (req, res) => {
     const idclasses = req.params.idclasses;
   
@@ -59,6 +62,16 @@ const UpdateStudent = (req, res) => {
   };
 
 
+  const getOnStudent = (req, res) => {
+    const id = req.params.idStudent;
+  
+    getOneStudent(id, function (err, result) {
+      if (err) res.status(500).send(err);
+      else if (!result) res.status(404).json({ error: "student not found" });
+      else res.json(result);
+    });
+  };
+
   
 
   module.exports ={
@@ -66,7 +79,8 @@ const UpdateStudent = (req, res) => {
     getStudentsInClassController,
     getAllStudent,
     RemoveStudent,
-    UpdateStudent
+    UpdateStudent,
+    getOnStudent
 
   }
 

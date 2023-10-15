@@ -2,9 +2,14 @@ import axios from "axios"
 import {StyleSheet, Text , View , TextInput ,Button, Image ,ScrollView , Modal , FlatList , TouchableOpacity } from "react-native"
 import { useState } from "react"
 import { useContext } from "react";
-import { MyContext } from "../../../useContext/useContext";
+import { useMyContext } from "../../../useContext/useContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
+
+
 const Inscription = ({navigation}) => {
+  const { setStudentData } = useMyContext();
+
 const [First_name,setFirstName]=useState('')
 const [LastName,setLastName]=useState('')
 const [Birthday,setBirthday]=useState('')
@@ -12,6 +17,20 @@ const [image,setImage]=useState('')
 const [Class,setClass] = useState("")
 const [modalVisible, setModalVisible] = useState(false);
 const classes = ['First Class', 'Second Class', 'Third Class', 'Fourt Class','Second Class','sixth Class' ];
+
+
+
+
+const navigateToCalender = () => {
+  navigation.navigate("CalendarScreen",{
+
+  })
+}
+
+// const handleNames = () => {
+//   setStudentData({ First_name, LastName });
+// };
+
 const handleClassSelect = (selectedClass) => {
   setClass(selectedClass);
   
@@ -24,26 +43,30 @@ _storeData = async () => {
       JSON.stringify(Class),
     );
   } catch (error) {
-    // Error saving data
   }
 };
-const handle=()=>{
-  axios.post('http://192.168.11.71:3001/student/add',{
-    First_name,
-    LastName,
-    Birthday,
-    image:'dfghjhgfds',
-    class:Class,
-    users_idusers:1,
-    classes_idclasses:1
+const handle = async () => {
+  try {
+    await AsyncStorage.setItem("First_name", First_name);
+    await AsyncStorage.setItem("LastName", LastName);
 
-  }).then((res)=>{
-    alert("student added succesufully")
-    navigation.navigate('Parent')
-  }).catch((err)=>{
-    alert(err);
-  })
-}
+    await axios.post('http://192.168.101.13:3001/student/add', {
+      First_name,
+      LastName,
+      Birthday,
+      image: 'dfghjhgfds',
+      class: Class,
+      users_idusers: 1,
+      classes_idclasses: 1
+    });
+
+    alert("Student added successfully");
+    navigation.navigate('Parent');
+  } catch (error) {
+    alert("Error: " + error);
+  }
+};
+
 
 
   return (
@@ -62,6 +85,8 @@ const handle=()=>{
         textAlign: "left",
         color: "black",    flexShrink: 0,
       }}>Student Inscription</Text>
+
+     
       
       </View>
             <View >
@@ -145,6 +170,7 @@ const handle=()=>{
     </ScrollView>
   )
 }
+
 const styles=StyleSheet.create({
 
   

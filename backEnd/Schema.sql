@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `harmony`.`calendrier` (
   `description` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idcalendrier`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -94,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `harmony`.`users` (
   `Number` INT NOT NULL,
   PRIMARY KEY (`idusers`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 7
+AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -223,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `harmony`.`student` (
     FOREIGN KEY (`users_idusers`)
     REFERENCES `harmony`.`users` (`idusers`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 9
+AUTO_INCREMENT = 19
 DEFAULT CHARACTER SET = utf8mb3;
 
 

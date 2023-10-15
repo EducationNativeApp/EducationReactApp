@@ -7,7 +7,7 @@ const Teacher = () => {
     <ScrollView>
     <View style={styles.container}>
       <View style={styles.homeDiv}>
-        <Text style={styles.homeText}>Home</Text>
+        <Text style={styles.homeText}></Text>
       </View>
 
       <View style={styles.imageContainer}>
@@ -18,7 +18,7 @@ const Teacher = () => {
       </View>
 
       <View style={styles.text}>
-        <Text style={{ color: '#66328E',fontSize:18 }}>Welcome Mr Houssem</Text>
+        <Text style={{ color: '#66328E',left:0 , fontWeight:"900" , fontSize:16}}>Welcome Mr Houssem</Text>
       </View>
       <View style={{...styles.imageContainer   }} >
   <View style={styles.imageTextWrapper}>
@@ -26,14 +26,14 @@ const Teacher = () => {
       source={require('../../../my-app/assets/profil.png')}
       style={styles.imaged}
     />
-    <Text style={{ color: '#66328E',marginRight:25  }}>Profile</Text>
+    <Text style={{ color: '#66328E',left:0 , fontWeight:"800"}}>Profile</Text>
   </View>
   <View style={{ ...styles.imageTextWrapper, marginLeft: 30 }}>
     <Image
       source={require('../../../my-app/assets/inscri.png')}
       style={styles.imaged}
     />
-    <Text style={{ color: '#66328E',marginRight:25  }}>Modules</Text>
+    <Text style={{ color: '#66328E',left:0 , fontWeight:"800" }}>Modules</Text>
   </View>
 </View>
 
@@ -43,14 +43,14 @@ const Teacher = () => {
       source={require('../../../my-app/assets/exams.png')}
       style={styles.imaged}
     />
-    <Text style={{ color: '#66328E',marginRight:25 }}>Punishment</Text>
+    <Text style={{ color: '#66328E',left:0 , fontWeight:"800" }}>Punishment</Text>
   </View>
   <View style={{ ...styles.imageTextWrapper, marginLeft: 30 }}>
     <Image
       source={require('../../../my-app/assets/teacher.png')}
       style={styles.imaged}
     />
-    <Text style={{ color: '#66328E',marginRight:25 }}>Notes</Text>
+    <Text style={{ color: '#66328E',left:0 , fontWeight:"800" }}>Notes</Text>
   </View>
 </View>
 
@@ -61,14 +61,14 @@ const Teacher = () => {
       source={require('../../../my-app/assets/student.png')}
       style={styles.imaged}
     />
-    <Text style={{ color: '#66328E',marginRight:25  }}>Students</Text>
+    <Text style={{ color: '#66328E',left:0 , fontWeight:"800"}}>Students</Text>
   </View>
   <View style={{ ...styles.imageTextWrapper, marginLeft: 30 }}>
     <Image
       source={require('../../../my-app/assets/contact.png')}
       style={styles.imaged}
     />
-    <Text style={{ color: '#66328E',marginRight:25  }}>contact us</Text>
+    <Text style={{ color: '#66328E',  left:0 , fontWeight:"800" }}>contact us</Text>
   </View>
 </View>
 

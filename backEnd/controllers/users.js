@@ -125,7 +125,7 @@ const sendEmail = (req, res) => {
 
 async function update(req, res) {
   const { username, password, email } = req.body; 
-  const { idusers } = req.params; // Access idusers from URL parameters
+  const { idusers } = req.params;
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -137,6 +137,12 @@ async function update(req, res) {
     res.sendStatus(500);
   }
 }
+
+
+//contact us 
+
+
+
 
 
 module.exports = { login , 
