@@ -1,27 +1,37 @@
-const users = [];
 
-function userJoinGroup(id, username, room) {
-  const user = {id, username, room};
 
-  users.push(user);
+const getAllMessage=async(req,res)=>{
+    try{
+        const messages=`SELECT * FROM messages`;
+        res.status(200).json(messages)
+    }catch(err){
+        console.log(err)
+        res.send(err)
+    }
+}
+const addMessage=async(req,res)=>{
+    try{
+        const sql=`INSERT INTO messages SET ?`
+        const created=(sql,req.body)
 
-  return user;
+        res.json(created)
+    }catch(err){
+        res.json(err)
+    }
 }
 
-function getCurrentUserDetails(id) {
-  return users.find((user) => user.id === id);
+const getConversation=async(req,res)=>{
+    idchat=req.params.id
+    try{
+        const conversation=`SELECT * FROM messages WHERE chat_idchat =${idchat}`
+        res.status(200).json(conversation)
+    }catch(err){
+        console.log(err)
+        res.json(err)
+    }
 }
-
-function userLeaveGroup(id) {
-  const index = users.findIndex((user) => user.id === id);
-
-  if (index !== -1) {
-    return users.splice(index, 1)[0];
-  }
+export default {
+    getAllMessage,
+    addMessage,
+    getConversation
 }
-
-module.exports = {
-  userJoinGroup,
-  getCurrentUserDetails,
-  userLeaveGroup,
-};

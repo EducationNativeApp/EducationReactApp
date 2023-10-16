@@ -9,6 +9,12 @@ const pool = mysql.createPool({
   database: 'school',
 });
 
+function getAll (callback) {
+  const sql = 'SELECT * FROM users'
+  conn.query(sql,  (err, results) =>{
+    callback(err, results)
+  });
+}
 
 function findByEmail(email, callback) {
   const query = 'SELECT * FROM users WHERE email = ?'
@@ -81,6 +87,6 @@ const updateUserPassword = (email, password, callback) => {
 
   module.exports = { findByEmail,
     createUser,
-    updateUserPassword
+    updateUserPassword,getAll
  };
   

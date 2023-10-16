@@ -18,7 +18,7 @@ import Payement from './screens/Payement/Payement';
 import Options from './screens/Options/Options';
 import Student from './screens/Student/Student';
 import Contact from './screens/Contact/Contact';
-import Notes from './screens/Notes/Notes';
+import Notes from './screens/Note/notes';
 import Arabic from './screens/Modules/ModuleArabic';
 import Frensh from './screens/Modules/ModuleFrensh';
 import English from './screens/Modules/ModuleEnglish';
@@ -35,6 +35,8 @@ import newPassword from './screens/NewPassword/newPassword';
 import CheckOut from './screens/Payement/CheckOut';
 import ReviewOrder from  './screens/Payement/ReviewOrder';
 import PaymentMethod from './screens/Payement/ReviewOrder';
+import ConversationView from "./screens/Chat/Conv";
+import Notess from './screens/Notes/Notess'
 
 const Stack = createNativeStackNavigator()
 
@@ -46,7 +48,7 @@ export default function App() {
     <NativeBaseProvider >
     <NavigationContainer>
     
-    <Stack.Navigator initialRouteName="Inscription">
+    <Stack.Navigator initialRouteName="Notess">
      <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}  />
      <Stack.Screen name="Login" component={Login} options={{headerShown:false}}  /> 
      <Stack.Screen name="SignUp" component={SignUp} options={{headerShown:false}}/> 
@@ -63,6 +65,7 @@ export default function App() {
     <Stack.Screen name="Payement" component={Payement} options={{headerShown:false}} />
     <Stack.Screen name="Student" component={Student} options={{headerShown:false}} /> 
     <Stack.Screen name="Notes" component={Notes} options={{headerShown:false}} />
+    <Stack.Screen name="Notess" component={Notess} options={{headerShown:false}} />
     <Stack.Screen name="Contact" component={Contact} options={{headerShown:false}} /> 
     <Stack.Screen name="ModuleEnglish" component={English} options={{headerShown:false}} /> 
     <Stack.Screen name="ModuleFrensh" component={Frensh} options={{headerShown:false}} />
@@ -79,7 +82,8 @@ export default function App() {
     <Stack.Screen name="ReviewOrder" component={ReviewOrder} options={{headerShown:false}}  />  
      <Stack.Screen name="CheckOut" component={CheckOut} options={{headerShown:false}}  />        
      <Stack.Screen name="PaymentMethod" component={PaymentMethod} options={{headerShown:false}}  />
-    
+     <Stack.Screen name="Conv" component={ConversationView} options={{headerShown:false}}  />
+
 
 
 

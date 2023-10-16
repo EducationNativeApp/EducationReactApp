@@ -34,7 +34,9 @@
     "react-native-vector-icons": "^10.0.0",
     "react-native-video": "^5.2.1",
     "react-native-web": "~0.19.6",
-    "require": "^2.4.20"
+    "require": "^2.4.20",
+    "socket.io": "^4.7.2",
+    "socket.io-client": "^4.7.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

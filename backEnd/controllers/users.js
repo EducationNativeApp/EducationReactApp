@@ -13,6 +13,17 @@ const pool = mysql.createPool({
   database: 'school',
 });
 
+function get(req,res){
+  User.getAll((err,result)=>{
+    if(err){
+      res.status(404).send(err)
+    }else if(result){
+      res.status(200).send(result)
+    }
+  })
+}
+
+
 function login(req, res) {
   const { email, password } = req.body
 

@@ -50,7 +50,7 @@ const CreateAnAccount = ({navigation}) => {
       Number
     };
   console.log(userData)
-    Axios.post(`http://${ADRESS_API}:3001/user/register`, userData)
+    Axios.post(`http://192.168.1.177:3001/user/register`, userData)
       .then((response) => {
         
         console.log('Registration Successful', response.data);
@@ -65,7 +65,7 @@ const CreateAnAccount = ({navigation}) => {
       })
       .catch((error) => {
         console.error('Registration Error', error);
-        Alert.alert('Error', 'Registration failed. Please try again bjeh rab a3mel adress jdida');
+        Alert.alert('Check your inputs');
       });
   };
   

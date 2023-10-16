@@ -5,7 +5,7 @@ import Navbar from "../../Navbar/Navbar";
 import axios from 'axios'
 import { useContext } from "react";
 import { MyContext } from "../../../useContext/useContext";
-import ADRESS_API from "../../serverUrl";
+
 
 function Login({navigation}) {
   const { isDarkMode,setMode } = useContext(MyContext);
@@ -15,7 +15,7 @@ function Login({navigation}) {
   const [data,setData]=useState([])
 const handleLog=(e)=>{
 e.preventDefault()
-    axios.post(`http://${ADRESS_API}:3001/user/login`,{
+    axios.post(`http://192.168.1.177:3001/user/login`,{
       email,
       password,
     }).then((res)=>{
