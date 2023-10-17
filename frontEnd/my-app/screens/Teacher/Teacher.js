@@ -28,13 +28,7 @@ const Teacher = () => {
     />
     <Text style={{ color: '#66328E',marginRight:25  }}>Profile</Text>
   </View>
-  <View style={{ ...styles.imageTextWrapper, marginLeft: 30 }}>
-    <Image
-      source={require('../../../my-app/assets/inscri.png')}
-      style={styles.imaged}
-    />
-    <Text style={{ color: '#66328E',marginRight:25  }}>Modules</Text>
-  </View>
+ 
 </View>
 
 <View style={{...styles.imageContainer   }} >
@@ -43,7 +37,7 @@ const Teacher = () => {
       source={require('../../../my-app/assets/exams.png')}
       style={styles.imaged}
     />
-    <Text style={{ color: '#66328E',marginRight:25 }}>Punishment</Text>
+    <Text style={{ color: '#66328E',marginRight:25 }}>Calendar</Text>
   </View>
   <View style={{ ...styles.imageTextWrapper, marginLeft: 30 }}>
     <Image

@@ -35,17 +35,15 @@ const Inscription = ({ navigation }) => {
   ];
   const [userId, setUserId] = useState("");
 
-  const handleClassSelect = (selectedClass) => {
+  const handleClassSelect = async(selectedClass) => {
     setClass(selectedClass);
+    await AsyncStorage.setItem("Class", JSON.stringify(selectedClass));
+    
+    
+   
     setModalVisible(false);
   };
-  _storeData = async () => {
-    try {
-      await AsyncStorage.setItem("Class", JSON.stringify(Class));
-    } catch (error) {
-      // Error saving data
-    }
-  };
+  
 
   const handle = () => {
     AsyncStorage.getItem("userId");
@@ -139,7 +137,8 @@ const Inscription = ({ navigation }) => {
               justifyContent: "center",
               paddingLeft: 10,
             }}
-            onPress={() => setModalVisible(true)}
+            onPress={() => {setModalVisible(true)
+              }}
           >
             <Text>{Class || "Select Class"}</Text>
           </TouchableOpacity>
@@ -160,6 +159,7 @@ const Inscription = ({ navigation }) => {
                     <TouchableOpacity
                       onPress={() => handleClassSelect(item)}
                       style={styles.modalItem}
+                      
                     >
                       <Text>{item}</Text>
                     </TouchableOpacity>

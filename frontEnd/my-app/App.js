@@ -36,6 +36,7 @@ import CheckOut from "./screens/Payement/CheckOut";
 import ReviewOrder from "./screens/Payement/ReviewOrder";
 import PaymentMethod from "./screens/Payement/ReviewOrder";
 
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -43,7 +44,7 @@ export default function App() {
     <MyProvider>
       <NativeBaseProvider>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Login">
+          <Stack.Navigator initialRouteName="Home">
             <Stack.Screen
               name="Profile"
               component={Profile}
