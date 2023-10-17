@@ -48,7 +48,7 @@ export default function App() {
     <NativeBaseProvider >
     <NavigationContainer>
     <StudentProvider>
-    <Stack.Navigator initialRouteName="Teachers">
+    <Stack.Navigator initialRouteName="Student">
      <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}  />
      <Stack.Screen name="Login" component={Login} options={{headerShown:false}}  /> 
      <Stack.Screen name="SignUp" component={SignUp} options={{headerShown:false}}/> 

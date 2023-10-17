@@ -52,7 +52,7 @@ const CreateAnAccount = ({navigation}) => {
       Number
     };
   console.log(userData)
-    Axios.post(`http://192.168.101.13:3001/user/register`, userData)
+    Axios.post(`http://192.168.1.5:3001/user/register`, userData)
       .then((response) => {
         
         console.log('Registration Successful', response.data);
@@ -84,18 +84,16 @@ const verify=()=> {
     <ScrollView>
     <View style={styles.container}>
       <View style={styles.homeDiv}>
-        <Text style={styles.homeText}>Home</Text>
+        <Text style={styles.homeText}></Text>
       </View>
 
       <View style={styles.imageContainer}>
-        <Image
-          source={ require('../../../assets/icon8.png') }
-          style={{ flex: 1, width: undefined, height: undefined }}
-        />
+        
       </View>
 
       <View style={styles.text}>
-        <Text style={{ color: '#66328E' }} >Create Account</Text>
+        <Text style={{ color: '#66328E'  , left:-20 ,     fontWeight: "700", fontSize:13 , 
+      }} >Create Account</Text>
       </View>
 
      <View style={styles.nameContainer}>
@@ -166,11 +164,11 @@ const verify=()=> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
     width: '100%',
-    paddingTop: 10,
+    marginTop: -29,
+    margin:29
   },
   text: {
     alignItems: 'center',
@@ -196,7 +194,6 @@ const styles = StyleSheet.create({
     height: undefined,
   },
   homeDiv: {
-    backgroundColor: '#ffffff',
     width: 312,
     height: 50,
     marginLeft: 21,

@@ -16,7 +16,7 @@ export default function Findyouremail({ navigation }) {
       body: JSON.stringify({ user_email: email }),
     };
 
-    fetch(`http://${ADRESS_API}:3001/send-verification-code`, requestOptions)
+    fetch(`http://192.168.104.4:3001/send-verification-code`, requestOptions)
       .then((response) => {
         if (response.ok) {
           alert('Verification code sent successfully to your Email');

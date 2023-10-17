@@ -104,7 +104,7 @@ export default function CalendarScreen({ visible, onClose, onAddEvent ,route}) {
   
   //getStudent
   useEffect(()=>{
-   axios.get(`http://192.168.1.5:3001/student/get`)
+   axios.get(`http://192.168.104.4:3001/student/get`)
       .then((response)=>{
 console.log(response.data);
     setStudentData(response.data )
@@ -116,15 +116,13 @@ console.log(response.data);
 },[])
 
 
-//getUser
 
 useEffect(() => {
-  axios.get(`http://192.168.1.5:3001/api/users/getAll`)
+  axios.get(`http://192.168.104.4:3001/api/users/getAll`)
     .then((response) => {
       console.log("API Response:", response.data);
       setUserData(response.data);
 
-      // Extract and log emails from the userData
       const emails = response.data.map((user) => user.email);
       console.log("Emails:", emails);
     })

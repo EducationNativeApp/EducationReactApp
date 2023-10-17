@@ -7,7 +7,7 @@ import { Svg, Path } from "react-native-svg";
 
 
  
-export default function ContactUs() {
+export default function ContactUs({navigation}) {
 
   const [formData , setFormData] = useState({
     first_name : "",
@@ -17,9 +17,11 @@ export default function ContactUs() {
   })
 
   const handleSubmit = () =>{
-    axios.post("http://192.168.1.5:3001/contactUs", formData)
+    axios.post("http://192.168.104.4:3001/contactUs", formData)
     .then((response)=>{
       console.log("Message send successfully" , response.data.message)
+      navigation.navigate('Home');
+
     }).catch((error)=>{
       console.error("Failed to send the message" , error)
     })
