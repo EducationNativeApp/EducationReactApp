@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NativeBaseProvider } from 'native-base';
 import { NavigationContainer } from '@react-navigation/native';
-import {MyProvider , StudentProvider} from '../my-app/useContext/useContext'; 
+import {MyProvider } from '../my-app/useContext/useContext'; 
  import Login from './screens/LoginPage/Login/Login'
 import SignUp from './screens/LoginPage/SignUp/SignUp';
 import Profile from './screens/Profile/Profile/Profile'
@@ -42,12 +42,10 @@ const Stack = createNativeStackNavigator()
 
 
 export default function App() {
-  
   return (
     <MyProvider>
     <NativeBaseProvider >
     <NavigationContainer>
-    <StudentProvider>
     <Stack.Navigator initialRouteName="Student">
      <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}  />
      <Stack.Screen name="Login" component={Login} options={{headerShown:false}}  /> 
@@ -90,11 +88,8 @@ export default function App() {
 
     </Stack.Navigator>
     <Navbar /> 
-    </StudentProvider>
     </NavigationContainer>
     </NativeBaseProvider>
     </MyProvider>
   );
 }
-
-

@@ -47,6 +47,18 @@ const add = (StudenttData, callback) => {
 
   
 
+  const getStudentsByUser = (idStudent, callback) => {
+    const sql = `SELECT * FROM Student WHERE users_idusers = ?`;
+    connection.query(sql, [idStudent], function (error, results) {
+      callback(error, results);
+    });
+  };
+
+  
+
+
+
+
   
   module.exports = {
     add,
@@ -54,6 +66,7 @@ const add = (StudenttData, callback) => {
     remove,
     getAll,
     getStudentsInClass,getOneStudent
+    
     
   };
   

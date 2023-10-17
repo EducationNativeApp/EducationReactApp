@@ -1,73 +1,72 @@
-import axios from "axios"
-import {StyleSheet, Text , View , TextInput ,Button, Image ,ScrollView , Modal , FlatList , TouchableOpacity } from "react-native"
-import { useState } from "react"
+import axios from "axios";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  Image,
+  ScrollView,
+  Modal,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
+import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { useMyContext } from "../../../useContext/useContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from "@react-navigation/native";
+import ADRESS_API from "../../serverUrl";
 
+const Inscription = ({ navigation }) => {
+  const { user } = useContext(MyContext);
+  const [First_name, setFirstName] = useState("");
+  const [LastName, setLastName] = useState("");
+  const [Birthday, setBirthday] = useState("");
+  const [image, setImage] = useState("");
+  const [Class, setClass] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
+  const classes = [
+    "First Class",
+    "Second Class",
+    "Third Class",
+    "Fourt Class",
+    "Second Class",
+    "sixth Class",
+  ];
+  const [userId, setUserId] = useState("");
 
-const Inscription = ({navigation}) => {
-  const { setStudentData } = useMyContext();
+  const handleClassSelect = (selectedClass) => {
+    setClass(selectedClass);
+    setModalVisible(false);
+  };
+  _storeData = async () => {
+    try {
+      await AsyncStorage.setItem("Class", JSON.stringify(Class));
+    } catch (error) {
+      // Error saving data
+    }
+  };
 
-const [First_name,setFirstName]=useState('')
-const [LastName,setLastName]=useState('')
-const [Birthday,setBirthday]=useState('')
-const [image,setImage]=useState('')
-const [Class,setClass] = useState("")
-const [modalVisible, setModalVisible] = useState(false);
-const classes = ['First Class', 'Second Class', 'Third Class', 'Fourt Class','Second Class','sixth Class' ];
-
-
-
-
-const navigateToCalender = () => {
-  navigation.navigate("CalendarScreen",{
-
-  })
-}
-
-// const handleNames = () => {
-//   setStudentData({ First_name, LastName });
-// };
-
-const handleClassSelect = (selectedClass) => {
-  setClass(selectedClass);
-  
-  setModalVisible(false);
-};
-_storeData = async () => {
-  try {
-    await AsyncStorage.setItem(
-      'Class',
-      JSON.stringify(Class),
-    );
-  } catch (error) {
-  }
-};
-const handle = async () => {
-  try {
-    await AsyncStorage.setItem("First_name", First_name);
-    await AsyncStorage.setItem("LastName", LastName);
-
-    await axios.post('http://192.168.101.13:3001/student/add', {
-      First_name,
-      LastName,
-      Birthday,
-      image: 'dfghjhgfds',
-      class: Class,
-      users_idusers: 1,
-      classes_idclasses: 1
-    });
-
-    alert("Student added successfully");
-    navigation.navigate('Parent');
-  } catch (error) {
-    alert("Error: " + error);
-  }
-};
-
-
+  const handle = () => {
+    AsyncStorage.getItem("userId");
+    axios
+      .post(`http://${ADRESS_API}:3001/student/add`, {
+        First_name,
+        LastName,
+        Birthday,
+        image: "dfghjhgfds",
+        class: Class,
+        users_idusers: user?.id,
+        classes_idclasses: 1,
+      })
+      .then((res) => {
+        alert("student added succesufully");
+        navigation.navigate("Parent");
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  };
 
   return (
     <ScrollView style={{ backgroundColor: 'white', flex:1 , marginTop:"3%"}}>
@@ -120,17 +119,60 @@ const handle = async () => {
               borderColor: "rgba(102, 50, 142, 1)",
               borderRadius: 7.681159973144531,
               borderWidth: 1,
-              marginTop: '10%',
+              marginTop: "10%",
               height: 45,
               width: 240,
               borderRadius: 8,
               marginTop: 10,
-              justifyContent: 'center',
+            }}
+          />
+          <Text style={{ color: "#A901DB", marginTop: 20 }}>Last Name</Text>
+          <TextInput
+            onChangeText={setLastName}
+            style={{
+              borderColor: "#A901DB",
+              backgroundColor: "#F2F2F2",
+              borderWidth: 1,
+              marginTop: "10%",
+              height: 45,
+              width: 240,
+              borderRadius: 8,
+              marginTop: 10,
+            }}
+          />
+          <Text style={{ color: "#A901DB", marginTop: 20 }}>
+            Date Of Birthday
+          </Text>
+          <TextInput
+            onChangeText={setBirthday}
+            style={{
+              borderColor: "#A901DB",
+              backgroundColor: "#F2F2F2",
+              borderWidth: 1,
+              marginTop: "10%",
+              height: 45,
+              width: 240,
+              borderRadius: 8,
+              marginTop: 10,
+            }}
+          />
+          <Text style={{ color: "#A901DB", marginTop: 20 }}>Current Class</Text>
+          <TouchableOpacity
+            style={{
+              borderColor: "#A901DB",
+              backgroundColor: "#F2F2F2",
+              borderWidth: 1,
+              marginTop: "10%",
+              height: 45,
+              width: 240,
+              borderRadius: 8,
+              marginTop: 10,
+              justifyContent: "center",
               paddingLeft: 10,
             }}
             onPress={() => setModalVisible(true)}
           >
-            <Text>{Class || 'Select Class'}</Text>
+            <Text>{Class || "Select Class"}</Text>
           </TouchableOpacity>
           <Modal
             animationType="slide"
@@ -146,12 +188,11 @@ const handle = async () => {
                   data={classes}
                   keyExtractor={(item) => item}
                   renderItem={({ item }) => (
-                    <TouchableOpacity 
-                      onPress={() => handleClassSelect(item)
-                }
+                    <TouchableOpacity
+                      onPress={() => handleClassSelect(item)}
                       style={styles.modalItem}
                     >
-                      <Text >{item}</Text>
+                      <Text>{item}</Text>
                     </TouchableOpacity>
                   )}
                 />
@@ -176,11 +217,12 @@ const styles=StyleSheet.create({
   
   modalContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },modalContent: {
-    backgroundColor: '#fff',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  modalContent: {
+    backgroundColor: "#fff",
     width: 250,
     borderRadius: 10,
     padding: 10,
@@ -215,4 +257,4 @@ const styles=StyleSheet.create({
       }
 })
 
-export default Inscription
+export default Inscription;

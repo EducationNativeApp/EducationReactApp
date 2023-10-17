@@ -1,14 +1,14 @@
-import {StyleSheet, Text , View , TextInput ,Button, Image } from "react-native"
+import { StyleSheet, Text, View, TextInput, Button, Image } from "react-native";
 import { useEffect, useState } from "react";
-import {lightTheme, darkTheme} from '../../../Theme/Theme'
+import { lightTheme, darkTheme } from "../../../Theme/Theme";
 import Navbar from "../../Navbar/Navbar";
-import axios from 'axios'
+import axios from "axios";
 import { useContext } from "react";
 import { MyContext } from "../../../useContext/useContext";
 import ADRESS_API from "../../serverUrl";
 
-function Login({navigation}) {
-  const { isDarkMode,setMode } = useContext(MyContext);
+function Login({ navigation }) {
+  const { isDarkMode, setMode, setUser } = useContext(MyContext);
   const theme = isDarkMode ? darkTheme : lightTheme;
   const [email,setEmail]=useState('')
   const [password , setPassword]=useState('')
@@ -79,21 +79,27 @@ e.preventDefault()
     color={"red"}
 /> */}
 
-<View  style={styled.btn}>
-  <Text  style={styled.Log} onPress={(e) => handleLog(e)}>LOG IN</Text>
-</View>
-<Text style={[styled.text,{color:theme.textColor}]}>Don't have an account?</Text>
-<Text style={styleed.text1}
-onPress={()=>{ navigation.navigate("SignUp")}}>Sign up Now</Text>
- </View>
- 
-  )
+      <View style={styled.btn}>
+        <Text style={styled.Log} onPress={(e) => handleLog(e)}>
+          LOG IN
+        </Text>
+      </View>
+      <Text style={[styled.text, { color: theme.textColor }]}>
+        Don't have an account?
+      </Text>
+      <Text
+        style={styleed.text1}
+        onPress={() => {
+          navigation.navigate("SignUp");
+        }}
+      >
+        Sign up Now
+      </Text>
+    </View>
+  );
 }
 const styles = StyleSheet.create({
-  container: {    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  container: { flex: 1, alignItems: "center", justifyContent: "center" },
 });
 const styled = StyleSheet.create({
   text: {
@@ -120,4 +126,4 @@ const styleed = StyleSheet.create({
       fontWeight: "500"
   },
 });
-export default Login
+export default Login;

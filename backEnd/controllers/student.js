@@ -72,11 +72,26 @@ const UpdateStudent = (req, res) => {
     });
   };
 
+  const getStudentsByUserController = (req, res) => {
+    const idStudent = req.params.users_idusers;
+  
+    getStudentsByUser(idStudent, (error, students) => {
+      if (error) {
+        console.log(error);
+        res.status(500).json(error);
+      } else {
+        res.status(200).json(students);
+      }
+    });
+  };
+
+
   
 
   module.exports ={
     addStudent,
     getStudentsInClassController,
+    getStudentsByUserController,
     getAllStudent,
     RemoveStudent,
     UpdateStudent,
