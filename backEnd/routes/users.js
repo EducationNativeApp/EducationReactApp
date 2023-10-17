@@ -5,6 +5,6 @@ const { login, register, getAll, sendEmail ,updateUserPassword} = require('../co
 router.post('/login', login);
 router.post('/register',register)
 router.put('/changePassword',sendEmail)
-router.put("/updateUserPassword", updateUserPassword)
+router.patch('/edit/:idusers',updateUserPassword); 
 
 module.exports = router
