@@ -1,12 +1,15 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState } from "react";
 
 const MyContext = createContext();
 
 const MyProvider = ({ children }) => {
-  const [isDarkMode,setMode] = useState(false);
-  const [Class,setClass]=useState('')
+  const [isDarkMode, setMode] = useState(false);
+  const [classe, setClasse] = useState("");
+  const [user, setUser] = useState(null);
   return (
-    <MyContext.Provider value={{ isDarkMode,setMode,Class,setClass }}>
+    <MyContext.Provider
+      value={{ isDarkMode, setMode, classe, setClasse, user, setUser }}
+    >
       {children}
     </MyContext.Provider>
   );

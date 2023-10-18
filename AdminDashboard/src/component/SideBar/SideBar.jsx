@@ -7,6 +7,7 @@ import { AiFillSetting } from 'react-icons/ai';
 import { GrLogout } from 'react-icons/gr';
 import {AiOutlineDown} from 'react-icons/ai'
 import {MdOutlineFamilyRestroom} from 'react-icons/md'
+import {AiOutlineHome} from 'react-icons/ai'
 import './SideBar.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,6 +31,12 @@ function SideBar() {
 const handelAllStudent = () => {
   navigate('/AllStudent')
 }
+const HomeNavigate = () => {
+  navigate('/Home')
+}
+const SettingNavige = () => {
+  navigate('/Profile')
+}
   return (
     <div className="sideBar">
       <div className="student">
@@ -38,6 +45,12 @@ const handelAllStudent = () => {
             <div className="item-content">
               <p className='SideBarText'><MdOutlineSubject/></p>
             <h2></h2>
+            </div>
+          </ul>
+          <ul>
+            <div className="item-container" onClick={HomeNavigate}>
+              <p className='SideBarText'><AiOutlineHome /></p>
+              <h3>Home</h3>
             </div>
           </ul>
           <ul>
@@ -81,7 +94,7 @@ const handelAllStudent = () => {
             </div>
           </ul>
           <ul>
-            <div className="item-container">
+            <div className="item-container" onClick={SettingNavige}>
               <p className='SideBarText'><AiFillSetting /></p>
               <h3>Settings</h3>
             </div>

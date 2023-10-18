@@ -5,11 +5,14 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Login= () => {
-  const [username, setUsername] = useState('');
+  const [admin, setAdmin] = useState('');
   const [email, setUseremail] = useState('');
   const [password, setUserassword] = useState('');
   const [message , setMessage] = useState('')
   const navigate = useNavigate()
+  // http://localhost:3001/Admin/loginAdmin
+  //addAdmin
+  console.log(admin);
   const handleSignUpClick = () => {
     const container = document.getElementById('container');
     container.classList.add('right-panel-active');
@@ -24,7 +27,7 @@ const Login= () => {
   };
 
   const handleEmailChange = (event) => {
-    setUseremail(event.target.value);
+    setAdmin(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
@@ -32,10 +35,10 @@ const Login= () => {
   };
   const handelRegister = (event) => {
     event.preventDefault()
-    axios.post('http://localhost:3000/api/register',{username,email,password}).then((response)=>{
+    axios.post('http://localhost:3001/Admin/addAdmin',{admin,password}).then((response)=>{
       console.log('register success',response.data)
-      setUserContext(response.data)
-      navigate('/hiii')
+      // setUserContext(response.data)
+      navigate('/home')
     }).catch((err)=>{
       console.log(err)
     })
@@ -44,13 +47,14 @@ const Login= () => {
 const handelLogin = (event) => {
   event.preventDefault();
   axios
-    .post('http://localhost:3000/api/login', { email, password })
+    .post('http://localhost:3001/Admin/loginAdmin', { admin, password })
     .then((response) => {
       console.log('welcome', response.data);
-      navigate('/hiii')
-      setUserContext(response.data)
+      // navigate('/hiii')
+      // setUserContext(response.data)
 
       // dispatch(setUserId(response.data.userId));
+      navigate('/home')
 
     })
     .catch((error) => {
@@ -92,7 +96,7 @@ const handelNavigate = () =>{
             </a>
           </div>
           <span>or use your email for registration</span>
-          <input type="text" placeholder="Name" className = "InpLogin"onChange={handleNameChange} />
+          <input type="text" placeholder="Name" className = "InpLogin"onChange={handleEmailChange } />
       
           <input type="password" placeholder="Password" className = "InpLogin" onChange={handlePasswordChange}/>
           <button className='LoginBtn'>Sign Up</button>

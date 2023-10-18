@@ -11,6 +11,7 @@ const StudentRoute=require("./routes/student")
 const { getAll } = require('./controllers/users');
 const { update } = require('./controllers/EditProfile')
 const { updateUserPassword } = require('../backEnd/controllers/users');
+const AdminRoutes = require('./routes/Admin')
 
 const crypto = require('crypto'); // Import the crypto module
 const nodemailer = require('nodemailer');
@@ -24,6 +25,7 @@ app.use('/teacher',teacherRoute)
 app.use('/classe',classeRoute)
 app.use('/subject',SubjectRoute)
 app.use('/student',StudentRoute)
+app.use('/Admin',AdminRoutes)
 {/*app.use('/api/payement',payementRoutes);*/}
 
 // const CLIENT_ID = "269394138802-7d0vaf1cq2nh8tqqipujdd27plsri8t8.apps.googleusercontent.com"
