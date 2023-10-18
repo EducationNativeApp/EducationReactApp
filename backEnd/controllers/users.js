@@ -131,6 +131,7 @@ const sendEmail = (req, res) => {
   });
 };
 
+<<<<<<< HEAD
 function updateUserPassword(newPassword, userId) {
   return new Promise((resolve, reject) => {
     const sql = "UPDATE users SET password = ? WHERE id = ?";
@@ -149,3 +150,28 @@ function updateUserPassword(newPassword, userId) {
 }
 
 module.exports = { login, register, getAll, sendEmail, updateUserPassword };
+=======
+
+
+async function update(req, res) {
+  const { username, password, email } = req.body; 
+  const { idusers } = req.params; // Access idusers from URL parameters
+
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await User.updateNewProfile(username, email, hashedPassword, idusers);
+
+    res.status(200).send({ message: 'Update successful' });
+  } catch (err) {
+    console.error('Error updating user profile: ' + err);
+    res.sendStatus(500);
+  }
+}
+
+
+module.exports = { login , 
+  register,
+  getAll,sendEmail,update
+
+ };
+>>>>>>> origin/main

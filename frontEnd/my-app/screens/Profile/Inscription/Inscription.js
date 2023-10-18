@@ -69,6 +69,7 @@ const Inscription = ({ navigation }) => {
   };
 
   return (
+<<<<<<< HEAD
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.Edit}>
@@ -87,6 +88,55 @@ const Inscription = ({ navigation }) => {
             style={{
               borderColor: "#A901DB",
               backgroundColor: "#F2F2F2",
+=======
+    <ScrollView style={{ backgroundColor: 'white', flex:1 , marginTop:"3%"}}>
+        <View style={{...styles.container}} >
+        <View style={styles.Edit } >
+      <Image
+    style={{width:40,
+    height:40,
+    marginLeft:56,marginTop:30
+  
+  }}
+  source={{uri:'https://images.vexels.com/media/users/3/224233/isolated/preview/d5ee0e9c87bb54cf867d7fb89c4570b8-online-education-logo.png'}} />
+      <Text style={{fontSize:18, letterSpacing: 0.6,
+        lineHeight: 29,
+        textAlign: "left",
+        color: "black",    flexShrink: 0,
+      }}>Student Inscription</Text>
+      
+      </View>
+            <View >
+                
+            <Text style={{color:"#66328E",marginTop:20,
+          
+          }}>First Name</Text>
+            <TextInput onChangeText={setFirstName} style={{borderColor:"#66328E",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"10%" , height:45 , width:240 , borderRadius:8,marginTop:10 ,   backgroundColor: "rgba(248, 240, 240, 1)",
+            borderWidth: 1,
+            borderColor: "rgba(102, 50, 142, 1)",
+            borderRadius: 7.681159973144531}} />
+
+            <Text style={{color:"#66328E",marginTop:20}}>Last Name</Text>
+            <TextInput onChangeText={setLastName} style={{borderColor:"#66328E",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"10%" , height:45 , width:240 , borderRadius:8 ,marginTop:10 ,   backgroundColor: "rgba(248, 240, 240, 1)",
+            borderWidth: 1,
+            borderColor: "rgba(102, 50, 142, 1)",
+            borderRadius: 7.681159973144531}} 
+            
+            />
+            <Text style={{color:"#66328E",marginTop:20}}>Date Of Birthday</Text>
+            <TextInput onChangeText={setBirthday} style={{borderColor:"#66328E",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"10%" , height:45 , width:240 , borderRadius:8,marginTop:10 ,   backgroundColor: "rgba(248, 240, 240, 1)",
+            borderWidth: 1,
+            borderColor: "rgba(102, 50, 142, 1)",
+            borderRadius: 7.681159973144531 }}
+             />
+            <Text style={{ color: '#66328E', marginTop: 20 }}>Current Class</Text>
+          <TouchableOpacity
+            style={{
+
+              backgroundColor: "rgba(248, 240, 240, 1)",
+              borderColor: "rgba(102, 50, 142, 1)",
+              borderRadius: 7.681159973144531,
+>>>>>>> origin/main
               borderWidth: 1,
               marginTop: "10%",
               height: 45,
@@ -168,6 +218,7 @@ const Inscription = ({ navigation }) => {
               </View>
             </View>
           </Modal>
+<<<<<<< HEAD
           <Text style={{ color: "#A901DB", marginTop: 20 }}>
             Current_graduation_Certificate
           </Text>
@@ -177,12 +228,30 @@ const Inscription = ({ navigation }) => {
               Send
             </Text>
           </View>
+=======
+            <Text style={{color:"#66328E",marginTop:20}}>Current_graduation_Certificate</Text>
+            <View style={styles.img}></View><View  style={styles.btn}>
+  <Text  style={styles.Log} onPress={()=>handle() }>Send</Text>
+</View>
+
+            
+</View>
+
+>>>>>>> origin/main
         </View>
       </View>
     </ScrollView>
+<<<<<<< HEAD
   );
 };
 const styles = StyleSheet.create({
+=======
+  )
+}
+const styles=StyleSheet.create({
+
+  
+>>>>>>> origin/main
   modalContainer: {
     flex: 1,
     justifyContent: "center",
@@ -194,6 +263,7 @@ const styles = StyleSheet.create({
     width: 250,
     borderRadius: 10,
     padding: 10,
+<<<<<<< HEAD
   },
   img: {
     width: 80,
@@ -230,5 +300,37 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
   },
 });
+=======
+  },img:{
+        width:80,
+        height:80,
+        borderRadius:10,
+        borderWidth:1,
+        borderColor:"#66328E",
+        marginLeft:0,
+        marginTop:30
+    },modalItem: {
+      padding: 15,
+      borderBottomWidth: 1,
+      borderBottomColor: '#ccc',
+    },Log:{
+        color:"#fff",
+        marginLeft:90,
+        marginTop:20
+      },btn:{
+        marginTop:30,
+        width:205,
+        height:60,
+        borderRadius:8,
+        marginLeft:14,
+        backgroundColor:"#66328E"
+      },container: {    flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingBottom:30
+      }
+})
+>>>>>>> origin/main
 
 export default Inscription;

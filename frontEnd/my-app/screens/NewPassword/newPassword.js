@@ -1,17 +1,59 @@
 import React from 'react';
-import { View, Text, ImageBackground, StyleSheet } from 'react-native';
+import { TouchableOpacity ,View, Text, ImageBackground, StyleSheet, TextInput ,Alert , Button } from 'react-native';
 import { Svg, Path } from 'react-native-svg';
-import ADRESS_API from '../serverUrl';
-export default function newPassword() {
+import { useState } from 'react';
+
+
+export default function ResetPasswordScreen({navigation}) {
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
+  const userId = 'userId'; 
+
+  const handleSubmit = () => {
+    if (!newPassword || !confirmNewPassword) {
+      return Alert.alert('All fields are required');
+    }
+
+    if (newPassword !== confirmNewPassword) {
+      return Alert.alert('Passwords do not match');
+    }
+
+    const requestOptions = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ newPassword, confirmNewPassword }),
+    };
+
+    fetch(`http://192.168.11.126:3001/reset-password/${userId}`, requestOptions)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Failed to update password');
+        }
+      })
+      .then((data) => {
+        if (data.message === 'Password updated successfully') {
+          Alert.alert('Password updated successfully');
+          navigation.navigate("Home")
+        } else {
+          throw new Error('Invalid user ID');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        Alert.alert('An error occurred while updating the password');
+      });
+  }
     return (
     		<View style={styles.confirmpassword}>
-      			<Text style={styles.home}>
-        				{`Home`}
-      			</Text>
-      			
-                
+        <View style={styles.container} >
+
+      		
       			<Text style={styles.ghazalaarianaTunis}>
-        				{`16 ghazala , ariana /tunis`}
+        				{`16 rue abdenasser / ariana`}
       			</Text>
       			<Text style={styles._21627011482}>
         				{`+216 27011 482`}
@@ -33,35 +75,59 @@ export default function newPassword() {
 
       			<View style={styles.emailAddressHolder}>
         				<View style={styles.rectangle1}/>
-        				<View style={styles.loginbutton}>
-          					<View style={styles.rectangle2}/>
-          					<Text style={styles.send}>
+                <View style={styles.loginbutton} >
+                <View style={styles.rectangle2} />
+                <Text style={styles.send}>Send</Text>
+              
+              <View style={styles.rectangle2} />
+          					<Text onPress={handleSubmit} style={styles.send}>
             						{`Send`}
           					</Text>
         				</View>
         				<Text style={styles.enterThenewPassword}>
-          					{`Enter The new Password`}
+          					{`Reset Password`}
         				</Text>
-        				<View style={styles.rectangle3}/>
-        				<View style={styles.rectangle4}/>
+        				<TextInput 
+                secureTextEntry
+                value={newPassword}
+                onChangeText={(text) => setNewPassword(text)}
+                style={styles.rectangle3}/>
+
+                
+        				<TextInput 
+                secureTextEntry
+                value={confirmNewPassword}
+                onChangeText={(text) => setConfirmNewPassword(text)}
+
+                style={styles.rectangle4}/>
         				<Text style={styles.newpassword}>
           					{`new password`}
         				</Text>
         				<Text style={styles.confirrmThenewpassword}>
           					{`Confirrm The new password`}
         				</Text>
-        				<ImageBackground style={styles.showpasswordicon181} source={{uri: /* dummy image */ 'https://dummyimage.com/28x28/000/fff.jpg'}}/>
       			</View>
-      			<ImageBackground style={styles._showpasswordicon181} source={{uri: /* dummy image */ 'https://dummyimage.com/28x28/000/fff.jpg'}}/>
     		</View>
-    )
+        </View>
+
+                )
 }
 
 const styles = StyleSheet.create({
+
+  container: {
+    margin: "9%",
+    marginTop: "2%",
+    
+
+  },
+
   	confirmpassword: {
+      height: 800,
+
     flexShrink: 0,
-    height: 800,
-    width: 318,
+    height: "100%",
+    width: "100%",
     backgroundColor: "rgba(255, 255, 255, 1)",
     boxShadow: "20px 4px 4px 0px rgba(0, 0, 0, 0.25)",
     alignItems: "flex-start",
@@ -77,8 +143,6 @@ const styles = StyleSheet.create({
     height: 24,
     textAlign: "center",
     color: "rgba(0, 0, 0, 1)",
-    fontFamily: "Poppins",
-    fontSize: 12.28985595703125,
     fontWeight: "500",
     letterSpacing: 0,
     lineHeight: 23.04347801208496
@@ -103,13 +167,11 @@ const styles = StyleSheet.create({
     position: "absolute",
     flexShrink: 0,
     top: 457,
-    left: 95,
+    left: 100,
     width: 178,
     height: 21,
     textAlign: "left",
     color: "rgba(0, 0, 0, 1)",
-    fontFamily: "Poppins",
-    fontSize: 14,
     fontWeight: "500",
     letterSpacing: 0
 },
@@ -122,8 +184,6 @@ const styles = StyleSheet.create({
     height: 21,
     textAlign: "left",
     color: "rgba(0, 0, 0, 1)",
-    fontFamily: "Poppins",
-    fontSize: 14,
     fontWeight: "500",
     letterSpacing: 0
 },
@@ -131,13 +191,11 @@ const styles = StyleSheet.create({
     position: "absolute",
     flexShrink: 0,
     top: 548,
-    left: 104,
+    left: 100,
     width: 138,
     height: 21,
     textAlign: "left",
     color: "rgba(0, 0, 0, 1)",
-    fontFamily: "Poppins",
-    fontSize: 14,
     fontWeight: "500",
     letterSpacing: 0
 },
@@ -145,9 +203,9 @@ const styles = StyleSheet.create({
     position: "absolute",
     flexShrink: 0,
     top: 454,
-    right: 244,
+    right: 243,
     bottom: 323,
-    left: 58,
+    left: 55,
     overflow: "visible"
 },
   	_vector: {
@@ -200,16 +258,20 @@ const styles = StyleSheet.create({
     width: 232
 },
   	rectangle2: {
+      marginTop:"10%",
+    
     position: "absolute",
     flexShrink: 0,
     top: 0.34112548828125,
-    left: 0.10113525390625,
+    left: 2,
     width: 232,
     height: 33,
     backgroundColor: "rgba(102, 50, 142, 1)",
     borderRadius: 7.681159973144531
 },
   	send: {
+      marginTop:"10%",
+
     position: "absolute",
     flexShrink: 0,
     top: 2.34112548828125,
@@ -218,8 +280,6 @@ const styles = StyleSheet.create({
     height: 28,
     textAlign: "left",
     color: "rgba(255, 255, 255, 1)",
-    fontFamily: "Poppins",
-    fontSize: 12.28985595703125,
     fontWeight: "500",
     letterSpacing: 0,
     lineHeight: 27.652175903320312
@@ -227,17 +287,14 @@ const styles = StyleSheet.create({
   	enterThenewPassword: {
     position: "absolute",
     flexShrink: 0,
-    top: 10,
-    left: 61,
-    width: 155,
+    top: "-5%",
+    left: "23%",
+    width: 200,
     height: 28,
     textAlign: "left",
     color: "rgba(102, 50, 142, 1)",
-    fontFamily: "Poppins",
-    fontSize: 12.28985595703125,
-    fontWeight: "500",
     letterSpacing: 0,
-    lineHeight: 27.652175903320312
+    lineHeight: 27.652175903320312,
 },
   	rectangle3: {
     position: "absolute",
@@ -282,8 +339,6 @@ const styles = StyleSheet.create({
     height: 28,
     textAlign: "left",
     color: "rgba(0, 0, 0, 1)",
-    fontFamily: "Poppins",
-    fontSize: 12.28985595703125,
     fontWeight: "500",
     letterSpacing: 0,
     lineHeight: 27.652175903320312
@@ -297,8 +352,6 @@ const styles = StyleSheet.create({
     height: 33,
     textAlign: "left",
     color: "rgba(0, 0, 0, 1)",
-    fontFamily: "Poppins",
-    fontSize: 12.28985595703125,
     fontWeight: "500",
     letterSpacing: 0,
     lineHeight: 27.652175903320312
