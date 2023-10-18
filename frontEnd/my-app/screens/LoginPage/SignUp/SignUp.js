@@ -182,11 +182,11 @@ const CreateAnAccount = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff",
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
-    width: "100%",
-    paddingTop: 10,
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    width: '100%',
+    marginTop: -29,
+    margin:29
   },
   text: {
     alignItems: "center",
@@ -212,7 +212,6 @@ const styles = StyleSheet.create({
     height: undefined,
   },
   homeDiv: {
-    backgroundColor: "#ffffff",
     width: 312,
     height: 50,
     marginLeft: 21,

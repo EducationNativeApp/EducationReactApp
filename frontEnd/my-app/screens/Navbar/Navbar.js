@@ -50,7 +50,7 @@ const Navbar = () => {
     height:40,
     marginLeft:260,marginTop:-42
   }}
-  source={{uri:'https://cdn-icons-png.flaticon.com/128/149/149071.png'}} />
+  source={{uri:'https://cdn-icons-png.flaticon.com/512/7153/7153150.png'}} />
  </TouchableWithoutFeedback>
   </View>
   <View>

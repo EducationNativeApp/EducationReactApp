@@ -37,6 +37,15 @@ const add = (StudenttData, callback) => {
     });
   };
 
+  const getOneStudent = (idStudent, callback) => {
+    const sql = 'SELECT * FROM Student WHERE idStudent = ?';
+    ;
+    connection.query(sql, [idStudent], function (error, results) {
+      callback(error, results);
+    });
+  };
+
+  
 
   const getStudentsByUser = (idStudent, callback) => {
     const sql = `SELECT * FROM Student WHERE users_idusers = ?`;
@@ -44,6 +53,18 @@ const add = (StudenttData, callback) => {
       callback(error, results);
     });
   };
+
+  const getStudentsByClass = (className, callback) => {
+    const sql = 'SELECT * FROM Student WHERE class = ?';
+    connection.query(sql, [className], function (error, results) {
+      callback(error, results);
+    });
+  };
+  
+
+
+
+
 
   
 
@@ -56,8 +77,11 @@ const add = (StudenttData, callback) => {
     put,
     remove,
     getAll,
-    getStudentsInClass,
-    getStudentsByUser
+    getStudentsInClass,getOneStudent,
+    getStudentsByUser ,
+    getStudentsByClass
+    
+    
     
   };
   

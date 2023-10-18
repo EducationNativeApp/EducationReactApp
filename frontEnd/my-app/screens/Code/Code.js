@@ -14,7 +14,7 @@ export default function Code() {
       body: JSON.stringify({ verificationCode: verificationCode }),
     };
 
-    fetch(`http://${ADRESS_API}:3001/check-verification-code`, requestOptions)
+    fetch(`http://192.168.104.4:3001/check-verification-code`, requestOptions)
       .then((response) => {
         if (response.ok) {
           alert('Verification code is valid');

@@ -11,6 +11,8 @@ const StudentRoute=require("./routes/student")
 const { getAll } = require('./controllers/users');
 const { update } = require('./controllers/EditProfile')
 const { updateUserPassword } = require('../backEnd/controllers/users');
+const mg = require('nodemailer-mailgun-transport'); // or any other transport method
+
 
 const crypto = require('crypto'); // Import the crypto module
 const nodemailer = require('nodemailer');
@@ -204,6 +206,114 @@ console.log(req.body);
 });
 
 
+
+
+//contact us using nodemailer 
+
+
+app.post('/contactUs', (req, res) => {
+  const { first_name , phone_number , email , message } = req.body;
+
+  if (!first_name || !phone_number || !email || !message  ) {
+    return res.status(400).json({ message: ' you need to put all the information' });
+  }
+
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    port:465,
+    secure:true,
+    logger:true,
+    debug:true,
+    secureConnection:false,
+    auth:{
+      user:"oubaidbensaid18910@gmail.com",
+      pass:"jyuk kkny txpk epba "
+    },
+    tls:{
+      rejectUnauthorized:true
+    }
+  });
+
+  const mailOptions = {
+    from: 'oubaidbensaid18@gmail.com',
+    to: email,
+    subject: 'school',
+    html: `
+        <html>
+            <body>
+                <p><strong>Message from ${first_name}</strong></p>
+                <p><strong>phone number ${phone_number}</strong></p>
+
+                <p>${message}</p>
+            </body>
+        </html>
+    `
+};
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error('Error sending email:', error);
+      res.status(500).json({ message: 'Failed to send a message' });
+    } else {
+      console.log('Email sent:', info.response);
+      res.status(200).json({ message: 'your message is send successfully' });
+    }
+  });
+});
+
+
+
+app.post('/calender', (req, res) => {
+  const { image  , email } = req.body;
+
+  if ( !email   ) {
+    return res.status(400).json({ message: 'You need to provide an email address' });
+  }
+
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    port:465,
+    secure:true,
+    logger:true,
+    debug:true,
+    secureConnection:false,
+    auth:{
+      user:"oubaidbensaid18910@gmail.com",
+      pass:"jyuk kkny txpk epba "
+    },
+    tls:{
+      rejectUnauthorized:true
+    }
+  });
+
+  const mailOptions = {
+    from: 'oubaidbensaid18@gmail.com',
+    to: email,
+    subject: 'school',
+    html: `
+        <html>
+            <body>
+                <p><strong>absent date ${image}</strong></p>
+
+            </body>
+        </html>
+    `,
+    date: new Date().toUTCString() 
+
+};
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error('Error sending email:', error);
+      res.status(500).json({ message: 'Failed to send a message' });
+    } else {
+      console.log('Email sent:', info.response);
+      res.status(200).json({ message: 'your message is send successfully' });
+    }
+  });
+});
 
 
 app.listen(port,()=>{
