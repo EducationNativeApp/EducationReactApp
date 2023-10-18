@@ -1,7 +1,4 @@
 
-
-
-
 import React, { useState , useEffect } from 'react';
 import { Modal, Text, TextInput, Button, View , Image , TouchableWithoutFeedback, ScrollView , TouchableOpacity  , } from 'react-native';
 import { Calendar, LocaleConfig } from 'react-native-calendars';
@@ -64,6 +61,7 @@ export default function CalendarScreen({ visible, onClose, onAddEvent ,route}) {
   const [student,setStudentData]=useState([])
   const [user , setUserData]=useState([])
   const [selectedDate, setSelectedDate] = useState('');
+
   const [selectedHod, setselectedHod] = useState('');
   const [comments, setComments] = useState({});
   const [isEventFormVisible, setIsEventFormVisible] = useState(true);
@@ -104,7 +102,7 @@ export default function CalendarScreen({ visible, onClose, onAddEvent ,route}) {
   
   //getStudent
   useEffect(()=>{
-   axios.get(`http://192.168.104.4:3001/student/get`)
+   axios.get(`http://192.168.1.5:3001/student/get`)
       .then((response)=>{
 console.log(response.data);
     setStudentData(response.data )
@@ -118,7 +116,7 @@ console.log(response.data);
 
 
 useEffect(() => {
-  axios.get(`http://192.168.104.4:3001/api/users/getAll`)
+  axios.get(`http://192.168.1.5:3001/api/users/getAll`)
     .then((response) => {
       console.log("API Response:", response.data);
       setUserData(response.data);
@@ -201,10 +199,11 @@ const loadEventsAndHolidays = async () => {
 
 
   const handleAddEvent = async () => {
-    if (selectedStudentId) {
+    if (selectedStudentId)
+    {
       // Load events for the selected student
+      
       const currentEvents = await loadStudentEvents(selectedStudentId);
-  
       const newEvent = {
         selected: true,
         selectedColor: 'red',
@@ -234,6 +233,9 @@ const loadEventsAndHolidays = async () => {
     setIsEventFormVisible(true);
   };
 
+ 
+  
+
 
 
   const handleAddHoliday = () => {
@@ -249,6 +251,8 @@ setCalendarMarkings(newCalendarMarkings);
     setIsHolidayFormVisible(true);
   };
 
+
+
   const handleCommentChange = (text) => {
     const newComments = { ...comments, [selectedDate]: text };
 
@@ -256,6 +260,8 @@ setCalendarMarkings(newCalendarMarkings);
 
     setComments(newComments);
   };
+
+
 
   const toggleRectangleVisibility = () => {
     setIsRectangleVisible(!isRectangleVisible);
@@ -330,10 +336,11 @@ setCalendarMarkings(newCalendarMarkings);
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Text style={styles.absent}>Absent</Text>
               <EventForm
-                onAddEvent={handleAddEvent}
-                title="Add Event"
-                backgroundColor="red"
-              />
+              visible={isEventFormVisible}
+              onClose={()=>setIsEventFormVisible(false)}          
+            onAddEvent={handleAddEvent}
+            backgroundColor="red"
+          />
             </View>
           )}
   
@@ -391,6 +398,4 @@ setCalendarMarkings(newCalendarMarkings);
       </View>
     );
   };
-  
-
   
