@@ -11,7 +11,7 @@ const ConversationView = () => {
   const [idchat,setIdChat]=useState(null)
   const { usersId,setUsersId,teachersId,setTeachersId } = useContext(MyContext);
   const [message, setMessage] =useState('');
-  const recipientId = teachersId;
+  const recipientId = 1;
   useEffect(() => {
   axios.get('http://192.168.1.192:3000/teacher/get').then((res)=>{
     setUsersId(res.data)
@@ -57,7 +57,7 @@ const sendPrivateMessage = () => {
 
 
     const startChat=()=>{
-      socket.emit("join",{userId:iduser, TeachrId:idteacher}, (idchatFromserver)=>{
+      socket.emit("join",{userId:usersId, TeachrId:recipientId}, (idchatFromserver)=>{
         setIdChat(idchatFromserver)
       })
     }
@@ -66,12 +66,6 @@ const sendPrivateMessage = () => {
   //   socket.emit("send",{idchat, userId, text: messageInput})
   //   setMessageInput('');
   // }
-
-
-
-
-
-  
 
   const sendMessage = () => {
     startChat()
@@ -85,8 +79,6 @@ const sendPrivateMessage = () => {
     setMessageInput('');
    
   };
-
-  // if (!socket) return null; 
 
   return (
     <ScrollView>

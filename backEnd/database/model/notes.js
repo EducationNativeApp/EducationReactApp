@@ -13,8 +13,8 @@ function getAllNotes(req, res) {
   }
 
   function createNote(req, res) {
-    const { subject, note } = req.body;
-    const query = `INSERT INTO notes (subject, note) VALUES ('${subject}', '${note}')`;
+    const { note1, note2 ,note3,subject_idsubject ,teachers_idteacher } = req.body;
+    const query = `INSERT INTO notes (subject_idsubject, note1,note2,note3,teachers_idteacher) VALUES ('${subject_idsubject}', '${note1}','${note2}','${note3}','${teachers_idteacher}')`;
   
    conn.query(query, (err, result) => {
       if (err) {
@@ -25,8 +25,8 @@ function getAllNotes(req, res) {
     });
   }
   function getNotesBySubject(req, res) {
-    const { subject } = req.params;
-    const query = `SELECT * FROM notes WHERE subject = '${subject}'`;
+    const { subject_idsubject } = req.params;
+    const query = `SELECT * FROM notes WHERE subject = '${subject_idsubject}'`;
   
     connection.query(query, (err, result) => {
       if (err) {
@@ -40,8 +40,8 @@ function getAllNotes(req, res) {
 
 
   function updateNote(req, res) {
-    const { note_id, note } = req.body;
-    const query = `UPDATE notes SET note = '${note}' WHERE note_id = ${note_id}`;
+    const { idnote, note  } = req.body;
+    const query = `UPDATE notes SET note = '${note}' WHERE idnote = ${idnote}`;
   
    conn.query(query, (err, result) => {
       if (err) {
@@ -52,8 +52,8 @@ function getAllNotes(req, res) {
     });
   }
   function deleteNote(req, res) {
-    const { note_id } = req.params; 
-    const query = `DELETE FROM notes WHERE note_id = ${note_id}`;
+    const { idnote } = req.params; 
+    const query = `DELETE FROM notes WHERE idnote = ${idnote}`;
   
    conn.query(query, (err, result) => {
       if (err) {

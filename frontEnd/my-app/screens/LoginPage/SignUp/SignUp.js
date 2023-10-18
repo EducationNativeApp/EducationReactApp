@@ -12,6 +12,9 @@ import { MyContext } from "../../../useContext/useContext";
 import ADRESS_API from '../../serverUrl';
 
 const CreateAnAccount = ({navigation}) => {
+  
+  const { idusers,setUsersId} = useContext(MyContext);
+
   const [password,setPassword]=useState('');
   const [email,setEmail]=useState("")
   const [username, setName] = useState('');
