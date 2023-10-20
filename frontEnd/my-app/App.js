@@ -18,7 +18,7 @@ import Payement from './screens/Payement/Payement';
 import Options from './screens/Options/Options';
 import Student from './screens/Student/Student';
 import Contact from './screens/Contact/Contact';
-import Notes from './screens/Notes/Notes';
+import Notes from './screens/Note/notes';
 import Arabic from './screens/Modules/ModuleArabic';
 import Frensh from './screens/Modules/ModuleFrensh';
 import English from './screens/Modules/ModuleEnglish';
@@ -37,6 +37,8 @@ import ReviewOrder from  './screens/Payement/ReviewOrder';
 import PaymentMethod from './screens/Payement/ReviewOrder';
 import CalendarScreen from './screens/MyCalender/CalendarScreen';
 
+import ConversationView from "./screens/Chat/Conv";
+import Notess from './screens/Notes/Notess'
 
 const Stack = createNativeStackNavigator()
 
@@ -46,7 +48,8 @@ export default function App() {
     <MyProvider>
     <NativeBaseProvider >
     <NavigationContainer>
-    <Stack.Navigator initialRouteName="Parent">
+    
+    <Stack.Navigator initialRouteName="Notes">
      <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}  />
      <Stack.Screen name="Login" component={Login} options={{headerShown:false}}  /> 
      <Stack.Screen name="SignUp" component={SignUp} options={{headerShown:false}}/> 
@@ -63,6 +66,7 @@ export default function App() {
     <Stack.Screen name="Payement" component={Payement} options={{headerShown:false}} />
     <Stack.Screen name="Student" component={Student} options={{headerShown:false}} /> 
     <Stack.Screen name="Notes" component={Notes} options={{headerShown:false}} />
+    <Stack.Screen name="Notess" component={Notess} options={{headerShown:false}} />
     <Stack.Screen name="Contact" component={Contact} options={{headerShown:false}} /> 
     <Stack.Screen name="ModuleEnglish" component={English} options={{headerShown:false}} /> 
     <Stack.Screen name="ModuleFrensh" component={Frensh} options={{headerShown:false}} />
@@ -82,6 +86,7 @@ export default function App() {
 
      
      <Stack.Screen name="CalendarScreen" component={CalendarScreen} options={{ headerShown: false }} />
+     <Stack.Screen name="Conv" component={ConversationView} options={{headerShown:false}}  />
 
 
 

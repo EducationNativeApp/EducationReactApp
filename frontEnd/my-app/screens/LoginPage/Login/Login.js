@@ -5,7 +5,7 @@ import Navbar from "../../Navbar/Navbar";
 import axios from "axios";
 import { useContext } from "react";
 import { MyContext } from "../../../useContext/useContext";
-import ADRESS_API from "../../serverUrl";
+
 
 function Login({ navigation }) {
   const { isDarkMode, setMode, setUser } = useContext(MyContext);

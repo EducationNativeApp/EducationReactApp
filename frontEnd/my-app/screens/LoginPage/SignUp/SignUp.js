@@ -20,14 +20,17 @@ import { MyContext } from "../../../useContext/useContext";
 import ADRESS_API from "../../serverUrl";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const CreateAnAccount = ({ navigation }) => {
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [username, setName] = useState("");
-  const [Birthday, setDateOfBirth] = useState("");
-  const [Number, setPhoneNumber] = useState("");
-  const [isError, setIsError] = useState(false);
-  const [iduser, setUserId] = useState(0);
+const CreateAnAccount = ({navigation}) => {
+  
+  const { idusers,setUsersId} = useContext(MyContext);
+
+  const [password,setPassword]=useState('');
+  const [email,setEmail]=useState("")
+  const [username, setName] = useState('');
+  const [Birthday, setDateOfBirth] = useState('');
+  const [Number, setPhoneNumber] = useState('');
+  const [isError,setIsError]=useState(false);
+  
 
   const handlePassword = (text) => {
     setPassword(text);
@@ -76,11 +79,8 @@ const CreateAnAccount = ({ navigation }) => {
         navigation.navigate("Login");
       })
       .catch((error) => {
-        console.error("Registration Error", error);
-        Alert.alert(
-          "Error",
-          "Registration failed. Please try again bjeh rab a3mel adress jdida"
-        );
+        console.error('Registration Error', error);
+        Alert.alert('Check your inputs');
       });
   };
 
