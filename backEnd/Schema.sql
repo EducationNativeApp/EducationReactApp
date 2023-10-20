@@ -16,20 +16,19 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `harmony` DEFAULT CHARACTER SET utf8mb3 ;
 USE `harmony` ;
-INSERT INTO `harmony`.`admin` (`idadmin`, `user`, `password`) VALUES ('1', 'wissemhjm', 'boucha00');
 
 -- -----------------------------------------------------
 -- Table `harmony`.`admin`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `harmony`.`admin` (
   `idadmin` INT NOT NULL AUTO_INCREMENT,
-  `admin` VARCHAR(85) NOT NULL,
-  `password` VARCHAR(255) NOT NULL,
-  `image` LONGTEXT NOT NULL,
+  `user` VARCHAR(85) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idadmin`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb3;
+
 
 -- -----------------------------------------------------
 -- Table `harmony`.`calendrier`
@@ -56,15 +55,13 @@ CREATE TABLE IF NOT EXISTS `harmony`.`teachers` (
   `number` INT NOT NULL,
   `admin_idadmin` INT NOT NULL,
   `teacher_of` VARCHAR(45) NOT NULL,
-  `className` VARCHAR(45) NOT NULL,
-  `subject_idsubject` INT NOT NULL,
   PRIMARY KEY (`idteacher`),
   INDEX `fk_teachers_admin1_idx` (`admin_idadmin` ASC) VISIBLE,
   CONSTRAINT `fk_teachers_admin1`
     FOREIGN KEY (`admin_idadmin`)
     REFERENCES `harmony`.`admin` (`idadmin`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 5
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -81,7 +78,6 @@ CREATE TABLE IF NOT EXISTS `harmony`.`users` (
   PRIMARY KEY (`idusers`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 5
-AUTO_INCREMENT = 31
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -125,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `harmony`.`classes` (
     FOREIGN KEY (`teachers_idteacher`)
     REFERENCES `harmony`.`teachers` (`idteacher`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -217,12 +213,10 @@ CREATE TABLE IF NOT EXISTS `harmony`.`student` (
   `First_name` VARCHAR(45) NOT NULL,
   `LastName` VARCHAR(45) NOT NULL,
   `Birthday` DATE NOT NULL,
-  `email` VARCHAR(45) NOT NULL,
-  `section` VARCHAR(85) NOT NULL,
+  `class` VARCHAR(85) NOT NULL,
   `image` LONGTEXT NOT NULL,
   `users_idusers` INT NOT NULL,
   `classes_idclasses` INT NOT NULL,
-  `type` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idStudent`),
   INDEX `fk_Student_users1_idx` (`users_idusers` ASC) VISIBLE,
   INDEX `fk_Student_classes1_idx` (`classes_idclasses` ASC) VISIBLE,
@@ -234,7 +228,6 @@ CREATE TABLE IF NOT EXISTS `harmony`.`student` (
     REFERENCES `harmony`.`users` (`idusers`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 14
-AUTO_INCREMENT = 50
 DEFAULT CHARACTER SET = utf8mb3;
 
 
