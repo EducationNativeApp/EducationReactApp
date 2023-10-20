@@ -6,6 +6,6 @@ router.post('/login', login);
 router.post('/register',register)
 router.put('/changePassword',sendEmail)
 router.patch('/edit/:idusers', update); 
-router.get("/getAll",getAll)
+router.get("/getAll",getUsers)
 
 module.exports = router

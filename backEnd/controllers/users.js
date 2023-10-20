@@ -169,7 +169,7 @@ module.exports = { login ,
   register,
   getUsers,
   sendEmail,
-  updateUserPassword,
+  
   sendEmail,update
 
  };

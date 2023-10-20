@@ -15,11 +15,7 @@ function Login({ navigation }) {
   const [data,setData]=useState([])
 const handleLog=(e)=>{
 e.preventDefault()
-<<<<<<< HEAD
     axios.post(`http://192.168.104.6:3000/user/login`,{
-=======
-    axios.post(`http://192.168.1.5:3001/user/login`,{
->>>>>>> e5db27b62bf22760f4df41a31280a4a54e0fac3d
       email,
       password,
     }).then((res)=>{
@@ -84,17 +80,6 @@ e.preventDefault()
     color={"red"}
 /> */}
 
-<<<<<<< HEAD
-<View  style={styled.btn}>
-  <Text  style={styled.Log} onPress={(e) => handleLog(e)}>LOG IN</Text>
-</View>
-<Text style={[styled.text,{color:theme.textColor}]}>Don't have an account?</Text>
-<Text style={styleed.text1}
-onPress={()=>{ navigation.navigate("SignUp")}}>Sign up Now</Text>
- </View>
-
-  )
-=======
       <View style={styled.btn}>
         <Text style={styled.Log} onPress={(e) => handleLog(e)}>
           LOG IN
@@ -113,7 +98,6 @@ onPress={()=>{ navigation.navigate("SignUp")}}>Sign up Now</Text>
       </Text>
     </View>
   );
->>>>>>> e5db27b62bf22760f4df41a31280a4a54e0fac3d
 }
 const styles = StyleSheet.create({
   container: { flex: 1, alignItems: "center", justifyContent: "center" },
