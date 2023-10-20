@@ -9,27 +9,27 @@ const Teacher = () => {
       <View style={styles.homeDiv}>
         <Text style={styles.homeText}></Text>
       </View>
-
+      <View style={styles.text}>
+      <Text style={{ color: '#66328E', fontWeight:"900" , fontSize:16  }}>Welcome Mr Houssem</Text>
+    </View>
       <View style={styles.imageContainer}>
       <Image
       style={{
       height:90,
       width:90,
-      marginLeft:0,top:30
+      marginLeft:0,
     }}
     source={{uri:'https://www.learningprofessionals.af.mil/portals/87/Images/S2C%20Images/Article%20Image_1.png?ver=VSSxf_st2FKR3mLATXb3dQ%3D%3D'}} />
       </View>
 
-      <View style={styles.text}>
-        <Text style={{ color: '#66328E',left:-8, fontWeight:"900" , fontSize:16 , top:-130 }}>Welcome Mr Houssem</Text>
-      </View>
+     
       <View style={{...styles.imageContainer   }} >
-  <View style={styles.imageTextWrapper}>
+       <View style={styles.imageTextWrapper}>
   <Image
   style={{
   height:100,
   width:100,
-  marginLeft:-10,marginTop:40
+  marginLeft:-10,marginTop:20
 }}
 source={{uri:'https://prod2-sprcdn-assets.sprinklr.com/50400/538cb2ba-4b9a-4111-b99f-e3e27828a816-239440336/Audience_Icon.png'}} />
     <Text style={{ color: '#66328E',left:-5 , fontWeight:"800"}}>Profile</Text>
@@ -39,7 +39,7 @@ source={{uri:'https://prod2-sprcdn-assets.sprinklr.com/50400/538cb2ba-4b9a-4111-
   style={{
   height:90,
   width:90,
-  marginLeft:12,marginTop:50
+  marginLeft:12,marginTop:30
 }}
 source={{uri:'https://cdn-icons-png.flaticon.com/512/1205/1205526.png'}} />
     <Text style={{ color: '#66328E',left:6 , fontWeight:"800"   }}>Modules</Text>
@@ -50,7 +50,7 @@ source={{uri:'https://cdn-icons-png.flaticon.com/512/1205/1205526.png'}} />
   <View style={styles.imageTextWrapper}>
     <Image
       source={require('../../../my-app/assets/exams.png')}
-      style={{width:100 , height:100 , marginTop : 30}}
+      style={{width:100 , height:100 , marginTop : 20}}
     />
     <Text style={{ color: '#66328E',left:0 , fontWeight:"800" }}>Punishment</Text>
   </View>
@@ -59,7 +59,7 @@ source={{uri:'https://cdn-icons-png.flaticon.com/512/1205/1205526.png'}} />
   style={{
   height:100,
   width:100,
-  marginLeft:19,marginTop:29
+  marginLeft:19,marginTop:19
 }}
 source={{uri:'https://cdn-icons-png.flaticon.com/512/2436/2436799.png'}} />
 
@@ -74,12 +74,12 @@ source={{uri:'https://cdn-icons-png.flaticon.com/512/2436/2436799.png'}} />
   style={{
   height:100,
   width:100,
-  marginLeft:10,marginTop:30
+  marginLeft:10,marginTop:20
 }}
 source={{uri:'https://cdn-icons-png.flaticon.com/512/9583/9583531.png'}} />
     <Text style={{ color: '#66328E',left:5 , fontWeight:"800", marginTop:-5}}>Students</Text>
   </View>
-  <View style={{ ...styles.imageTextWrapper, marginLeft: 30  ,marginTop:25}}>
+  <View style={{ ...styles.imageTextWrapper, marginLeft: 30  ,marginTop:15}}>
     <Image
       source={require('../../../my-app/assets/contact.png')}
       style={styles.imaged}
@@ -87,8 +87,7 @@ source={{uri:'https://cdn-icons-png.flaticon.com/512/9583/9583531.png'}} />
     <Text style={{ color: '#66328E',  left:0 , fontWeight:"800" }}>contact us</Text>
   </View>
 </View>
-
-    </View>
+</View>
     </ScrollView>
   );
 };
@@ -101,7 +100,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     width: '120%',
     paddingTop: 50,
-    marginLeft : -50
+    marginLeft : -50,
+    height:820
   },
   homeDiv: {
     backgroundColor: 'white',

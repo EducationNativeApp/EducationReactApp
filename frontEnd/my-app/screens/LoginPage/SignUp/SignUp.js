@@ -95,20 +95,17 @@ const CreateAnAccount = ({navigation}) => {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.homeDiv}>
-          <Text style={styles.homeText}>Home</Text>
+          <Text style={styles.homeText}></Text>
         </View>
 
         <View style={styles.imageContainer}>
-          <Image
-            source={require("../../../assets/icon8.png")}
-            style={{ flex: 1, width: undefined, height: undefined }}
-          />
+         
         </View>
 
         <View style={styles.text}>
-          <Text style={{ color: "#66328E" }}>Create Account</Text>
+          <Text style={{ color: "#66328E" , left:"13%",top:"-50%"}}>Create Account</Text>
         </View>
-
+<View style={styles.main}>
         <View style={styles.nameContainer}>
           <Text style={styles.label}>Name</Text>
           <TextInput
@@ -174,7 +171,9 @@ const CreateAnAccount = ({navigation}) => {
             &nbsp;&nbsp;Log in
           </Text>
         </View>
+        </View>
       </View>
+      
     </ScrollView>
   );
 };
@@ -184,10 +183,17 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
-    width: '100%',
-    marginTop: -29,
-    margin:29
+    width: '150%',
+    height:850,
+    marginTop: -15,
+    
+    
+    backgroundColor:"white"
   },
+  main : {
+marginLeft:30
+  },
+
   text: {
     alignItems: "center",
     marginTop: 10,

@@ -24,7 +24,8 @@ const StudRoute= require('./routes/notes')
 const { getAll } = require('./controllers/users');
 const { update } = require('./controllers/EditProfile')
 const { updateUserPassword } = require('../backEnd/controllers/users');
-const mg = require('nodemailer-mailgun-transport'); // or any other transport method
+const mg = require('nodemailer-mailgun-transport'); 
+const adminRoute=require("./routes/Admin")
 
 
 const crypto = require('crypto');
@@ -36,6 +37,7 @@ app.use('/classe',classeRoute)
 app.use('/subject',SubjectRoute)
 app.use('/student',StudentRoute)
 app.use('/note',StudRoute)
+app.use("/admin",adminRoute)
 
 const activeUsers = new Set();
 
