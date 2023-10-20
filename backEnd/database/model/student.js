@@ -60,7 +60,43 @@ const add = (StudenttData, callback) => {
       callback(error, results);
     });
   };
+
+  const getStudentsByClass2 = (className, callback) => {
+    const sql = 'SELECT * FROM Student WHERE class = ?';
+    connection.query(sql, [className], function (error, results) {
+      callback(error, results);
+    });
+  };
   
+
+  const getStudentsByClass3 = (className, callback) => {
+    const sql = 'SELECT * FROM Student WHERE class = ?';
+    connection.query(sql, [className], function (error, results) {
+      callback(error, results);
+    });
+  };
+
+  const getStudentsByClass4 = (className, callback) => {
+    const sql = 'SELECT * FROM Student WHERE class = ?';
+    connection.query(sql, [className], function (error, results) {
+      callback(error, results);
+    });
+  };
+
+  const getStudentsByClass5 = (className, callback) => {
+    const sql = 'SELECT * FROM Student WHERE class = ?';
+    connection.query(sql, [className], function (error, results) {
+      callback(error, results);
+    });
+  };
+
+  const getStudentsByClass6 = (className, callback) => {
+    const sql = 'SELECT * FROM Student WHERE class = ?';
+    connection.query(sql, [className], function (error, results) {
+      callback(error, results);
+    });
+  };
+
 
 
 
@@ -79,7 +115,12 @@ const add = (StudenttData, callback) => {
     getAll,
     getStudentsInClass,getOneStudent,
     getStudentsByUser ,
-    getStudentsByClass
+    getStudentsByClass,
+    getStudentsByClass2,
+    getStudentsByClass3,
+    getStudentsByClass4 ,
+    getStudentsByClass5 ,
+    getStudentsByClass6 
     
     
     
