@@ -14,7 +14,7 @@ export default function Code() {
       body: JSON.stringify({ verificationCode: verificationCode }),
     };
 
-    fetch(`http://192.168.1.5:3001/check-verification-code`, requestOptions)
+    fetch(`http://192.168.101.10:3001/check-verification-code`, requestOptions)
       .then((response) => {
         if (response.ok) {
           alert('Verification code is valid');
@@ -91,7 +91,9 @@ const styles = StyleSheet.create({
     boxShadow: "20px 4px 4px 0px rgba(0, 0, 0, 0.25)",
     alignItems: "flex-start",
     rowGap: 0,
-    borderRadius: 7.681159973144531
+    borderRadius: 7.681159973144531,
+    height:"150%"
+
 },
   	home: {
     position: "absolute",

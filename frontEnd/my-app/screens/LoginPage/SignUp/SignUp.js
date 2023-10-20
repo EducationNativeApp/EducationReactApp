@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Axios from "axios";
+import axios from "axios"
 import {
   StyleSheet,
   Text,
@@ -22,7 +22,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const CreateAnAccount = ({navigation}) => {
   
-  const { idusers,setUsersId} = useContext(MyContext);
 
   const [password,setPassword]=useState('');
   const [email,setEmail]=useState("")
@@ -53,6 +52,7 @@ const CreateAnAccount = ({navigation}) => {
   };
 
   const handleSignUp = () => {
+    
     const userData = {
       username,
       email,
@@ -61,7 +61,7 @@ const CreateAnAccount = ({navigation}) => {
       Number,
     };
     console.log(userData);
-    Axios.post(`http://192.168.1.5:3001:3001/user/register`, userData)
+axios.post (`http://192.168.101.10:2023/user/register`, userData)
 
       .then((response) => {
         console.log(response.data);
@@ -72,8 +72,8 @@ const CreateAnAccount = ({navigation}) => {
         setEmail("");
         setPassword("");
 
-        setUserId(response.data.idusers);
-        console.log("User ID:", response.data.idusers);
+        // setUsersId(response.data.idusers);
+        // console.log("User ID:", response.data.idusers);
         Alert.alert("Success", "Registration successful! You can now log in.");
 
         navigation.navigate("Login");
@@ -154,7 +154,7 @@ const CreateAnAccount = ({navigation}) => {
           />
         </View>
 
-        <TouchableOpacity style={styles.loginButton} onPress={handleSignUp}>
+        <TouchableOpacity style={styles.loginButton} onPress={()=>handleSignUp()}>
           <View style={styles.loginButtonTextWrapper}>
             <Text style={styles.loginButtonText}>SIGN UP</Text>
           </View>

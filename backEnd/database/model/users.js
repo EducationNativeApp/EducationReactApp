@@ -82,6 +82,7 @@ function updateNewProfile(username, email, password, idusers, callback) {
 
   module.exports = { findByEmail,
     createUser,
-    updateNewProfile
+    updateNewProfile,
+    getAll
  };
   

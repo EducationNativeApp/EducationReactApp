@@ -1,40 +1,76 @@
-import React from 'react';
+import {useEffect} from 'react';
 import { View, Text, ImageBackground, StyleSheet, TextInput } from 'react-native';
 import { Svg, Path, Defs, Pattern, Use, Image } from 'react-native-svg';
 import axios from 'axios';
 import { useState } from 'react';
-import ADRESS_API from '../serverUrl';
-export default function Findyouremail({ navigation }) {
+
+
+export default function FindYourEmail({ navigation }) {
   const [email, setEmail] = useState('');
+  const [extractedEmails, setExtractedEmails] = useState([]);
 
-  const handleSubmit = () => {
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ user_email: email }),
-    };
+  const filterEmail = async () => {
+    try {
+      const response = await axios.get('http://192.168.1.25:2023/user/getAll');
+      const data = response.data;
 
-    fetch(`http://192.168.1.5:3001/send-verification-code`, requestOptions)
-      .then((response) => {
-        if (response.ok) {
-          alert('Verification code sent successfully to your Email');
-          navigation.navigate('Code');
-        } else {
-          alert('Error sending Verification code to you Email');
-        }
-      })
-
-      .catch((error) => {
-        console.error(error);
-        alert('An error occurred');
-      });
+      if (typeof data === 'string') {
+        const emailRegex = /[\w._%+-]+@[\w.-]+\.[a-zA-Z]{2,4}/g;
+        const extractedEmails = data.match(emailRegex) || [];
+        setExtractedEmails(extractedEmails);
+        console.log('Extracted emails:', extractedEmails);
+      } else {
+        const dataString = JSON.stringify(data);
+        const emailRegex = /[\w._%+-]+@[\w.-]+\.[a-zA-Z]{2,4}/g;
+        const extractedEmails = dataString.match(emailRegex) || [];
+        setExtractedEmails(extractedEmails);
+        console.log('Extracted emails:', extractedEmails);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   };
 
+  useEffect(() => {
+    filterEmail();
+  }, []);
+
+  const handleSubmit = () => {
+    if (extractedEmails.includes(email)) {
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ user_email: email }),
+      };
+
+      fetch("http://192.168.1.25:2023/send-verification-code", requestOptions)
+        .then((data) => data.json())
+        .then((response) => {
+          if (response.success) {
+            alert('Verification code sent successfully to your Email');
+            navigation.navigate('Code');
+          } else {
+            console.error('Error sending verification code:', response.error);
+            alert('Error sending Verification code to your Email');
+          }
+        })
+        .catch((error) => {
+          console.error('Error sending verification code:', error);
+          alert('Error sending Verification code to your Email');
+        });
+    } else {
+      alert('Email not found. Please enter a valid email address.');
+    }
+  };
+  
+
 
   
-  
+
+
+
     return (
     		<View style={styles.findyouremail}>
             <View style={styles.container} >
