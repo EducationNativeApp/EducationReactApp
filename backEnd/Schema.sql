@@ -16,6 +16,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `harmony` DEFAULT CHARACTER SET utf8mb3 ;
 USE `harmony` ;
+INSERT INTO `harmony`.`admin` (`idadmin`, `user`, `password`) VALUES ('1', 'wissemhjm', 'boucha00');
 
 -- -----------------------------------------------------
 -- Table `harmony`.`admin`
@@ -28,7 +29,6 @@ CREATE TABLE IF NOT EXISTS `harmony`.`admin` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb3;
-
 
 -- -----------------------------------------------------
 -- Table `harmony`.`calendrier`
