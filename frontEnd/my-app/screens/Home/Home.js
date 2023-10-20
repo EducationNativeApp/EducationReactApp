@@ -1,15 +1,31 @@
 import {StyleSheet, Text , View , TextInput ,Button, Image ,ScrollView, TouchableNativeFeedback  } from "react-native"
 import Video from 'react-native-video'
 import {lightTheme, darkTheme} from '../../Theme/Theme'
-import { useContext } from "react";
+import { useContext,useEffect,useState  } from "react";
 import { MyContext } from "../../useContext/useContext";
+import { SafeAreaView } from "react-native-safe-area-context";
+import axios from "axios";
 const Home = ({navigation}) => {
-    const { isDarkMode,setMode } = useContext(MyContext);
+    const { isDarkMode,setMode ,bra,setbra } = useContext(MyContext);
     const theme = isDarkMode ? darkTheme : lightTheme;
     const darkMode=()=>{
         setMode(!isDarkMode)
       }
+      const [data,setData]=useState([])
+      useEffect(()=>{
+        axios.get("http://192.168.104.6:3000/teacher/get").then((res)=>{
+                  setData(res.data)
+              console.log(data);
+              }).catch((err)=>{
+                  console.log(err);
+              })
+          },[])
+
+      const change=()=>{
+        navigation.navigate('see1')
+      }
   return (
+    <SafeAreaView style={{backgroundColor:"black"}}>
     <View style={{backgroundColor: theme.backgroundColor}}>
     <ScrollView>
         <View style={[styles.container,{backgroundColor: theme.backgroundColor}]}>
@@ -83,36 +99,24 @@ const Home = ({navigation}) => {
             </View>
             </ScrollView>
         </View>
-        <Text style={[styles.text1,{color:theme.textColor}]}>See All</Text>
+        <Text style={[styles.text1,{color:theme.textColor}]} onPress={()=>change()}>See All</Text>
         <View style={styles.seeAll1}>
             <ScrollView horizontal={true}>
-            <View style={[styles.Teachers, {borderColor:theme.borderColor}]}>
+                {data.map((e)=>{
+                  return(
+<View style={[styles.Teachers, {borderColor:theme.borderColor}]}>
                 <Image style={{borderWidth:0.6,width:90,height:90,borderRadius:100,backgroundColor:"#fff",marginTop:8,marginLeft:28,borderColor:theme.borderColor}}
                 source={{uri:'https://avatars.githubusercontent.com/u/97634240?v=4'}}
                 />
-                <View style={{marginLeft:15,marginTop:21}}>
-                    <Text style={{color:theme.textColor}}>Oubayid ben said</Text>
-                    <Text style={{marginLeft:23,color:theme.textColor}}>IT Teacher</Text>
+                <View style={{alignItems: 'center',
+        justifyContent: 'center',marginLeft:15,marginTop:21}}>
+                    <Text style={{color:theme.textColor}}>{e.name}</Text>
+                    <Text style={{color:theme.textColor}}>IT Teacher</Text>
                 </View>
             </View>
-            <View style={[styles.Teachers1, {borderColor:theme.borderColor}]}>
-                <Image style={{borderWidth:0.6,width:90,height:90,borderRadius:100,backgroundColor:"#fff",marginTop:8,marginLeft:28 , borderColor:theme.borderColor}}
-                source={{uri:'https://avatars.githubusercontent.com/u/129502701?v=4'}}
-                />
-                <View style={{marginLeft:15,marginTop:21}}>
-                    <Text style={{marginLeft:6,color:theme.textColor}}>Wissem Hajjem</Text>
-                    <Text style={{marginLeft:23,color:theme.textColor}}>IT Teacher</Text>
-                </View>
-            </View>
-            <View style={[styles.Teachers1, {borderColor:theme.borderColor}]}>
-                <Image style={{borderWidth:0.6,width:90,height:90,borderRadius:100,backgroundColor:"#fff",marginTop:8,marginLeft:28,borderColor:theme.borderColor}}
-                source={{uri:'ede'}}
-                />
-                <View style={{marginLeft:15,marginTop:21}}>
-                    <Text style={{color:theme.textColor}}>Khouloud Ouelhazi</Text>
-                    <Text style={{marginLeft:8,color:theme.textColor}}>Science Teacher</Text>
-                </View>
-            </View>
+                  )  
+                })}
+            
             </ScrollView>
         </View>
         <View style={styles.imgPage}>
@@ -185,6 +189,7 @@ source={{uri:"https://www.carthageland.com/img/logo-cl-tunis.png"}}
         </View>
     </ScrollView>
     </View>
+    </SafeAreaView>
   )
 }
 
@@ -262,6 +267,7 @@ const styles=StyleSheet.create({
         borderWidth:0.6,
          width:150,
          borderRadius:15,
+         marginLeft:20
         //  backgroundColor:"red"
     },Teachers1:{
         height:190,

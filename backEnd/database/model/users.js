@@ -85,8 +85,10 @@ const updateUserPassword = (email, password, callback) => {
 };
 
 
-  module.exports = { findByEmail,
+  module.exports = { 
+    findByEmail,
     createUser,
-    updateUserPassword,getAll
+    updateUserPassword,
+    getAll
  };
   

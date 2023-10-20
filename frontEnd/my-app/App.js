@@ -29,6 +29,7 @@ import Arts from './screens/Modules/ModuleArts';
 import Sport from './screens/Modules/ModuleSport';
 import Navbar from './screens/Navbar/Navbar'
 import Chat1 from './screens/Chat/Chat1';
+import Chat2 from './screens/Chat/Chat2';
 import FindEmail from './screens/FindEmail/forgot-password'
 import Code from './screens/Code/Code';
 import newPassword from './screens/NewPassword/newPassword';
@@ -37,6 +38,7 @@ import ReviewOrder from  './screens/Payement/ReviewOrder';
 import PaymentMethod from './screens/Payement/ReviewOrder';
 import ConversationView from "./screens/Chat/Conv";
 import Notess from './screens/Notes/Notess'
+import seeAllTeachers from './screens/seeAllTeachers/seeAllTeachers';
 
 const Stack = createNativeStackNavigator()
 
@@ -48,8 +50,9 @@ export default function App() {
     <NativeBaseProvider >
     <NavigationContainer>
     
-    <Stack.Navigator initialRouteName="Notess">
+    <Stack.Navigator initialRouteName="Home">
      <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}  />
+     <Stack.Screen name="see1" component={seeAllTeachers} options={{headerShown:false}}  />
      <Stack.Screen name="Login" component={Login} options={{headerShown:false}}  /> 
      <Stack.Screen name="SignUp" component={SignUp} options={{headerShown:false}}/> 
      <Stack.Screen name="Inscription" component={Inscription} options={{headerShown:false}} />
@@ -83,12 +86,9 @@ export default function App() {
      <Stack.Screen name="CheckOut" component={CheckOut} options={{headerShown:false}}  />        
      <Stack.Screen name="PaymentMethod" component={PaymentMethod} options={{headerShown:false}}  />
      <Stack.Screen name="Conv" component={ConversationView} options={{headerShown:false}}  />
-
-
-
-
+     <Stack.Screen name="Chat2" component={Chat2}  options={{headerShown:false}} ></Stack.Screen>
     </Stack.Navigator>
-    <Navbar /> 
+    {/* <Navbar />  */}
     </NavigationContainer>
     </NativeBaseProvider>
     </MyProvider>

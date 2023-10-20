@@ -13,13 +13,11 @@ const pool = mysql.createPool({
   database: 'school',
 });
 
-function get(req,res){
+
+function getUsers(req,res){
   User.getAll((err,result)=>{
-    if(err){
-      res.status(404).send(err)
-    }else if(result){
-      res.status(200).send(result)
-    }
+    if(err) res.status(500).send(err)
+    else res.status(200).json(result)
   })
 }
 
@@ -88,12 +86,7 @@ function register(req, res) {
   });
 }
 
-function getAll (callback) {
-  const sql = 'SELECT * FROM users'
-  conn.query(sql,  (err, results) =>{
-    callback(err, results)
-  });
-}
+
 
 
 const sendEmail = (req, res) => {
@@ -152,6 +145,8 @@ function updateUserPassword(newPassword,userId) {
 
 module.exports = { login , 
   register,
-  getAll,sendEmail,  updateUserPassword
+  getUsers,
+  sendEmail,
+  updateUserPassword
 
  };

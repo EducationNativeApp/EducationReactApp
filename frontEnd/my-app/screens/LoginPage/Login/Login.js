@@ -5,7 +5,7 @@ import Navbar from "../../Navbar/Navbar";
 import axios from 'axios'
 import { useContext } from "react";
 import { MyContext } from "../../../useContext/useContext";
-
+import { SafeAreaView } from "react-native-safe-area-context";
 
 function Login({navigation}) {
   const { isDarkMode,setMode } = useContext(MyContext);
@@ -15,7 +15,7 @@ function Login({navigation}) {
   const [data,setData]=useState([])
 const handleLog=(e)=>{
 e.preventDefault()
-    axios.post(`http://192.168.1.177:3001/user/login`,{
+    axios.post(`http://192.168.104.6:3000/user/login`,{
       email,
       password,
     }).then((res)=>{
@@ -38,7 +38,8 @@ e.preventDefault()
 }
   return (
     <View style={[styles.container,{ backgroundColor: theme.backgroundColor }]}>
-
+       
+ 
     <Image
     style={{width:40,
     height:40,
@@ -63,7 +64,7 @@ e.preventDefault()
 <Text style={styleed.text1}
 onPress={()=>{ navigation.navigate("SignUp")}}>Sign up Now</Text>
  </View>
- 
+
   )
 }
 const styles = StyleSheet.create({

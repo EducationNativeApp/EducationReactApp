@@ -57,7 +57,7 @@ const sendPrivateMessage = () => {
 
 
     const startChat=()=>{
-      socket.emit("join",{userId:usersId, TeachrId:recipientId}, (idchatFromserver)=>{
+      socket.emit("join",{usersId, TeachrId}, (idchatFromserver)=>{
         setIdChat(idchatFromserver)
       })
     }

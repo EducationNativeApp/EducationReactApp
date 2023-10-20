@@ -5,10 +5,12 @@ const MyContext = createContext();
 const MyProvider = ({ children }) => {
   const [isDarkMode,setMode] = useState(false);
   const [Class,setClass]=useState('')
-  const [idusers,setUsersID]=useState(null)
+  const [bra,setbra]=useState(false)
+  const [usersId,setUsersId]=useState(null)
   const[teachersId,setTeachersId]=useState(null)
+  
   return (
-    <MyContext.Provider value={{ isDarkMode,setMode,Class,setClass,usersId,setUsersID,teachersId,setTeachersId }}>
+    <MyContext.Provider value={{isDarkMode,setMode,Class,setClass,usersId,setUsersId,teachersId,setTeachersId,bra,setbra }}>
       {children}
     </MyContext.Provider>
   );

@@ -44,18 +44,6 @@ DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
--- Table `harmony`.`subject`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `harmony`.`subject` (
-  `idsubject` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(95) NOT NULL,
-  PRIMARY KEY (`idsubject`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 16
-DEFAULT CHARACTER SET = utf8mb3;
-
-
--- -----------------------------------------------------
 -- Table `harmony`.`teachers`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `harmony`.`teachers` (
@@ -66,19 +54,14 @@ CREATE TABLE IF NOT EXISTS `harmony`.`teachers` (
   `image` LONGTEXT NOT NULL,
   `number` INT NOT NULL,
   `admin_idadmin` INT NOT NULL,
-  `class` VARCHAR(45) NOT NULL,
-  `subject_idsubject` INT NOT NULL,
+  `teacher_of` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idteacher`),
   INDEX `fk_teachers_admin1_idx` (`admin_idadmin` ASC) VISIBLE,
-  INDEX `fk_teachers_subject1_idx` (`subject_idsubject` ASC) VISIBLE,
   CONSTRAINT `fk_teachers_admin1`
     FOREIGN KEY (`admin_idadmin`)
-    REFERENCES `harmony`.`admin` (`idadmin`),
-  CONSTRAINT `fk_teachers_subject1`
-    FOREIGN KEY (`subject_idsubject`)
-    REFERENCES `harmony`.`subject` (`idsubject`))
+    REFERENCES `harmony`.`admin` (`idadmin`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 8
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -94,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `harmony`.`users` (
   `Number` INT NOT NULL,
   PRIMARY KEY (`idusers`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 7
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -156,6 +139,27 @@ CREATE TABLE IF NOT EXISTS `harmony`.`messages` (
   CONSTRAINT `fk_messages_chat1`
     FOREIGN KEY (`chat_idchat`)
     REFERENCES `harmony`.`chat` (`idchat`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `harmony`.`subject`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `harmony`.`subject` (
+  `idsubject` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(95) NOT NULL,
+  `classes_idclasses` INT NOT NULL,
+  `teachers_idteacher` INT NOT NULL,
+  PRIMARY KEY (`idsubject`),
+  INDEX `fk_subject_classes1_idx` (`classes_idclasses` ASC) VISIBLE,
+  INDEX `fk_subject_teachers1_idx` (`teachers_idteacher` ASC) VISIBLE,
+  CONSTRAINT `fk_subject_classes1`
+    FOREIGN KEY (`classes_idclasses`)
+    REFERENCES `harmony`.`classes` (`idclasses`),
+  CONSTRAINT `fk_subject_teachers1`
+    FOREIGN KEY (`teachers_idteacher`)
+    REFERENCES `harmony`.`teachers` (`idteacher`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
@@ -223,7 +227,7 @@ CREATE TABLE IF NOT EXISTS `harmony`.`student` (
     FOREIGN KEY (`users_idusers`)
     REFERENCES `harmony`.`users` (`idusers`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 9
+AUTO_INCREMENT = 14
 DEFAULT CHARACTER SET = utf8mb3;
 
 
