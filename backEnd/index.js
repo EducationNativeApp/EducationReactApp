@@ -150,37 +150,7 @@ function generateResetToken(userId) {
 }
 
 // Route to reset password
-app.post('/reset-password/:token', (req, res) => {
-  const { newPassword, confirmNewPassword } = req.body;
-  const resetToken = req.headers.token;
 
-  if (!newPassword || !confirmNewPassword) {
-    return res.status(400).json({ message: 'All fields are required' });
-  }
-
-  if (newPassword !== confirmNewPassword) {
-    return res.status(400).json({ message: 'Passwords do not match' });
-  }
-
-  if (resetTokens.has(resetToken)) {
-    const userId = getUserIdFromResetToken(resetToken);
-
-    
-    console.log(`Password updated for user (using reset token)`);
-    res.status(200).json({ message: 'Password updated successfully' });
-  } else {
-    res.status(400).json({ message: 'Invalid reset token' });
-  }
-});
-
-function getUserIdFromResetToken(token) {
-  try {
-    const decoded = jwt.verify(token, SECRET_KEY);
-    return decoded.user.id;
-  } catch (error) {
-    return null;
-  }
-}
 
 
 app.put('/reset-password/:userId',(req, res) => {

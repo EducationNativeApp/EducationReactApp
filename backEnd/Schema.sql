@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `harmony`.`teachers` (
   `image` LONGTEXT NOT NULL,
   `number` INT NOT NULL,
   `admin_idadmin` INT NOT NULL,
-  `class` VARCHAR(45) NOT NULL,
+  `className` VARCHAR(45) NOT NULL,
   `subject_idsubject` INT NOT NULL,
   PRIMARY KEY (`idteacher`),
   INDEX `fk_teachers_admin1_idx` (`admin_idadmin` ASC) VISIBLE,
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `harmony`.`users` (
   `Number` INT NOT NULL,
   PRIMARY KEY (`idusers`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 30
+AUTO_INCREMENT = 31
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -210,7 +210,8 @@ CREATE TABLE IF NOT EXISTS `harmony`.`student` (
   `First_name` VARCHAR(45) NOT NULL,
   `LastName` VARCHAR(45) NOT NULL,
   `Birthday` DATE NOT NULL,
-  `class` VARCHAR(85) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `section` VARCHAR(85) NOT NULL,
   `image` LONGTEXT NOT NULL,
   `users_idusers` INT NOT NULL,
   `classes_idclasses` INT NOT NULL,
@@ -225,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `harmony`.`student` (
     FOREIGN KEY (`users_idusers`)
     REFERENCES `harmony`.`users` (`idusers`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 36
+AUTO_INCREMENT = 50
 DEFAULT CHARACTER SET = utf8mb3;
 
 

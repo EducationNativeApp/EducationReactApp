@@ -26,7 +26,7 @@ export default function ResetPasswordScreen({navigation}) {
       body: JSON.stringify({ newPassword, confirmNewPassword }),
     };
 
-    fetch(`http://192.168.104.4:3001/reset-password/${userId}`, requestOptions)
+    fetch(`http://192.168.1.5:3001/reset-password/${userId}`, requestOptions)
       .then((response) => {
         if (response.ok) {
           return response.json();

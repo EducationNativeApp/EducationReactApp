@@ -48,7 +48,7 @@ const Inscription = ({ navigation }) => {
   const handle = () => {
     AsyncStorage.getItem("userId");
     axios
-      .post(`http://${ADRESS_API}:3001/student/add`, {
+      .post(`http://192.168.1.5:3001/student/add`, {
         First_name,
         LastName,
         Birthday,
