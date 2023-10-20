@@ -1,2 +1,1 @@
-const wess= '192.168.101.18'
-export default wess
+export default 'http://192.168.1.5:3001'

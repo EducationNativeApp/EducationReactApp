@@ -1,12 +1,11 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState } from "react";
 
 const MyContext = createContext();
 
 const MyProvider = ({ children }) => {
   const [isDarkMode,setMode] = useState(false);
   const [Class,setClass]=useState('')
-  const [bra,setbra]=useState(false)
-  const [usersId,setUsersId]=useState(null)
+  const [usersId,setUsersID]=useState(null)
   const[teachersId,setTeachersId]=useState(null)
   
   return (

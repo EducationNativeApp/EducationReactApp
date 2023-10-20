@@ -67,28 +67,24 @@ function createUser(username, password, email, Birthday, Number, callback) {
 
 
 
-const updateUserPassword = (email, password, callback) => {
-  const salt = bcrypt.genSaltSync(10)
-  const hash = bcrypt.hashSync(password, salt)
-
-  const sql = 'UPDATE users SET password = ? WHERE email = ?';
-
-  conn.query(sql, [hash, email], (err, result) => {
+function updateNewProfile(username, email, password, idusers, callback) {
+  const query = "UPDATE users SET username = ?, email = ?, password = ? WHERE idusers = ?";
+  conn.query(query, [username, email, password, idusers], (err, results) => {
     if (err) {
-      callback(err, null);
-    } else if (result.affectedRows === 0) {
-      callback(null, false)
+      console.error("Error updating user profile: " + err);
+      callback(err);
     } else {
-      callback(null, true)
+      callback(null, results);
     }
   });
-};
+}
 
 
   module.exports = { 
     findByEmail,
     createUser,
     updateUserPassword,
-    getAll
+    getAll,
+    updateNewProfile
  };
   

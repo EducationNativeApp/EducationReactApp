@@ -29,6 +29,8 @@ const StudRoute= require('./routes/notes')
 
 const { update } = require('./controllers/EditProfile')
 const { updateUserPassword } = require('../backEnd/controllers/users');
+const mg = require('nodemailer-mailgun-transport'); // or any other transport method
+
 
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
@@ -216,38 +218,8 @@ function generateResetToken(userId) {
   return jwt.sign(payload, SECRET_KEY, { expiresIn: '1h' });
 }
 
+// Route to reset password
 
-app.post('/reset-password/:token', (req, res) => {
-  const { newPassword, confirmNewPassword } = req.body;
-  const resetToken = req.headers.token;
-
-  if (!newPassword || !confirmNewPassword) {
-    return res.status(400).json({ message: 'All fields are required' });
-  }
-
-  if (newPassword !== confirmNewPassword) {
-    return res.status(400).json({ message: 'Passwords do not match' });
-  }
-
-  if (resetTokens.has(resetToken)) {
-    const userId = getUserIdFromResetToken(resetToken);
-
-    
-    console.log(`Password updated for user (using reset token)`);
-    res.status(200).json({ message: 'Password updated successfully' });
-  } else {
-    res.status(400).json({ message: 'Invalid reset token' });
-  }
-});
-
-function getUserIdFromResetToken(token) {
-  try {
-    const decoded = jwt.verify(token, SECRET_KEY);
-    return decoded.user.id;
-  } catch (error) {
-    return null;
-  }
-}
 
 
 app.put('/reset-password/:userId',(req, res) => {
@@ -276,3 +248,225 @@ server.listen(3000, () => {
   console.log('listening on *:3000');
 });
 
+
+
+
+//contact us using nodemailer 
+
+
+app.post('/contactUs', (req, res) => {
+  const { first_name , phone_number , email , message } = req.body;
+
+  if (!first_name || !phone_number || !email || !message  ) {
+    return res.status(400).json({ message: ' you need to put all the information' });
+  }
+
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    port:465,
+    secure:true,
+    logger:true,
+    debug:true,
+    secureConnection:false,
+    auth:{
+      user:"oubaidbensaid18910@gmail.com",
+      pass:"jyuk kkny txpk epba "
+    },
+    tls:{
+      rejectUnauthorized:true
+    }
+  });
+
+  const mailOptions = {
+    from: 'oubaidbensaid18@gmail.com',
+    to: email,
+    subject: 'school',
+    html: `
+        <html>
+            <body>
+                <p><strong>Message from ${first_name}</strong></p>
+                <p><strong>phone number ${phone_number}</strong></p>
+
+                <p>${message}</p>
+            </body>
+        </html>
+    `
+};
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error('Error sending email:', error);
+      res.status(500).json({ message: 'Failed to send a message' });
+    } else {
+      console.log('Email sent:', info.response);
+      res.status(200).json({ message: 'your message is send successfully' });
+    }
+  });
+});
+
+
+
+app.post('/calender', (req, res) => {
+  const { image  , email } = req.body;
+
+  if ( !email   ) {
+    return res.status(400).json({ message: 'You need to provide an email address' });
+  }
+
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    port:465,
+    secure:true,
+    logger:true,
+    debug:true,
+    secureConnection:false,
+    auth:{
+      user:"oubaidbensaid18910@gmail.com",
+      pass:"jyuk kkny txpk epba "
+    },
+    tls:{
+      rejectUnauthorized:true
+    }
+  });
+
+  const mailOptions = {
+    from: 'oubaidbensaid18@gmail.com',
+    to: email,
+    subject: 'school',
+    html: `
+        <html>
+            <body>
+                <p><strong>absent date ${image}</strong></p>
+
+            </body>
+        </html>
+    `,
+    date: new Date().toUTCString() 
+
+};
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error('Error sending email:', error);
+      res.status(500).json({ message: 'Failed to send a message' });
+    } else {
+      console.log('Email sent:', info.response);
+      res.status(200).json({ message: 'your message is send successfully' });
+    }
+  });
+});
+
+
+const port = process.env.PORT || 2023; 
+app.listen(port, () => {
+    console.log(`Server connected on port ${port}`);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//const CLIENT_ID = "269394138802-7d0vaf1cq2nh8tqqipujdd27plsri8t8.apps.googleusercontent.com"
+// const CLIENT_SECRET = "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";
+// const REDIRECT_URI = "https://developers.google.com/oauthplayground";
+// const REFRESH_TOKEN = "1//04Tq0ie_KxFuCCgYIARAAGAQSNwF-L9Irp-uftta6x36cYuWPk2Io4ZaQ7-Oi1UW_6Fdx8d3EIw27QC_sosOGS0wEUswIMSgLX2A";
+// const oAuth2Client = new OAuth2(
+//   CLIENT_ID,
+//   CLIENT_SECRET,
+//   REDIRECT_URI
+// );
+// oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
+// const transporter = nodemailer.createTransport({
+//   service: "gmail",
+//   auth: {
+//     type: "OAuth2",
+//     user: "medb0748@gmail.com",
+//     clientId: CLIENT_ID,
+//     clientSecret: CLIENT_SECRET,
+//     refreshToken: REFRESH_TOKEN,
+//     // accessToken: oAuth2Client.getAccessToken(),
+    
+//   },
+// });
+
+// const verificationCodeMap = new Map();
+
+// app.post("/forget-password-email", async (req, res) => {
+//   const { email } = req.body;
+//   getAll((err, users) => {
+//     if (err) {
+//       res.status(500).json(err);
+//     } else {
+      
+//       const user = users.find((user) => user.user_email === email);
+//       if (!user) {
+//         res.status(400).send("Email not found");
+//         return;
+//       }
+
+//       const verificationCode = Math.floor(100000 + Math.random() * 900000);
+//       const mailOptions = {
+//         from: "assilelabed1993@gmail.com",
+//         to: email,
+//         subject: "Reset Password Code",
+//         text: `Your reset password code is ${verificationCode}`,
+//       };
+
+//       transporter.sendMail(mailOptions, (error, info) => {
+//         if (error) {
+//           console.log(error);
+//           res.status(500).send(error);
+//         } else {
+//           console.log("Email sent: " + info.response);
+//           res.status(200).json("Email sent successfully");
+//           verificationCodeMap.set(email, verificationCode);
+//           console.log("Verification code for", email, "is", verificationCode);
+//         }
+//       });
+//     }
+//   });
+// });
+
+
+
+
+// app.post("/verify-code", (req, res) => {
+//   const { email, code } = req.body;
+//   console.log("email:", email);
+//   console.log("code:",typeof(Number(code)));
+//   const verificationCode = verificationCodeMap.get(email);
+//   console.log("verificationCode:",typeof(verificationCode) );
+//   if (verificationCode == Number(code)) {
+//     res.status(200).json("Code verified successfully");
+//   } else {
+//     res.status(400).json("Invalid code");
+//   }
+// });

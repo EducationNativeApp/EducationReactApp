@@ -1,21 +1,25 @@
-import {StyleSheet, Text , View , TextInput ,Button, Image } from "react-native"
+import { StyleSheet, Text, View, TextInput, Button, Image } from "react-native";
 import { useEffect, useState } from "react";
-import {lightTheme, darkTheme} from '../../../Theme/Theme'
+import { lightTheme, darkTheme } from "../../../Theme/Theme";
 import Navbar from "../../Navbar/Navbar";
-import axios from 'axios'
+import axios from "axios";
 import { useContext } from "react";
 import { MyContext } from "../../../useContext/useContext";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-function Login({navigation}) {
-  const { isDarkMode,setMode } = useContext(MyContext);
+function Login({ navigation }) {
+  const { isDarkMode, setMode, setUser } = useContext(MyContext);
   const theme = isDarkMode ? darkTheme : lightTheme;
   const [email,setEmail]=useState('')
   const [password , setPassword]=useState('')
   const [data,setData]=useState([])
 const handleLog=(e)=>{
 e.preventDefault()
+<<<<<<< HEAD
     axios.post(`http://192.168.104.6:3000/user/login`,{
+=======
+    axios.post(`http://192.168.1.5:3001/user/login`,{
+>>>>>>> e5db27b62bf22760f4df41a31280a4a54e0fac3d
       email,
       password,
     }).then((res)=>{
@@ -44,19 +48,43 @@ e.preventDefault()
     style={{width:40,
     height:40,
     marginLeft:5,
+    top:"-4%"
   }}
   source={{uri:'https://images.vexels.com/media/users/3/224233/isolated/preview/d5ee0e9c87bb54cf867d7fb89c4570b8-online-education-logo.png'}} />
-    <Text style={{marginTop:"1%", color:"#8A0886"}}>Welcome Back</Text>
-    <Text style={{marginTop:"1.5%",color:"#8A0886"}}>Login to continue</Text>
-    <TextInput placeholder="Email" onChangeText={setEmail} style={{backgroundColor:"#F2F2F2",borderWidth:1,borderColor:"#A901DB" ,marginTop:"5%" , height:"10%", width:"80%" , borderRadius:7.69}} />
-   <Text style={{marginLeft:"-53%", marginTop:"8%",color:"#A901DB"}}>Password</Text>
-    <TextInput  onChangeText={setPassword} placeholder="password"  secureTextEntry={true}  style={{borderColor:"#A901DB",backgroundColor:"#F2F2F2",borderWidth:1 ,marginTop:"5%" , height:"10%", width:"80%" , borderRadius:7.69 }} />
-    <Text style={{marginLeft:"39%",marginTop:"5%",color:"#A901DB"}} onPress={()=>{navigation.navigate("FindEmail")}}>Forgot Password ?</Text>
+    <Text style={{marginTop:"2%", color: "rgba(0, 0, 0, 1)"  ,  fontWeight: "700"}}>Welcome Back</Text>
+    <Text style={{marginTop:"1.5%", color: "rgba(0, 0, 0, 1)"  ,  fontWeight: "400"}}>Login to continue</Text>
+
+    <Text   style={{left:"-35%", top:"3%", color: "rgba(0, 0, 0, 1)"  ,  fontWeight: "500"}}> Email</Text>
+    <TextInput  onChangeText={setEmail} style={{borderColor: "#66328E",
+    backgroundColor: "#F2F2F2",
+    top: "3%",
+    height: "10%",
+    width: "80%",
+    marginTop: "5%",
+    backgroundColor: "rgba(248, 240, 240, 1)",
+    borderWidth: 1,
+    borderColor: "rgba(102, 50, 142, 1)",
+    borderRadius: 7.681159973144531,
+  }} />
+   <Text style={{marginLeft:"-63%", marginTop:"12%",color:"rgba(0, 0, 0, 1)"  ,  fontWeight: "500"}}>Password</Text>
+    <TextInput  onChangeText={setPassword}   secureTextEntry={true}  style={{borderColor: "#66328E",
+    backgroundColor: "#F2F2F2",
+    marginTop: "10%",
+    height: "10%",
+    width: "80%",
+    marginTop: "5%",
+    backgroundColor: "rgba(248, 240, 240, 1)",
+    borderWidth: 1,
+    borderColor: "rgba(102, 50, 142, 1)",
+    borderRadius: 7.681159973144531 }} />
+    <Text style={{marginLeft:"39%",marginTop:"5%",color: "rgba(0, 0, 0, 1)",
+    fontWeight: "500"}} onPress={()=>{navigation.navigate("FindEmail")}}>Forgot Password ?</Text>
     {/* <Button onPress={handleClick}
   title="LOG IN"
     color={"red"}
 /> */}
 
+<<<<<<< HEAD
 <View  style={styled.btn}>
   <Text  style={styled.Log} onPress={(e) => handleLog(e)}>LOG IN</Text>
 </View>
@@ -66,23 +94,41 @@ onPress={()=>{ navigation.navigate("SignUp")}}>Sign up Now</Text>
  </View>
 
   )
+=======
+      <View style={styled.btn}>
+        <Text style={styled.Log} onPress={(e) => handleLog(e)}>
+          LOG IN
+        </Text>
+      </View>
+      <Text style={[styled.text, { color: theme.textColor }]}>
+        Don't have an account?
+      </Text>
+      <Text
+        style={styleed.text1}
+        onPress={() => {
+          navigation.navigate("SignUp");
+        }}
+      >
+        Sign up Now
+      </Text>
+    </View>
+  );
+>>>>>>> e5db27b62bf22760f4df41a31280a4a54e0fac3d
 }
 const styles = StyleSheet.create({
-  container: {    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  container: { flex: 1, alignItems: "center", justifyContent: "center" },
 });
 const styled = StyleSheet.create({
   text: {
       marginLeft:"-30%",
       marginTop:"10%"
+      
   },btn:{
     marginTop:20,
     width:210,
     height:60,
     borderRadius:8,
-    backgroundColor:"#A901DB"
+    backgroundColor: "#66328E",
   },Log:{
     color:"#fff",
     marginLeft:80,
@@ -93,7 +139,8 @@ const styleed = StyleSheet.create({
   text1: {
       marginLeft:"45%",
       marginTop:"-5.5%",
-      color:"#A901DB"
+      color: "rgba(0, 0, 0, 1)",
+      fontWeight: "500"
   },
 });
-export default Login
+export default Login;
