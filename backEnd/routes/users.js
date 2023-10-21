@@ -5,7 +5,7 @@ const { login, register, getUsers, sendEmail ,update } = require('../controllers
 router.post('/login', login);
 router.post('/register',register)
 router.put('/changePassword',sendEmail)
-router.patch('/edit/:idusers', update); 
+router.put('/edit/:idusers', update); 
 router.get("/getAll",getUsers)
 
 

@@ -18,6 +18,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import ADRESS_API from "../../serverUrl";
 
 const Inscription = ({ navigation }) => {
+  
   const { user } = useContext(MyContext);
   const [First_name, setFirstName] = useState("");
   const [LastName, setLastName] = useState("");
@@ -46,22 +47,30 @@ const Inscription = ({ navigation }) => {
   
 
   const handle = () => {
+    AsyncStorage.setItem("First_name", First_name);
+   AsyncStorage.setItem("LastName", LastName);
+   
     AsyncStorage.getItem("userId");
-    axios
-      .post(`http://192.168.1.5:3001/student/add`, {
-        First_name,
-        LastName,
-        Birthday,
-        image: "dfghjhgfds",
+    console.log(user)
+   axios.post(`http://192.168.1.25:2023/student/add`, {
+        First_name : First_name,
+        LastName : LastName,
+        Birthday : Birthday , 
+        image: "image",
         class: Class,
         users_idusers: user?.id,
         classes_idclasses: 1,
       })
       .then((res) => {
+
+        AsyncStorage.setItem('First_name', First_name);
+      AsyncStorage.setItem('LastName', LastName);
         alert("student added succesufully");
         navigation.navigate("Parent");
       })
+      
       .catch((err) => {
+        console.log(err)
         alert(err);
       });
   };

@@ -15,7 +15,7 @@ const TeacherDetail = () => {
 
   useEffect(() => {
     if (Class && subject) {
-      const apiUrl = `http://${ADRESS_API}:3001/teacher/getOneTeacher/${subject}/${Class}`;
+      const apiUrl = `http://192.168.1.25:2023/teacher/getOneTeacher/${subject}/${Class}`;
       console.log("apiurl****", apiUrl);
       // Fetch data from API
       axios

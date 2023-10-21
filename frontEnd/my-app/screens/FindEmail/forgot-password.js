@@ -1,76 +1,78 @@
 import {useEffect} from 'react';
-import { View, Text, ImageBackground, StyleSheet, TextInput } from 'react-native';
+import { View, Text, ImageBackground, StyleSheet, TextInput , TouchableOpacity, Alert } from 'react-native';
 import { Svg, Path, Defs, Pattern, Use, Image } from 'react-native-svg';
 import axios from 'axios';
 import { useState } from 'react';
+import ADRESS_API from "../serverUrl";
 
 
-export default function FindYourEmail({ navigation }) {
+
+export default function Findyouremail({ navigation }) {
   const [email, setEmail] = useState('');
-  const [extractedEmails, setExtractedEmails] = useState([]);
+  const [verificationCode, setVerificationCode] = useState('');
+  const [userData, setUserData] = useState(null);
+  const [userDataEmail, setUserDataEmail] = useState('');
 
-  const filterEmail = async () => {
+  const getAllUserData = async () => {
     try {
-      const response = await axios.get('http://192.168.1.25:2023/user/getAll');
-      const data = response.data;
-
-      if (typeof data === 'string') {
-        const emailRegex = /[\w._%+-]+@[\w.-]+\.[a-zA-Z]{2,4}/g;
-        const extractedEmails = data.match(emailRegex) || [];
-        setExtractedEmails(extractedEmails);
-        console.log('Extracted emails:', extractedEmails);
+      const response = await fetch('http://192.168.1.25:2023/user/getAll');
+      if (response.ok) {
+        const data = await response.json();
+        const emails = data.map(user => user.email);
+        setUserDataEmail(emails[0]); 
+        console.log('Emails:', emails);
       } else {
-        const dataString = JSON.stringify(data);
-        const emailRegex = /[\w._%+-]+@[\w.-]+\.[a-zA-Z]{2,4}/g;
-        const extractedEmails = dataString.match(emailRegex) || [];
-        setExtractedEmails(extractedEmails);
-        console.log('Extracted emails:', extractedEmails);
+        throw new Error('Network response was not ok');
       }
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error:', error);
     }
   };
 
   useEffect(() => {
-    filterEmail();
+    getAllUserData();
   }, []);
 
-  const handleSubmit = () => {
-    if (extractedEmails.includes(email)) {
-      const requestOptions = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ user_email: email }),
-      };
+  
 
-      fetch("http://192.168.1.25:2023/send-verification-code", requestOptions)
-        .then((data) => data.json())
-        .then((response) => {
-          if (response.success) {
-            alert('Verification code sent successfully to your Email');
-            navigation.navigate('Code');
+  const sendVerificationCode = async () => {
+    if (!email) {
+      console.error('Recipient email is required');
+      return;
+    }
+  
+    try {
+      const response = await fetch('http://192.168.1.25:2023/user/getAll');
+      if (response.ok) {
+        const data = await response.json();
+        const emails = data.map(user => user.email);
+  
+        if (emails.includes(email)) {
+          // Email is in the list obtained from getAllUserData
+          const response = await axios.post('http://192.168.1.25:2023/send-verification-code', {
+            email: email,
+          });
+  
+          if (response.status === 200) {
+            setVerificationCode(response.data.message);
+            Alert.alert('Verification code sent successfully');
+navigation.navigate("Code")
           } else {
-            console.error('Error sending verification code:', response.error);
-            alert('Error sending Verification code to your Email');
+            Alert.alert('Failed to send verification code');
           }
-        })
-        .catch((error) => {
-          console.error('Error sending verification code:', error);
-          alert('Error sending Verification code to your Email');
-        });
-    } else {
-      alert('Email not found. Please enter a valid email address.');
+        } else {
+          Alert.alert('Email does not match');
+        }
+      } else {
+        throw new Error('Network response was not ok');
+      }
+    } catch (error) {
+      console.error('Error:', error);
     }
   };
-  
-
 
   
-
-
-
+  
     return (
     		<View style={styles.findyouremail}>
             <View style={styles.container} >
@@ -87,12 +89,17 @@ export default function FindYourEmail({ navigation }) {
 <Path d="M20.5071 0.608643H2.07236C1.66493 0.608643 1.27418 0.770495 0.986085 1.05859C0.697985 1.34669 0.536133 1.73744 0.536133 2.14487V14.4347C0.536133 14.8422 0.697985 15.2329 0.986085 15.521C1.27418 15.8091 1.66493 15.971 2.07236 15.971H20.5071C20.9146 15.971 21.3053 15.8091 21.5934 15.521C21.8815 15.2329 22.0434 14.8422 22.0434 14.4347V2.14487C22.0434 1.73744 21.8815 1.34669 21.5934 1.05859C21.3053 0.770495 20.9146 0.608643 20.5071 0.608643ZM18.8173 2.14487L11.2898 7.3527L3.76222 2.14487H18.8173ZM2.07236 14.4347V2.84386L10.8519 8.91966C10.9805 9.00886 11.1333 9.05665 11.2898 9.05665C11.4462 9.05665 11.599 9.00886 11.7276 8.91966L20.5071 2.84386V14.4347H2.07236Z" fill="#66328E"/>
 </Svg>
 
+
+<View>
+</View>
+
+
         				</View>
         				<View    style={styles.loginbutton}>
                         
           					<View    
                     style={styles.rectangle2}/>
-          					<Text      onPress={handleSubmit} 
+          					<Text      onPress={()=>sendVerificationCode()} 
                     
                     style={styles.findyouraccount}>
             				 		{`Find your account`}

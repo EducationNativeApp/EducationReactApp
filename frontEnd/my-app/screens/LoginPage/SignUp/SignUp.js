@@ -52,7 +52,6 @@ const CreateAnAccount = ({navigation}) => {
   };
 
   const handleSignUp = () => {
-    
     const userData = {
       username,
       email,
@@ -60,36 +59,39 @@ const CreateAnAccount = ({navigation}) => {
       Birthday,
       Number,
     };
-    console.log(userData);
-axios.post (`http://192.168.101.10:2023/user/register`, userData)
-
+  
+    console.log('Sending data:', userData);
+  
+   fetch("http://192.168.1.25:2023/user/register", userData)
       .then((response) => {
-        console.log(response.data);
-
-        setName("");
-        setDateOfBirth("");
-        setPhoneNumber("");
-        setEmail("");
-        setPassword("");
-
-        // setUsersId(response.data.idusers);
-        // console.log("User ID:", response.data.idusers);
-        Alert.alert("Success", "Registration successful! You can now log in.");
-
-        navigation.navigate("Login");
+        console.log('Response:', response.data);
+  
+        setName('');
+        setDateOfBirth('');
+        setPhoneNumber('');
+        setEmail('');
+        setPassword('');
+  
+        Alert.alert('Success', 'Registration successful! You can now log in.');
+        navigation.navigate('Login');
       })
       .catch((error) => {
         console.error('Registration Error', error);
-        Alert.alert('Check your inputs');
+        Alert.alert('Check your inputs or network connection.');
       });
   };
 
-  const verify = () => {
-    if (password.length < 6) {
-      setIsError(!isError);
-      Alert.alert("make password than 6");
+  const verify = (password) => {
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const hasNumber = /\d/.test(password);
+
+    if (password.length !== 6 || !hasUppercase || !hasLowercase || !hasNumber) {
+      setIsError(true);
+      Alert.alert("Your password must be 6 characters long and must include an uppercase letter, a lowercase letter, and a number.");
     }
   };
+
 
   return (
     <ScrollView>
