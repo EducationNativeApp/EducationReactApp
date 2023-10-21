@@ -1,78 +1,136 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
-import { useContext } from "react";
-import { MyContext } from "../../useContext/useContext";
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 const Teacher = () => {
+  const navigation = useNavigation();
+
+  const handleNavigateToStudents = () => {
+    navigation.navigate('StudentClass');
+  };
+
+  //StudentClass
+
   return (
     <ScrollView>
-    <View style={styles.container}>
-      <View style={styles.homeDiv}>
-        <Text style={styles.homeText}>Home</Text>
+      <View style={styles.container}>
+        <View style={styles.homeDiv}>
+          <Text style={styles.homeText}></Text>
+        </View>
+
+        <View style={styles.imageContainer}>
+          <Image
+            style={{
+              height: 90,
+              width: 90,
+              marginLeft: -15,
+              top: 10,
+            }}
+            source={{ uri: 'https://www.learningprofessionals.af.mil/portals/87/Images/S2C%20Images/Article%20Image_1.png?ver=VSSxf_st2FKR3mLATXb3dQ%3D%3D' }}
+          />
+        </View>
+
+        <View style={styles.text}>
+          <Text style={{ color: '#66328E', left: -8, fontWeight: '900', fontSize: 16, top: -140, textAlign: 'center', marginTop: -20 }}>
+            Welcome Mr Houssem
+          </Text>
+        </View>
+
+        <View>
+          <View style={{ ...styles.imageContainer }}>
+            <View style={styles.imageTextWrapper}>
+            <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+
+              <Image
+                style={{
+                  height: 100,
+                  width: 100,
+                  marginLeft: -10,
+                  marginTop: 40,
+                }}
+                source={{
+                  uri: 'https://prod2-sprcdn-assets.sprinklr.com/50400/538cb2ba-4b9a-4111-b99f-e3e27828a816-239440336/Audience_Icon.png',
+                }}
+              />
+              <Text style={{ color: '#66328E', left: -5, fontWeight: '800', textAlign: 'center' }}>Profile</Text>
+              </TouchableOpacity>
+
+
+
+              
+            </View>
+            <View style={{ ...styles.imageTextWrapper, marginLeft: 30 }}>
+
+
+            <TouchableOpacity onPress={() => navigation.navigate('Notess')}>
+
+              <Image
+                style={{
+                  height: 100,
+                  width: 100,
+                  marginLeft: 19,
+                  marginTop: 29,
+                }}
+                source={{
+                  uri: 'https://cdn-icons-png.flaticon.com/512/2436/2436799.png',
+                }}
+              />
+              
+              <Text style={{ color: '#66328E', left: 2, fontWeight: '800', textAlign: 'center' }}>Notes</Text>
+              </TouchableOpacity>
+
+            </View>
+            
+          </View>
+
+          <View style={{ ...styles.imageContainer }}>
+            <TouchableOpacity style={styles.imageTextWrapper} onPress={handleNavigateToStudents}>
+              <Image
+                style={{
+                  height: 100,
+                  width: 100,
+                  marginLeft: 0,
+                  marginTop: 30,
+                }}
+                source={{
+                  uri: 'https://cdn-icons-png.flaticon.com/512/9583/9583531.png',
+                }}
+              />
+              <Text style={{ color: '#66328E', left: 0, fontWeight: '800', marginTop: -5, textAlign: 'center' }}>
+                Students
+              </Text>
+            </TouchableOpacity>
+            <View style={{ ...styles.imageTextWrapper, marginLeft: 30, marginTop: 25 }}>
+            <TouchableOpacity onPress={() => navigation.navigate('Contact')}>
+            <Image
+              source={require('../../../my-app/assets/contact.png')}
+              style={styles.imaged}
+            />
+            <Text style={{ color: '#66328E', fontWeight: '800', textAlign: 'center' }}>Contact Us</Text>
+          </TouchableOpacity>
+
+
+          <TouchableOpacity onPress={() => navigation.navigate('CalendarScreen')}>
+
+          <Image
+            style={{
+              height: 100,
+              width: 100,
+              marginLeft: -100,
+              marginTop: 40,
+            }}
+            source={{
+              uri: 'https://cdn-icons-png.flaticon.com/512/1869/1869397.png',
+            }}
+          />
+          <Text style={{ color: '#66328E', left: -75, fontWeight: '800', textAlign: 'center' }}>Calender</Text>
+          </TouchableOpacity>
+
+
+            </View>
+          </View>
+        </View>
       </View>
-
-      <View style={styles.imageContainer}>
-        <Image
-          source={require('../../../my-app/assets/profil.png')}
-          style={{ width: 80, height: 80 }}
-        />
-      </View>
-
-      <View style={styles.text}>
-        <Text style={{ color: '#66328E',fontSize:18 }}>Welcome Mr Houssem</Text>
-      </View>
-      <View style={{...styles.imageContainer   }} >
-  <View style={styles.imageTextWrapper}>
-    <Image
-      source={require('../../../my-app/assets/profil.png')}
-      style={styles.imaged}
-    />
-    <Text style={{ color: '#66328E',marginRight:25  }}>Profile</Text>
-  </View>
-  <View style={{ ...styles.imageTextWrapper, marginLeft: 30 }}>
-    <Image
-      source={require('../../../my-app/assets/inscri.png')}
-      style={styles.imaged}
-    />
-    <Text style={{ color: '#66328E',marginRight:25  }}>Modules</Text>
-  </View>
-</View>
-
-<View style={{...styles.imageContainer   }} >
-  <View style={styles.imageTextWrapper}>
-    <Image
-      source={require('../../../my-app/assets/exams.png')}
-      style={styles.imaged}
-    />
-    <Text style={{ color: '#66328E',marginRight:25 }}>Punishment</Text>
-  </View>
-  <View style={{ ...styles.imageTextWrapper, marginLeft: 30 }}>
-    <Image
-      source={require('../../../my-app/assets/teacher.png')}
-      style={styles.imaged}
-    />
-    <Text style={{ color: '#66328E',marginRight:25 }}>Notes</Text>
-  </View>
-</View>
-
-
-<View style={{...styles.imageContainer   }} >
-  <View style={styles.imageTextWrapper}>
-    <Image
-      source={require('../../../my-app/assets/student.png')}
-      style={styles.imaged}
-    />
-    <Text style={{ color: '#66328E',marginRight:25  }}>Students</Text>
-  </View>
-  <View style={{ ...styles.imageTextWrapper, marginLeft: 30 }}>
-    <Image
-      source={require('../../../my-app/assets/contact.png')}
-      style={styles.imaged}
-    />
-    <Text style={{ color: '#66328E',marginRight:25  }}>contact us</Text>
-  </View>
-</View>
-
-    </View>
     </ScrollView>
   );
 };
@@ -80,42 +138,44 @@ const Teacher = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8F0F0',
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    width: '100%',
-    paddingTop: 10,
+    width: '120%',
+    height:"120%",
+    paddingTop: 50,
+    marginLeft: -40,
+    height:900,
   },
   homeDiv: {
-    backgroundColor: '#F8F0F0',
+    backgroundColor: 'white',
     width: 312,
-    height: 50,
+    height: 100,
     marginLeft: 21,
-    marginTop: 40,
+    marginTop: 10, // Ajustez cette valeur pour aligner plus haut
   },
   homeText: {
     fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'left',
-    marginTop: 20,
     color: '#65328e',
   },
   imageContainer: {
-    marginTop: 20,
+    marginTop: 10, // Ajustez cette valeur pour aligner plus haut
     width: 100,
     height: 50,
-    marginLeft: 21, // Adjust the marginLeft to align the image with the "Home" text
+    marginLeft: 21,
   },
  
   text: {
-    marginLeft: 21, // Adjust marginLeft to align with the image and "Home" text
-    marginTop: 10, // Add margin-top to create some space between the image and "Create Account"
+    marginLeft: 25,
+    marginTop: 10,
   },
   imaged: {
-    width: 100, // Adjust the width and height to make them square
+    width: 100,
     height: 100,
-    borderRadius: 10, // Add border radius for rounded corners
-    margin: 10, // Add margin for spacing between images
+    borderRadius: 10,
+    margin: 10,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -126,14 +186,13 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   imageContainer: {
-    flexDirection: 'row', // Arrange the images and text horizontally
-    justifyContent: 'space-between', // Add space between the images
-    marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10, // Ajustez cette valeur pour aligner plus haut
     marginLeft: 21,
   },
   imageTextWrapper: {
     alignItems: 'center',
-   // Center items (image and text) vertically
   },
   imaged: {
     width: 80,
@@ -146,8 +205,6 @@ const styles = StyleSheet.create({
       height: 2,
     },
   }
-  
-
 });
 
 export default Teacher;

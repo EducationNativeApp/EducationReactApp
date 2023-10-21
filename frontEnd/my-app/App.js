@@ -40,7 +40,7 @@ import PaymentMethod from "./screens/Payement/ReviewOrder";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NativeBaseProvider } from 'native-base';
 import { NavigationContainer } from '@react-navigation/native';
-import {MyProvider} from '../my-app/useContext/useContext'; 
+import {MyProvider } from '../my-app/useContext/useContext'; 
  import Login from './screens/LoginPage/Login/Login'
 import SignUp from './screens/LoginPage/SignUp/SignUp';
 import Profile from './screens/Profile/Profile/Profile'
@@ -57,7 +57,7 @@ import Payement from './screens/Payement/Payement';
 import Options from './screens/Options/Options';
 import Student from './screens/Student/Student';
 import Contact from './screens/Contact/Contact';
-import Notes from './screens/Notes/Notes';
+import Notes from './screens/Note/notes';
 import Arabic from './screens/Modules/ModuleArabic';
 import Frensh from './screens/Modules/ModuleFrensh';
 import English from './screens/Modules/ModuleEnglish';
@@ -75,6 +75,18 @@ import CheckOut from './screens/Payement/CheckOut';
 import ReviewOrder from  './screens/Payement/ReviewOrder';
 import PaymentMethod from './screens/Payement/ReviewOrder';
 import CalendarScreen from './screens/MyCalender/CalendarScreen';
+import StudentClass from './screens/Teacher/StudentClass';
+import DataStudent1 from './screens/Teacher/DataStudent1';
+import DataStudent2 from './screens/Teacher/DataStudent2';
+import DataStudent3 from './screens/Teacher/DataStudent3';
+import DataStudent4 from './screens/Teacher/DataStudent4';
+import DataStudent5 from './screens/Teacher/DataStudent5';
+import DataStudent6 from './screens/Teacher/DataStudent6';
+
+import ConversationView from "./screens/Chat/Conv";
+import Notess from './screens/Notes/Notess'
+import CalenderParent from './CalenderParent/CalenderParent';
+
 
 const Stack = createNativeStackNavigator()
 >>>>>>> origin/main
@@ -255,9 +267,15 @@ export default function App() {
 =======
     <NativeBaseProvider >
     <NavigationContainer>
-    
     <Stack.Navigator initialRouteName="Login">
      <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}  />
+     <Stack.Screen name="StudentClass" component={StudentClass} options={{headerShown:false}}  />
+     <Stack.Screen name="DataStudent1" component={DataStudent1} options={{headerShown:false}}  />
+     <Stack.Screen name="DataStudent2" component={DataStudent2} options={{headerShown:false}}  />
+     <Stack.Screen name="DataStudent3" component={DataStudent3} options={{headerShown:false}}  />
+     <Stack.Screen name="DataStudent4" component={DataStudent4} options={{headerShown:false}}  />
+     <Stack.Screen name="DataStudent5" component={DataStudent5} options={{headerShown:false}}  />
+     <Stack.Screen name="DataStudent6" component={DataStudent6} options={{headerShown:false}}  />
      <Stack.Screen name="Login" component={Login} options={{headerShown:false}}  /> 
      <Stack.Screen name="SignUp" component={SignUp} options={{headerShown:false}}/> 
      <Stack.Screen name="Inscription" component={Inscription} options={{headerShown:false}} />
@@ -273,6 +291,7 @@ export default function App() {
     <Stack.Screen name="Payement" component={Payement} options={{headerShown:false}} />
     <Stack.Screen name="Student" component={Student} options={{headerShown:false}} /> 
     <Stack.Screen name="Notes" component={Notes} options={{headerShown:false}} />
+    <Stack.Screen name="Notess" component={Notess} options={{headerShown:false}} />
     <Stack.Screen name="Contact" component={Contact} options={{headerShown:false}} /> 
     <Stack.Screen name="ModuleEnglish" component={English} options={{headerShown:false}} /> 
     <Stack.Screen name="ModuleFrensh" component={Frensh} options={{headerShown:false}} />
@@ -289,7 +308,12 @@ export default function App() {
     <Stack.Screen name="ReviewOrder" component={ReviewOrder} options={{headerShown:false}}  />  
      <Stack.Screen name="CheckOut" component={CheckOut} options={{headerShown:false}}  />        
      <Stack.Screen name="PaymentMethod" component={PaymentMethod} options={{headerShown:false}}  />
-     <Stack.Screen name="CalendarScreen" component={CalendarScreen}  options={{headerShown:false}} ></Stack.Screen>
+    
+     <Stack.Screen name="CalenderParent" component={CalenderParent} options={{headerShown:false}}  />
+
+     
+     <Stack.Screen name="CalendarScreen" component={CalendarScreen} options={{ headerShown: false }} />
+     <Stack.Screen name="Conv" component={ConversationView} options={{headerShown:false}}  />
 
 
 

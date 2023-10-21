@@ -7,7 +7,11 @@ const Parent = () => {
 const navigation = useNavigation();
   
 const handleImageClick = () => {
-    navigation.navigate("Profile")
+  
+    navigation.navigate("Profile",{
+
+      
+    })
   };
 
   const handleImageClick1 = () => {
@@ -48,7 +52,7 @@ const handleImageClick = () => {
     <ScrollView>
     <View style={styles.container}>
       <View style={styles.homeDiv}>
-        <Text style={styles.homeText}>Home</Text>
+        <Text style={styles.homeText}></Text>
       </View>
        <Image
     source={require('../../../my-app/assets/profil.png')}
@@ -56,7 +60,8 @@ const handleImageClick = () => {
    
    />
     <View style={styles.text}>
-        <Text style={{ color: '#66328E',fontSize:18 }}>Welcome Mr Houssem</Text>
+        <Text style={{ color: '#66328E',fontSize:18  ,  fontWeight:"900",
+      }}>Welcome Mr Houssem</Text>
       </View>
       <View style={{...styles.imageContainer   }} >
   <View style={styles.imageTextWrapper}>
@@ -67,7 +72,7 @@ const handleImageClick = () => {
       
     />
     </TouchableOpacity>
-    <Text style={{ color: '#66328E',marginRight:25  }}
+    <Text style={{ color: '#66328E',marginRight:25  , fontWeight:"800" , left:8 }}
    >Profile</Text>
   </View>
   <TouchableOpacity onPress={handleImageClick1}>
@@ -77,7 +82,7 @@ const handleImageClick = () => {
       style={styles.imaged}
       
     />
-    <Text style={{ color: '#66328E',marginRight:25  }}>Inscription</Text>
+    <Text style={{ color: '#66328E',marginRight:25  , left:5 ,  fontWeight:"800" }}>Inscription</Text>
   </View>
   </TouchableOpacity>
 </View>
@@ -91,7 +96,7 @@ const handleImageClick = () => {
       
     />
     </TouchableOpacity>
-    <Text style={{ color: '#66328E',marginRight:25 }}>Modules</Text>
+    <Text style={{ color: '#66328E',left:0 , fontWeight:"800" }}>Modules</Text>
   </View>
   <View style={{ ...styles.imageTextWrapper, marginLeft: 30 }}>
   <TouchableOpacity onPress={handleImageClick3}>
@@ -101,7 +106,7 @@ const handleImageClick = () => {
       
     />
     </TouchableOpacity>
-    <Text style={{ color: '#66328E',marginRight:25 }}>Teacher</Text>
+    <Text style={{ color: '#66328E',left:0 , fontWeight:"800"}}>Teacher</Text>
   
   </View>
 </View>
@@ -115,7 +120,7 @@ const handleImageClick = () => {
       style={styles.imaged}
     />
     </TouchableOpacity>
-    <Text style={{ color: '#66328E',marginRight:25  }}>Student</Text>
+    <Text style={{ color: '#66328E',left:0 , fontWeight:"800"  }}>Student</Text>
   </View>
   <View style={{ ...styles.imageTextWrapper, marginLeft: 30 }}>
   <TouchableOpacity onPress={handleImageClick5}>
@@ -125,7 +130,7 @@ const handleImageClick = () => {
      
     />
     </TouchableOpacity>
-    <Text style={{ color: '#66328E',marginRight:25  }}>Options</Text>
+    <Text style={{ color: '#66328E',left:0 , fontWeight:"800"  }}>Options</Text>
   </View>
 </View>
 
@@ -138,7 +143,7 @@ const handleImageClick = () => {
       
     />
     </TouchableOpacity>
-    <Text style={{ color: '#66328E',marginRight:25 }}>Payement</Text>
+    <Text style={{ color: '#66328E',left:0 , fontWeight:"800" }}>Payement</Text>
   </View>
   <View style={{ ...styles.imageTextWrapper, marginLeft: 30 }}>
   <TouchableOpacity onPress={handleImageClick7}>
@@ -148,7 +153,7 @@ const handleImageClick = () => {
 
     />
     </TouchableOpacity>
-    <Text style={{ color: '#66328E',marginRight:25 }}>Notes</Text>
+    <Text style={{ color: '#66328E',left:0 , fontWeight:"800"  }}>Notes</Text>
   </View>
 </View>
 
@@ -160,7 +165,7 @@ const handleImageClick = () => {
       
     />
     </TouchableOpacity>
-    <Text style={{ color: '#66328E',marginRight:25 }}>Contact us</Text>
+    <Text style={{ color: '#66328E',left:0 , fontWeight:"800"  }}>Contact us</Text>
   </View>
 
     </View>
@@ -171,18 +176,16 @@ const handleImageClick = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8F0F0',
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'flex-start',
     width: '100%',
-    paddingTop: 10,
+marginTop:-90    
   },
   homeDiv: {
-    backgroundColor: '#F8F0F0',
     width: 312,
     height: 50,
-    marginLeft: 21,
-    marginTop: 40,
+    marginTop: 70,
   },
   homeText: {
     fontSize: 15,
@@ -195,7 +198,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: 100,
     height: 50,
-    marginLeft: 21, // Adjust the marginLeft to align the image with the "Home" text
+    left: 21, // Adjust the marginLeft to align the image with the "Home" text
   },
  
   text: {
@@ -235,6 +238,7 @@ const styles = StyleSheet.create({
     shadowOffset: {
       width: 0,
       height: 2,
+      
     },
   }
   

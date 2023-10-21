@@ -45,9 +45,12 @@ const GetAllAdmins = (req, res) => {
         }
     });
 };
+
 module.exports = {
     CreateAdmin,
     LoginAdmin,
     UpdateAdmin,
-    GetAllAdmins
+    GetAllAdmins,
+};
+
 };

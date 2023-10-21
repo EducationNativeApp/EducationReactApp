@@ -13,6 +13,15 @@ const pool = mysql.createPool({
   database: "school",
 });
 
+function getUsers(req,res){
+  User.getAll((err,result)=>{
+    if(err) res.status(500).send(err)
+    else res.status(200).json(result)
+  })
+}
+
+
+
 function login(req, res) {
   const { email, password } = req.body;
 
@@ -43,6 +52,8 @@ function login(req, res) {
     });
   });
 }
+
+
 function register(req, res) {
   const { username, password, email, Birthday, Number } = req.body;
 
@@ -153,25 +164,37 @@ module.exports = { login, register, getAll, sendEmail, updateUserPassword };
 =======
 
 
+
 async function update(req, res) {
-  const { username, password, email } = req.body; 
-  const { idusers } = req.params; // Access idusers from URL parameters
+  const { username, password, email } = req.body;
+  const { idusers } = req.params;
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    await User.updateNewProfile(username, email, hashedPassword, idusers);
-
-    res.status(200).send({ message: 'Update successful' });
+    await User.updateNewProfile(username, email, hashedPassword, idusers, (err, results) => {
+      if (err) {
+        console.error('Error updating user profile: ' + err);
+        res.status(500).send({ error: 'Failed to update user profile' });
+      } else {
+        res.status(200).send({ message: 'Update successful' });
+      }
+    });
   } catch (err) {
     console.error('Error updating user profile: ' + err);
-    res.sendStatus(500);
+    res.status(500).send({ error: 'Failed to update user profile' });
   }
 }
 
 
+//contact us 
+
+
+
+
+
 module.exports = { login , 
   register,
-  getAll,sendEmail,update
+  getUsers,sendEmail,update
 
  };
 >>>>>>> origin/main

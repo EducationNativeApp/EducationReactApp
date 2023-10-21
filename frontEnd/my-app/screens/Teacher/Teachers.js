@@ -43,17 +43,22 @@ const images1 = () => {
 
 
   return (
+    
     <View style={styles.container}>
       <View style={styles.rectContainer}>
-        <Text style={styles.teacherText}>teachers</Text>
+        <Text style={styles.teacherText}>Find The Teacher</Text>
       </View>
       <View style={styles.imageRow}>
         <View style={styles.rectangles}>
         <TouchableOpacity onPress={images1}>
-          <Image
-            source={require('../../../my-app/assets/matiere.png')}
-            style={styles.image} 
-          />
+        <Image
+    style={{width:90,
+    height:90,
+    marginLeft:12,marginTop:-10
+  }}
+  source={{uri:'https://cdn-icons-png.flaticon.com/512/6358/6358110.png'}} />
+
+
           </TouchableOpacity>
           <View style={styles.textContain}>
             <Text style={styles.text}>Arabic</Text>
@@ -61,10 +66,14 @@ const images1 = () => {
         </View>
         <View style={styles.rectangles}>
         <TouchableOpacity onPress={images2}>
-          <Image
-            source={require('../../../my-app/assets/matiere.png')}
-            style={styles.image} 
-          />
+        <Image
+        style={{
+        height:100,
+        width:100,
+        marginLeft:0,marginTop:-10
+      }}
+      source={{uri:'https://cdn-icons-png.flaticon.com/512/3426/3426679.png'}} />
+    
           </TouchableOpacity>
           <View style={styles.textContain}>
             <Text style={styles.text}>Math</Text>
@@ -75,10 +84,13 @@ const images1 = () => {
       <View style={styles.imageRow}>
         <View style={styles.rectangles}>
         <TouchableOpacity onPress={images3}>
-          <Image
-            source={require('../../../my-app/assets/matiere.png')}
-            style={styles.image} 
-          />
+        <Image
+        style={{
+        height:100,
+        width:100,
+        marginLeft:0,marginTop:23
+      }}
+      source={{uri:'https://cdn-icons-png.flaticon.com/512/190/190124.png'}} />
           </TouchableOpacity>
           <View style={styles.textContain}>
             <Text style={styles.text}
@@ -87,10 +99,13 @@ const images1 = () => {
         </View>
         <View style={styles.rectangles}>
         <TouchableOpacity onPress={images4}>
-          <Image
-            source={require('../../../my-app/assets/matiere.png')}
-            style={styles.image} 
-          />
+        <Image
+        style={{
+        height:100,
+        width:100,
+        marginLeft:0,marginTop:23
+      }}
+      source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUGv-15mEz5ThsFXXMeme5EPmHyguE5hpqSdaaDXi9doKV-_KrL201kzsJODGXUjIjkv0&usqp=CAU'}} />
           </TouchableOpacity>
           <View style={styles.textContain}>
             <Text style={styles.text}
@@ -102,10 +117,13 @@ const images1 = () => {
       <View style={styles.imageRow}>
         <View style={styles.rectangles}>
         <TouchableOpacity onPress={images5}>
-          <Image
-            source={require('../../../my-app/assets/matiere.png')}
-            style={styles.image} 
-          />
+        <Image
+        style={{
+        height:100,
+        width:100,
+        marginLeft:0,marginTop:80
+      }}
+      source={{uri:'https://cdn-icons-png.flaticon.com/512/5277/5277145.png'}} />
           </TouchableOpacity>
           <View style={styles.textContain}>
             <Text style={styles.text}>Arts</Text>
@@ -113,10 +131,15 @@ const images1 = () => {
         </View>
         <View style={styles.rectangles}>
         <TouchableOpacity onPress={images6}>
-          <Image
-            source={require('../../../my-app/assets/matiere.png')}
-            style={styles.image} 
-          />
+          
+        <Image
+        style={{
+        height:100,
+        width:100,
+        marginLeft:0,marginTop:80
+      }}
+      source={{uri:'https://www.iconbunny.com/icons/media/catalog/product/4/0/4064.12-studying-on-laptop-icon-iconbunny.jpg'}} />
+
           </TouchableOpacity>
           <View style={styles.textContain}>
             <Text style={styles.text}>IT</Text>
@@ -133,43 +156,50 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     width: '100%',
-    height: '75%',
-    backgroundColor: '#DBC8E4',
-  },
+    height: '100%',
+    top:0,
+    backgroundColor: "white"  },
   rectContainer: {
-    backgroundColor: '#66328E',
+    backgroundColor: 'white',
     borderRadius: 10,
     paddingHorizontal: 50,
     paddingVertical: 15,
-    marginTop: -20,
+    
     alignSelf: 'center',
+    marginTop:160,
+
   },
   teacherText: {
-    fontSize: 20,
-    color: 'white',
+    width: 349,
+    height: 31,
+    fontFamily: "Poppins",
+    fontSize: 30,
+    fontWeight: "bold",
+    fontStyle: "normal",
+    lineHeight: 30,
+    color: "#BA68C8",
+    left:60,
+    top:-20
   },
   rectangles: {
     backgroundColor: 'white',
     width: 120,
     height: 140,
-    borderRadius: 20,
+    borderRadius: 25,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 20,
     marginLeft: 30,
-    borderColor: '#66328E',
-    borderWidth: 2,
+    borderColor: 'black',
+    borderWidth: 0,
   },
-  image: {
-    width: 80,
-    height: 80,
-    borderRadius: 10,
-  },
+
   textContain: {
-    marginTop: 10,
+    marginTop: 5,
   },
   text: {
     fontSize: 18,
+    fontWeight:"400"
   },
   imageRow: {
     flexDirection: 'row', 
