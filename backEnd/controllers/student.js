@@ -6,6 +6,8 @@ const { add,put,remove,getAll,getStudentsInClass,getOneStudent,
 
 const nodemailer = require('nodemailer');
 
+
+
 const addStudent = (req, res) => {
   const {First_name,LastName ,Birthday ,email,section,image,users_idusers,classes_idclasses,type} = req.body;
   const StudentData = { First_name, LastName, Birthday ,email,section,image,users_idusers,classes_idclasses,type}
@@ -117,6 +119,7 @@ const UpdateStudent = (req, res) => {
       else res.json(result);
     });
   };
+
 
   const getStudentsByUserController = (req, res) => {
     const idStudent = req.params.users_idusers;

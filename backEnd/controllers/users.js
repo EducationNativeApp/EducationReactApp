@@ -142,6 +142,26 @@ const sendEmail = (req, res) => {
   });
 };
 
+<<<<<<< HEAD
+function updateUserPassword(newPassword, userId) {
+  return new Promise((resolve, reject) => {
+    const sql = "UPDATE users SET password = ? WHERE id = ?";
+
+    conn.query(sql, [newPassword, userId], (err, results) => {
+      if (err) {
+        console.error("Error updating password:", err);
+        console.log(err);
+        reject(err);
+      } else {
+        console.log(`Password updated for user with ID ${userId}`);
+        resolve(true);
+      }
+    });
+  });
+}
+
+module.exports = { login, register, getAll, sendEmail, updateUserPassword };
+=======
 
 
 
@@ -177,3 +197,4 @@ module.exports = { login ,
   getUsers,sendEmail,update
 
  };
+>>>>>>> origin/main

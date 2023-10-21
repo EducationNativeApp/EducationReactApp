@@ -1,22 +1,18 @@
 -- MySQL Workbench Forward Engineering
-
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
 -- -----------------------------------------------------
 -- Schema harmony
 -- -----------------------------------------------------
-
 -- -----------------------------------------------------
 -- Schema harmony
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `harmony` DEFAULT CHARACTER SET utf8mb3 ;
 USE `harmony` ;
-
 -- -----------------------------------------------------
 -- Table `harmony`.`admin`
 -- -----------------------------------------------------
@@ -29,8 +25,6 @@ CREATE TABLE IF NOT EXISTS `harmony`.`admin` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb3;
-
-
 -- -----------------------------------------------------
 -- Table `harmony`.`calendrier`
 -- -----------------------------------------------------
@@ -45,6 +39,29 @@ DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
+-- Table `harmony`.`classes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `harmony`.`classes` (
+  `idclasses` INT NOT NULL AUTO_INCREMENT,
+  `class_name` VARCHAR(85) NOT NULL,
+  `imageEmploi` LONGTEXT NOT NULL,
+  `teachers_idteacher` INT NOT NULL,
+  `admin_idadmin` INT NOT NULL,
+  PRIMARY KEY (`idclasses`),
+  INDEX `fk_classes_teachers1_idx` (`teachers_idteacher` ASC) VISIBLE,
+  INDEX `fk_classes_admin1_idx` (`admin_idadmin` ASC) VISIBLE,
+  CONSTRAINT `fk_classes_admin1`
+    FOREIGN KEY (`admin_idadmin`)
+    REFERENCES `harmony`.`admin` (`idadmin`),
+  CONSTRAINT `fk_classes_teachers1`
+    FOREIGN KEY (`teachers_idteacher`)
+    REFERENCES `harmony`.`teachers` (`idteacher`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
 -- Table `harmony`.`subject`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `harmony`.`subject` (
@@ -54,8 +71,6 @@ CREATE TABLE IF NOT EXISTS `harmony`.`subject` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 16
 DEFAULT CHARACTER SET = utf8mb3;
-
-
 -- -----------------------------------------------------
 -- Table `harmony`.`teachers`
 -- -----------------------------------------------------
@@ -81,8 +96,6 @@ CREATE TABLE IF NOT EXISTS `harmony`.`teachers` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 11
 DEFAULT CHARACTER SET = utf8mb3;
-
-
 -- -----------------------------------------------------
 -- Table `harmony`.`users`
 -- -----------------------------------------------------
@@ -96,9 +109,8 @@ CREATE TABLE IF NOT EXISTS `harmony`.`users` (
   PRIMARY KEY (`idusers`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 36
+
 DEFAULT CHARACTER SET = utf8mb3;
-
-
 -- -----------------------------------------------------
 -- Table `harmony`.`chat`
 -- -----------------------------------------------------
@@ -118,8 +130,6 @@ CREATE TABLE IF NOT EXISTS `harmony`.`chat` (
     REFERENCES `harmony`.`users` (`idusers`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
-
-
 -- -----------------------------------------------------
 -- Table `harmony`.`classes`
 -- -----------------------------------------------------
@@ -172,8 +182,6 @@ CREATE TABLE IF NOT EXISTS `harmony`.`messages` (
     REFERENCES `harmony`.`chat` (`idchat`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
-
-
 -- -----------------------------------------------------
 -- Table `harmony`.`notes`
 -- -----------------------------------------------------
@@ -195,8 +203,6 @@ CREATE TABLE IF NOT EXISTS `harmony`.`notes` (
     REFERENCES `harmony`.`teachers` (`idteacher`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
-
-
 -- -----------------------------------------------------
 -- Table `harmony`.`payement`
 -- -----------------------------------------------------
@@ -213,8 +219,6 @@ CREATE TABLE IF NOT EXISTS `harmony`.`payement` (
     REFERENCES `harmony`.`users` (`idusers`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
-
-
 -- -----------------------------------------------------
 -- Table `harmony`.`student`
 -- -----------------------------------------------------
@@ -239,9 +243,8 @@ CREATE TABLE IF NOT EXISTS `harmony`.`student` (
     REFERENCES `harmony`.`users` (`idusers`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 50
+
 DEFAULT CHARACTER SET = utf8mb3;
-
-
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

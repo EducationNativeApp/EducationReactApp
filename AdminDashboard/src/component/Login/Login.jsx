@@ -36,6 +36,7 @@ const Login= () => {
   const handelRegister = (event) => {
     event.preventDefault()
     axios.post('http://localhost:2023/Admin/addAdmin',{admin,password}).then((response)=>{
+  
       console.log('register success',response.data)
       // setUserContext(response.data)
       navigate('/home')
@@ -48,6 +49,7 @@ const handelLogin = (event) => {
   event.preventDefault();
   axios
     .post('http://localhost:2023/Admin/loginAdmin', { admin, password })
+
     .then((response) => {
       console.log('welcome', response.data);
       // navigate('/hiii')
