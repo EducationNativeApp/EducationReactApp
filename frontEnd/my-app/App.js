@@ -40,8 +40,8 @@ import CalendarScreen from './screens/MyCalender/CalendarScreen';
 
 import ConversationView from "./screens/Chat/Conv";
 import Notess from './screens/Notes/Notess'
-import seeAllTeachers from './screens/seeAllTeachers/seeAllTeachers';
-
+import Hom from './screens/Home/hom';
+import ProfileView from './screens/Profile/ProfileView/ProfileView';
 const Stack = createNativeStackNavigator()
 
 
@@ -51,9 +51,9 @@ export default function App() {
     <NativeBaseProvider >
     <NavigationContainer>
     
-    <Stack.Navigator initialRouteName="Notess">
+    <Stack.Navigator initialRouteName="Home">
      <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}  />
-     <Stack.Screen name="see1" component={seeAllTeachers} options={{headerShown:false}}  />
+     <Stack.Screen name="ProfileView" component={ProfileView} options={{headerShown:false}}  />
      <Stack.Screen name="Login" component={Login} options={{headerShown:false}}  /> 
      <Stack.Screen name="SignUp" component={SignUp} options={{headerShown:false}}/> 
      <Stack.Screen name="Inscription" component={Inscription} options={{headerShown:false}} />
@@ -86,13 +86,14 @@ export default function App() {
     <Stack.Screen name="ReviewOrder" component={ReviewOrder} options={{headerShown:false}}  />  
      <Stack.Screen name="CheckOut" component={CheckOut} options={{headerShown:false}}  />        
      <Stack.Screen name="PaymentMethod" component={PaymentMethod} options={{headerShown:false}}  />
+     <Stack.Screen name="Hom" component={Hom} options={{headerShown:false}}  />
 
      
      <Stack.Screen name="CalendarScreen" component={CalendarScreen} options={{ headerShown: false }} />
      <Stack.Screen name="Conv" component={ConversationView} options={{headerShown:false}}  />
      <Stack.Screen name="Chat2" component={Chat2}  options={{headerShown:false}} ></Stack.Screen>
     </Stack.Navigator>
-    {/* <Navbar />  */}
+    <Navbar /> 
     </NavigationContainer>
     </NativeBaseProvider>
     </MyProvider>

@@ -26,6 +26,7 @@ const classeRoute=require("./routes/classe")
 const SubjectRoute=require("./routes/subject")
 const StudentRoute=require("./routes/student")
 const StudRoute= require('./routes/notes')
+const adminRoute=require('./routes/Admin')
 
 const { update } = require('./controllers/EditProfile')
 const { updateUserPassword } = require('../backEnd/controllers/users');
@@ -41,6 +42,7 @@ app.use('/classe',classeRoute)
 app.use('/subject',SubjectRoute)
 app.use('/student',StudentRoute)
 app.use('/note',StudRoute)
+app.use('/Admin',adminRoute)
 
 var clientSocketIds = [];
 var connectedUsers= [];

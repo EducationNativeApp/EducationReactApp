@@ -18,7 +18,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import ADRESS_API from "../../serverUrl";
 
 const Inscription = ({ navigation }) => {
-  const { user } = useContext(MyContext);
+  const {iduser} = useContext(MyContext);
   const [First_name, setFirstName] = useState("");
   const [LastName, setLastName] = useState("");
   const [Birthday, setBirthday] = useState("");
@@ -48,18 +48,19 @@ const Inscription = ({ navigation }) => {
   const handle = () => {
     AsyncStorage.getItem("userId");
     axios
-      .post(`http://192.168.1.5:3001/student/add`, {
+      .post(`http://192.168.8.114:3000/student/add`, {
         First_name,
         LastName,
         Birthday,
         image: "dfghjhgfds",
         class: Class,
-        users_idusers: user?.id,
-        classes_idclasses: 1,
+        users_idusers:iduser,
+        classes_idclasses: 1
       })
       .then((res) => {
         alert("student added succesufully");
         navigation.navigate("Parent");
+        console.log(user);
       })
       .catch((err) => {
         alert(err);

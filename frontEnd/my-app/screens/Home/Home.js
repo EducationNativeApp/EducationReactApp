@@ -1,4 +1,4 @@
-import {StyleSheet, Text , View , TextInput ,Button, Image ,ScrollView, TouchableNativeFeedback  } from "react-native"
+import {StyleSheet, Text , View , TextInput ,Button, Image ,ScrollView,Dimensions, TouchableNativeFeedback  } from "react-native"
 import Video from 'react-native-video'
 import {lightTheme, darkTheme} from '../../Theme/Theme'
 import { useContext,useEffect,useState  } from "react";
@@ -6,7 +6,8 @@ import { MyContext } from "../../useContext/useContext";
 import { SafeAreaView } from "react-native-safe-area-context";
 import axios from "axios";
 const Home = ({navigation}) => {
-    const { isDarkMode,setMode ,bra,setbra } = useContext(MyContext);
+    const {height,width}=Dimensions.get('window')
+    const { isDarkMode,setMode} = useContext(MyContext);
     const theme = isDarkMode ? darkTheme : lightTheme;
     const darkMode=()=>{
         setMode(!isDarkMode)
@@ -53,7 +54,7 @@ const Home = ({navigation}) => {
             
             <View style={styles.fImg}>
                 <Image
-                style={{width:"100%",height:160,marginTop:15}}
+                style={{width:width - 20,height:width-150,marginTop:15}}
                 source={{uri:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Hibbing_High_School_2014.jpg/1200px-Hibbing_High_School_2014.jpg'}}/>
             </View>
         <View style={styles.seeAll}>
@@ -119,7 +120,12 @@ const Home = ({navigation}) => {
             
             </ScrollView>
         </View>
-        <View style={styles.imgPage}>
+        <View style={{ 
+            width:width - 30,
+            height:width -160,
+            borderRadius:width/12,
+            marginTop:20,
+        backgroundColor:"black"}}>
          
 
         </View>
@@ -129,7 +135,7 @@ const Home = ({navigation}) => {
             <Text style={{marginLeft:15,fontSize:10,color:theme.textColor}}>by the teachers and the staff</Text>
             <Text style={{fontSize:10,color:theme.textColor}}>to make it one of the highest ranks</Text>
         </View>
-        <Text style={{fontSize:25,marginTop:50,marginLeft:-160,color:theme.textColor}}>Sponsors</Text>
+        <Text style={{fontSize:25,marginLeft:width - 500,marginTop:height - 10,color:theme.textColor}}>Sponsors</Text>
         <View style={styles.sponsors}>
             
 <Image 
@@ -235,6 +241,9 @@ const styles=StyleSheet.create({
         width:"100%",
         height:180,
         marginTop:5
+        ,flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
     },seeAll:{
           
         width:"100%",
@@ -281,13 +290,7 @@ const styles=StyleSheet.create({
         width:"100%",
         height:210,
         marginTop:17
-    },imgPage:{
-        width:260,
-        height:160,
-        borderRadius:19,
-        marginTop:20,
-        backgroundColor:"black"
-    } ,ales:{
+    },ales:{
         width:130,
         height:160,
         marginLeft:-155,

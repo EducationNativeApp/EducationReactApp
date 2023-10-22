@@ -1,11 +1,26 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView,TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useContext } from "react";
+import { useContext,useEffect } from "react";
 import { MyContext } from "../../useContext/useContext";
+import axios from 'axios';
 const Parent = () => {
 const navigation = useNavigation();
+
+const { isDarkMode, setMode,iduser,setUsersID,email} = useContext(MyContext);
+
+useEffect(() => {
+ 
+    axios.post('http://192.168.8.114:3000/user/getUserByemail', { email })
+      .then((res) => {
+        setUsersID(res.data);
+        console.log("succes " + iduser);
+      })
+      .catch((err) => {
+        console.log('the error ' + err);
+      });
   
+}, [iduser, email]); // Include iduser and email in the dependency array
 const handleImageClick = () => {
   
     navigation.navigate("CalendarScreen",{

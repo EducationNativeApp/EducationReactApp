@@ -8,34 +8,41 @@ import { MyContext } from "../../../useContext/useContext";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 function Login({ navigation }) {
-  const { isDarkMode, setMode, setUser } = useContext(MyContext);
+  const { isDarkMode, setMode,iduser,setUsersID , setEmail ,email} = useContext(MyContext);
   const theme = isDarkMode ? darkTheme : lightTheme;
-  const [email,setEmail]=useState('')
+  const [hide,setHide]=useState(false)
   const [password , setPassword]=useState('')
   const [data,setData]=useState([])
-const handleLog=(e)=>{
-e.preventDefault()
-    axios.post(`http://192.168.104.6:3000/user/login`,{
-      email,
-      password,
-    }).then((res)=>{
-      setData(res.data)
-      console.log(data);
-      alert("welcome")
-      navigation.navigate('Parent')
-    }).catch((err)=>{
-      if(email===""){
-        console.log("enter your email");
-        alert('enter your email')
-      }else if(password===""){
-        console.log("enter your password");
-        alert("enter your password")
-      }else{
-      console.log(err)
-      alert("check your pass or your email")
-    }
-  })
+
+const PassShow=()=>{
+  setHide(!hide)
 }
+
+  const handleLog = () => {
+    if (email === "") {
+      Alert.alert("Enter your email");
+    } else if (password === "") {
+      Alert.alert("Enter your password");
+    } else {
+      axios.post(`http://192.168.8.114:3000/user/login`, {
+        email,
+        password,
+      })
+        .then((res) => {
+          setData(res.data);
+          alert("Welcome");
+          navigation.navigate('Parent');
+        })
+        .catch((err) => {
+          console.log(err);
+          Alert.alert("Check your password or your email");
+        });
+       
+    }
+  
+    
+  };
+
   return (
     <View style={[styles.container,{ backgroundColor: theme.backgroundColor }]}>
        

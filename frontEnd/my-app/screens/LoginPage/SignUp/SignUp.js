@@ -22,11 +22,10 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const CreateAnAccount = ({navigation}) => {
   
-  const { idusers,setUsersId} = useContext(MyContext);
+  const { iduser,setUsersID,setName,username} = useContext(MyContext);
 
   const [password,setPassword]=useState('');
-  const [email,setEmail]=useState("")
-  const [username, setName] = useState('');
+ const [email,setEmail]=useState("")
   const [Birthday, setDateOfBirth] = useState('');
   const [Number, setPhoneNumber] = useState('');
   const [isError,setIsError]=useState(false);
@@ -61,28 +60,13 @@ const CreateAnAccount = ({navigation}) => {
       Number,
     };
     console.log(userData);
-    Axios.post(`http://192.168.1.5:3001:3001/user/register`, userData)
-
-      .then((response) => {
-        console.log(response.data);
-
-        setName("");
-        setDateOfBirth("");
-        setPhoneNumber("");
-        setEmail("");
-        setPassword("");
-
-        setUserId(response.data.idusers);
-        console.log("User ID:", response.data.idusers);
-        Alert.alert("Success", "Registration successful! You can now log in.");
-
-        navigation.navigate("Login");
-      })
-      .catch((error) => {
-        console.error('Registration Error', error);
-        Alert.alert('Check your inputs');
-      });
-  };
+    Axios.post(`http://192.168.8.114:3000/user/register`, userData).then((res)=>{
+      console.log("data is "+res.data);
+      navigation.navigate('Login')
+    }).catch((err)=>{
+      console.log(err);
+    })
+      };
 
   const verify = () => {
     if (password.length < 6) {
@@ -157,7 +141,7 @@ const CreateAnAccount = ({navigation}) => {
           />
         </View>
 
-        <TouchableOpacity style={styles.loginButton} onPress={handleSignUp}>
+        <TouchableOpacity style={styles.loginButton} onPress={()=>handleSignUp()}>
           <View style={styles.loginButtonTextWrapper}>
             <Text style={styles.loginButtonText}>SIGN UP</Text>
           </View>
@@ -185,8 +169,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
     width: '100%',
-    marginTop: -29,
-    margin:29
+    marginLeft:-15
   },
   text: {
     alignItems: "center",

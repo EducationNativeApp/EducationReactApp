@@ -22,8 +22,9 @@ USE `harmony` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `harmony`.`admin` (
   `idadmin` INT NOT NULL AUTO_INCREMENT,
-  `user` VARCHAR(85) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
+  `admin` VARCHAR(85) NOT NULL,
+  `password` VARCHAR(85) NOT NULL,
+  `image` LONGTEXT  NULL ,
   PRIMARY KEY (`idadmin`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 2
