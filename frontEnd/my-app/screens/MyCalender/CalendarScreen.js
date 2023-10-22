@@ -1,5 +1,5 @@
 
-import React, { useState , useEffect } from 'react';
+import React, { useState , useEffect,useContext } from 'react';
 import { Modal, Text, TextInput, Button, View , Image , TouchableWithoutFeedback, ScrollView , TouchableOpacity  , } from 'react-native';
 import { Calendar, LocaleConfig } from 'react-native-calendars';
 import { FAB  , transparent} from 'react-native-paper';
@@ -7,14 +7,9 @@ import { styles } from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios"
 import SelectDropdown from 'react-native-select-dropdown'
-
+import { MyContext } from "../../useContext/useContext";
 import Mailer from "react-native-mail"
-
-
-
 import { Svg, Path } from 'react-native-svg';
-
-
 LocaleConfig.locales['en'] = {
   monthNames: [
     'January',
@@ -51,12 +46,7 @@ LocaleConfig.locales['en'] = {
 LocaleConfig.defaultLocale = 'en';
 
 export default function CalendarScreen({ visible, onClose, onAddEvent ,route}) {
-
-
-
-
-
-
+  const { isDarkMode,setMode} = useContext(MyContext);
 
   const [student,setStudentData]=useState([])
   const [user , setUserData]=useState([])

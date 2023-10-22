@@ -14,7 +14,7 @@ const Home = ({navigation}) => {
       }
       const [data,setData]=useState([])
       useEffect(()=>{
-        axios.get("http://192.168.104.6:3000/teacher/get").then((res)=>{
+        axios.get("http://192.168.1.137:3000/teacher/get").then((res)=>{
                   setData(res.data)
               console.log(data);
               }).catch((err)=>{
@@ -54,7 +54,7 @@ const Home = ({navigation}) => {
             
             <View style={styles.fImg}>
                 <Image
-                style={{width:width - 20,height:width-150,marginTop:15}}
+                style={{width:width - 20,height:150,marginTop:15}}
                 source={{uri:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Hibbing_High_School_2014.jpg/1200px-Hibbing_High_School_2014.jpg'}}/>
             </View>
         <View style={styles.seeAll}>
@@ -110,7 +110,7 @@ const Home = ({navigation}) => {
                 source={{uri:'https://avatars.githubusercontent.com/u/97634240?v=4'}}
                 />
                 <View style={{alignItems: 'center',
-        justifyContent: 'center',marginLeft:15,marginTop:21}}>
+        justifyContent: 'center',marginTop:21}}>
                     <Text style={{color:theme.textColor}}>{e.name}</Text>
                     <Text style={{color:theme.textColor}}>IT Teacher</Text>
                 </View>
@@ -135,7 +135,7 @@ const Home = ({navigation}) => {
             <Text style={{marginLeft:15,fontSize:10,color:theme.textColor}}>by the teachers and the staff</Text>
             <Text style={{fontSize:10,color:theme.textColor}}>to make it one of the highest ranks</Text>
         </View>
-        <Text style={{fontSize:25,marginLeft:width - 500,marginTop:height - 10,color:theme.textColor}}>Sponsors</Text>
+        <Text style={{fontSize:25,marginLeft:width - 500,marginTop:50,color:theme.textColor}}>Sponsors</Text>
         <View style={styles.sponsors}>
             
 <Image 
