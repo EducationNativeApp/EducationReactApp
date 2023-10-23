@@ -11,7 +11,7 @@ const { isDarkMode, setMode,iduser,setUsersID,email} = useContext(MyContext);
 
 useEffect(() => {
  
-    axios.post('http://192.168.8.114:3000/user/getUserByemail', { email })
+    axios.post('http://192.168.137.230:3000/user/getUserByemail', { email })
       .then((res) => {
         setUsersID(res.data);
         console.log("succes " + iduser);

@@ -4,7 +4,7 @@ import {lightTheme, darkTheme} from '../../Theme/Theme'
 import { useContext,useEffect,useState  } from "react";
 import { MyContext } from "../../useContext/useContext";
 import { SafeAreaView } from "react-native-safe-area-context";
-import axios from "axios";
+import axios from "axios";3.
 const Home = ({navigation}) => {
     const {height,width}=Dimensions.get('window')
     const { isDarkMode,setMode} = useContext(MyContext);
@@ -14,7 +14,7 @@ const Home = ({navigation}) => {
       }
       const [data,setData]=useState([])
       useEffect(()=>{
-        axios.get("http://192.168.1.137:3000/teacher/get").then((res)=>{
+        axios.get("http://192.168.137.230:3000/teacher/get").then((res)=>{
                   setData(res.data)
               console.log(data);
               }).catch((err)=>{
@@ -199,112 +199,54 @@ source={{uri:"https://www.carthageland.com/img/logo-cl-tunis.png"}}
   )
 }
 
-const styles=StyleSheet.create({
-    container: {    flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-      },navPhone:{
-        width:"100%",
-        height:23,
-        backgroundColor:"black"
-      },sponsors:{
-        width:300,
-        height:180,
-        // backgroundColor:"red"
-      },ob:{
-        marginTop:50,
-        width:250,
-        borderRadius:25,
-        height:50,
-        backgroundColor:"purple"
-      },matiertof:{
-        width:"91%",
-        marginLeft:7,
-        marginTop:7,
-        height:80,
-        borderRadius:12,
-        backgroundColor:'red'
-      },tit:{
-        width:"99%",marginLeft:1,
-        height:41.6,
-    alignItems: 'center',
-        justifyContent: 'center'
-
-      }
-    ,nav:{
-        // backgroundColor:"red",
-        width:"100%",
-        height:45,
-        marginTop:17,
-        borderBottomWidth:0.6
-    },fImg:{
-        width:"100%",
-        height:180,
-        marginTop:5
-        ,flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },seeAll:{
-          
-        width:"100%",
-        height:40,
-        marginTop:17
-    },text1:{
-        marginLeft:260,
-        marginTop:12
-    },matiere:{
-        width:180,
-        height:130,
-        
-        borderRadius:12,
-        borderWidth:0.6,
-    },matieres:{
-        width:"100%",
-        height:150,
-       
-        
-    },matieree:{
-        width:180,
-        height:130,
-        
-        borderRadius:12,
-        borderWidth:0.6,
-        marginLeft:15
-        
-    },Teachers:{
-        height:190,
-        borderWidth:0.6,
-         width:150,
-         borderRadius:15,
-         marginLeft:20
-        //  backgroundColor:"red"
-    },Teachers1:{
-        height:190,
-        width:150,
-        borderRadius:15,
-        // backgroundColor:"red",
-        marginLeft:20,
-        borderWidth:0.6
-    },seeAll1:{
-        // backgroundColor:"blue",
-        width:"100%",
-        height:210,
-        marginTop:17
-    },ales:{
-        width:130,
-        height:160,
-        marginLeft:-155,
-        borderRadius:15,
-        marginTop:20,
-        backgroundColor:"purple"
-    },ales1:{
-        width:130,
-        height:160,
-        marginLeft:155,
-        borderRadius:15,
-        marginTop:-160,
-        backgroundColor:"purple"
-    }
-})
+const styles = StyleSheet.create({
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  modalContent: {
+    backgroundColor: "#fff",
+    width: 250,
+    borderRadius: 10,
+    padding: 10,
+  },
+  img: {
+    width: 80,
+    height: 80,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#A901DB",
+    marginLeft: 0,
+    marginTop: 20,
+  },
+  modalItem: {
+    padding: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
+  },
+  Log: {
+    color: "#fff",
+    marginLeft: 90,
+    marginTop: 20,
+  },
+  btn: {
+    marginTop: 30,
+    width: 205,
+    height: 60,
+    borderRadius: 8,
+    marginLeft: 14,
+    backgroundColor: "#A901DB",
+  },
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingBottom: 30,
+  },
+});
+  
 
 export default Home

@@ -1,4 +1,4 @@
-const { add,put,remove,getAll,getStudentsInClass,getOneStudent} = require("../database/model/student")
+const { add,put,remove,getAll,getStudentsInClass,getOneStudent, getStudentIdByUsername} = require("../database/model/student")
 
 const nodemailer = require('nodemailer');
 
@@ -65,6 +65,18 @@ const addStudent = (req, res) => {
     }
   });
 };
+
+const getByname=(req,res)=>{
+const {First_name}=req.body
+getStudentIdByUsername(First_name,(err,result)=>{
+  if(err){
+    console.error("Error is "+err);
+  }
+  else{
+    res.status(200).json(result)
+  }
+})
+}
 
 
 const UpdateStudent = (req, res) => {
@@ -148,7 +160,8 @@ const UpdateStudent = (req, res) => {
     getAllStudent,
     RemoveStudent,
     UpdateStudent,
-    getOnStudent
+    getOnStudent,
+    getByname
 
   }
 

@@ -15,7 +15,7 @@ function Login({ navigation }) {
   const [data,setData]=useState([])
 
 const PassShow=()=>{
-  setHide(!hide)
+  setHide(!hide) 
 }
 
   const handleLog = () => {
@@ -24,7 +24,7 @@ const PassShow=()=>{
     } else if (password === "") {
       Alert.alert("Enter your password");
     } else {
-      axios.post(`http://192.168.8.114:3000/user/login`, {
+      axios.post(`http://192.168.137.230:3000/user/login`, {
         email,
         password,
       })

@@ -1,16 +1,5 @@
 import axios from "axios";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Button,
-  Image,
-  ScrollView,
-  Modal,
-  FlatList,
-  TouchableOpacity,
-} from "react-native";
+import {StyleSheet,Text,View,TextInput,Button,Image,ScrollView,Modal,FlatList,TouchableOpacity} from "react-native";
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { MyContext } from "../../../useContext/useContext";
@@ -46,26 +35,25 @@ const Inscription = ({ navigation }) => {
   
 
   const handle = () => {
-    AsyncStorage.getItem("userId");
-    axios
-      .post(`http://192.168.8.114:3000/student/add`, {
-        First_name,
-        LastName,
-        Birthday,
-        image: "dfghjhgfds",
-        class: Class,
-        users_idusers:iduser,
-        classes_idclasses: 1
-      })
-      .then((res) => {
-        alert("student added succesufully");
-        navigation.navigate("Parent");
-        console.log(user);
-      })
-      .catch((err) => {
-        alert(err);
-      });
-  };
+    axios.post('http://192.168.137.230:3000/student/add', {
+      First_name,
+      LastName,
+      Birthday,
+      image: "dfghjhgfds",
+      class: Class,
+      users_idusers: iduser,
+      classes_idclasses: 3
+    })
+    .then((res) => {
+      alert('student added successfully'); 
+      navigation.navigate('Parent');  
+      console.log(iduser); 
+    })
+    .catch((err) => {
+      console.log(err);  
+    });
+  }
+  ;
 
   return (
     <ScrollView>
@@ -174,7 +162,7 @@ const Inscription = ({ navigation }) => {
           </Text>
           <View style={styles.img}></View>
           <View style={styles.btn}>
-            <Text style={styles.Log} onPress={() => handle()}>
+            <Text style={styles.Log} onPress={()=>handle()}>
               Send
             </Text>
           </View>

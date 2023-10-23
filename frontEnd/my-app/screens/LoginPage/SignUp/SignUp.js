@@ -60,7 +60,7 @@ const CreateAnAccount = ({navigation}) => {
       Number,
     };
     console.log(userData);
-    Axios.post(`http://192.168.8.114:3000/user/register`, userData).then((res)=>{
+    Axios.post(`http://192.168.137.230:3000/user/register`, userData).then((res)=>{
       console.log("data is "+res.data);
       navigation.navigate('Login')
     }).catch((err)=>{

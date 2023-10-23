@@ -18,7 +18,7 @@ const [data,setData]=useState([])
 
 useEffect(() => {
     axios
-      .get(`http://192.168.8.114:3000/user/getById/${iduser}`)
+      .get(`http://192.168.137.230.15:3000/user/getById/${iduser}`)
       .then((res) => {
         setData(res.data);
         console.log(data);
@@ -28,7 +28,7 @@ useEffect(() => {
       });
   }, []); 
 const Logout=()=>{
-    axios.delete(`http://192.168.8.114:3000/user/delete/${iduser}`).then((res)=>{
+    axios.delete(`http://192.168.137.230:3000/user/delete/${iduser}`).then((res)=>{
         console.log("deleted User "+iduser);
         navigation.navigate('Home')
     }).catch((err)=>{
